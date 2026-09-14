@@ -1,0 +1,101 @@
+                        <TableRow className="border-b border-[#E5DDD0] dark:border-white/[0.08] hover:bg-[#EFE9DF]/50 dark:hover:bg-white/[0.02] transition-colors">
+                          <TableCell className="p-2 text-center">
+                            <button
+                              type="button"
+                              onClick={() => toggleRowExpansion(rowKey)}
+                              className="p-1 rounded-md text-[#697D72] dark:text-[#8E9A90] hover:text-[#132219] dark:hover:text-[#F2EFE9] hover:bg-[#EFE9DF] dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
+                              title={isExpanded ? 'Collapse row' : 'Expand row'}
+                            >
+                              {isExpanded ? (
+                                <ChevronDown className="h-4 w-4 text-[#C85A32]" strokeWidth={1.5} />
+                              ) : (
+                                <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
+                              )}
+                            </button>
+                          </TableCell>
+                          <TableCell className="font-mono text-xs text-[#132219] dark:text-[#F2EFE9] font-medium whitespace-nowrap">
+                            {formatDate(d || '', 'short')}
+                          </TableCell>
+                          <TableCell>
+                            <SessionBadges
+                              log={log}
+                              onBadgeClick={() => handleOpenDrawer(log)}
+                            />
+                          </TableCell>
+                          <TableCell className="text-xs font-mono font-bold text-[#132219] dark:text-[#F2EFE9] whitespace-nowrap">
+                            {totalH.toFixed(1)}h
+                          </TableCell>
+                          <TableCell className="text-xs whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#EFE9DF] dark:bg-white/[0.06] text-[11px] font-mono text-[#132219] dark:text-[#F2EFE9]">
+                              Focus: {focusScore}/10
+                            </span>
+                          </TableCell>
+                          <TableCell className="text-xs text-[#697D72] dark:text-[#8E9A90] max-w-[180px] truncate font-serif">
+                            {log.notes || '—'}
+                          </TableCell>
+                          <TableCell className="text-right whitespace-nowrap space-x-1">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleOpenDrawer(log)}
+                              className="h-8 px-2.5 text-xs text-[#132219] dark:text-[#F2EFE9] hover:text-[#C85A32] hover:bg-[#EFE9DF] dark:hover:bg-white/[0.06] rounded-lg transition-all cursor-pointer font-medium"
+                            >
+                              <Layers className="h-3.5 w-3.5 mr-1" strokeWidth={1.5} /> Details
+                            </Button>
+                            {proof && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setSelectedProofUrl(proof)}
+                                className="h-8 px-2 text-xs text-[#2D5A43] dark:text-[#A3B5AA] hover:bg-[#2D5A43]/10 rounded-lg transition-all cursor-pointer font-medium"
+                              >
+                                <ImageIcon className="h-3.5 w-3.5 mr-1" strokeWidth={1.5} /> Proof
+                              </Button>
+                            )}
+                          </TableCell>
+                        </TableRow>
+
+                        {/* Inline Expanded Row View */}
+                        {isExpanded && (
+                          <TableRow className="bg-[#EFE9DF]/40 dark:bg-white/[0.02] border-b border-[#E5DDD0] dark:border-white/[0.08]">
+                            <TableCell colSpan={7} className="p-4">
+                              <div className="rounded-xl p-4 bg-[#F5F1E9] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] space-y-3">
+                                <div className="flex items-center justify-between text-xs">
+                                  <span className="font-serif font-medium text-[#132219] dark:text-[#F2EFE9] flex items-center gap-1.5">
+                                    <Layers className="h-3.5 w-3.5 text-[#C85A32]" strokeWidth={1.5} />
+                                    <span>All Sessions for {formatDate(d || '', 'long')}</span>
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleOpenDrawer(log)}
+                                    className="text-[#C85A32] hover:underline text-[11px] font-mono cursor-pointer"
+                                  >
+                                    View full sessions drawer →
+                                  </button>
+                                </div>
+
+                                <SessionBadges
+                                  log={log}
+                                  maxVisible={10}
+                                  showTimeRange={true}
+                                  onBadgeClick={() => handleOpenDrawer(log)}
+                                />
+
+                                {log.notes && (
+                                  <p className="text-xs text-[#697D72] dark:text-[#8E9A90] italic pt-2 border-t border-[#E5DDD0] dark:border-white/[0.08]">
+                                    &ldquo;{log.notes}&rdquo;
+                                  </p>
+                                )}
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+        </div>
+      </div>

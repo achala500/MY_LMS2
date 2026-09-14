@@ -1,0 +1,80 @@
+      {/* 1. Member Profile & Greeting Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-zinc-800/80">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">
+              Student Dashboard
+            </span>
+            <span className="text-zinc-600">•</span>
+            <span className="text-xs text-zinc-400">{member.stream}</span>
+            <span className="text-zinc-600">•</span>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-mono">
+              {member.examYear ? `${member.examYear} A/L` : '2026 A/L'}
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-display">
+            Welcome back, {member.fullName.split(' ')[0]}
+          </h1>
+          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+            <p className="text-xs sm:text-sm text-zinc-400">
+              {member.school} {member.optionalSubject ? `(${member.optionalSubject})` : ''}
+            </p>
+            <span className="text-zinc-600">•</span>
+            {user?.emailVerified ? (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                <CheckCircle2 className="h-3 w-3" /> Email Verified
+              </span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setEditProfileModalOpen(true)}
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition-all cursor-pointer"
+              >
+                <AlertCircle className="h-3 w-3" /> Verify Email
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Button
+            variant="outline"
+            onClick={() => setEditProfileModalOpen(true)}
+            className="border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 text-cyan-300 hover:text-cyan-200 rounded-xl h-11 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+          >
+            <UserCog className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Edit Profile</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() => setReportModalOpen(true)}
+            className="border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 text-indigo-300 hover:text-indigo-200 rounded-xl h-11 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+          >
+            <FileText className="h-3.5 w-3.5 text-indigo-400" />
+            <span>Academic Report</span>
+          </Button>
+
+          <Link href="/id-card">
+            <Button
+              variant="outline"
+              className="border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-xl h-11 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+            >
+              <CreditCard className="h-3.5 w-3.5 text-indigo-400" />
+              <span>Digital ID</span>
+            </Button>
+          </Link>
+
+          <button
+            onClick={handleCopyId}
+            className="inline-flex items-center gap-2 px-3.5 h-11 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 text-zinc-300 text-xs font-mono transition-colors cursor-pointer"
+          >
+            <span>{member.studyId}</span>
+            {copied ? (
+              <Check className="h-3.5 w-3.5 text-emerald-400" />
+            ) : (
+              <Copy className="h-3.5 w-3.5 text-zinc-500" />
+            )}
+          </button>
+        </div>
+      </div>

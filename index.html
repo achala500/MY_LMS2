@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#07090E">
+  <meta name="description" content="StudySync — Sri Lanka G.C.E. Advanced Level (A/L) Daily Study Tracking & Member Accountability Web Application">
+  <title>StudySync — Sri Lanka A/L Study Accountability</title>
+
+  <!-- Apple SF Pro, Google Product Sans & Plus Jakarta Sans Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"SF Pro Display"', '"SF Pro Text"', '"Product Sans"', '"Google Sans"', '"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['"Product Sans"', '"SF Pro Display"', '"Google Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            midnight: '#07090E',
+            surface: 'rgba(13, 17, 26, 0.85)',
+            card: 'rgba(19, 27, 42, 0.65)',
+            accent: {
+              indigo: '#6366F1',
+              purple: '#8B5CF6',
+              fuchsia: '#D946EF',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+              amber: '#F59E0B',
+              rose: '#EF4444'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Firebase App & Auth SDK (v10 compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjK2y49ia3YnDY3L1bMhwasAQGRikvAHA",
+      authDomain: "studysync-al-2026.firebaseapp.com",
+      projectId: "studysync-al-2026",
+      storageBucket: "studysync-al-2026.firebasestorage.app",
+      messagingSenderId: "99176264496",
+      appId: "1:99176264496:web:1a6a69567c0f7619a98ef5"
+    };
+    if (typeof firebase !== 'undefined' && firebase.initializeApp) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- QRCode library — used for scannable ID card QR generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <!-- Custom Design System & Aurora Animations -->
+  <link rel="stylesheet" href="src/css/custom.css?v=2.5">
+</head>
+
+<body class="bg-[#07090E] text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
+
+  <!-- 1. Aurora Background Mesh Layer -->
+  <div class="aurora-container" aria-hidden="true">
+    <div class="aurora-orb aurora-orb-1"></div>
+    <div class="aurora-orb aurora-orb-2"></div>
+    <div class="aurora-orb aurora-orb-3"></div>
+    <div class="aurora-orb aurora-orb-4"></div>
+  </div>
+
+  <!-- 2. Procedural Grain Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- 3. Toast Notification Stack Container -->
+  <div id="toast-container" aria-live="polite" role="region" aria-label="Notifications"></div>
+
+  <!-- 4. Global Navigation Header -->
+  <header id="app-header" class="relative z-20 w-full border-b border-white/[0.08] glass-panel sticky top-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#landing" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-lg tracking-tight text-white group-hover:text-indigo-300 transition-colors">StudySync</span>
+            <span class="text-[10px] uppercase font-mono tracking-wider px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">A/L</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Sri Lanka A/L Study Accountability</p>
+        </div>
+      </a>
+
+      <!-- Center Nav Links (Visible when logged in) -->
+      <nav id="header-nav-links" class="hidden md:flex items-center gap-1">
+        <a href="#dashboard" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-slate-400"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#daily" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5">
+          <i data-lucide="clipboard-pen" class="w-4 h-4 text-slate-400"></i>
+          <span>Daily Log</span>
+        </a>
+        <a href="#history" class="nav-link px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1.5">
+          <i data-lucide="history" class="w-4 h-4 text-slate-400"></i>
+          <span>History</span>
+        </a>
+        <a href="#admin" id="nav-admin-link" class="nav-link hidden px-3.5 py-1.5 rounded-lg text-sm font-medium text-amber-300 hover:text-amber-200 hover:bg-amber-500/10 transition-all flex items-center gap-1.5 border border-amber-500/20">
+          <i data-lucide="shield" class="w-4 h-4 text-amber-400"></i>
+          <span>Admin</span>
+        </a>
+      </nav>
+
+      <!-- Right Header Actions (Auth pill / Streak / User Profile) -->
+      <div id="header-actions" class="flex items-center gap-3">
+        <!-- Streak Counter (Shown when active) -->
+        <div id="header-streak-pill" class="hidden items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold">
+          <span class="text-sm">🔥</span>
+          <span id="header-streak-val">0</span>
+          <span class="text-[10px] text-amber-400/80 font-normal">days</span>
+        </div>
+
+        <!-- User Profile Dropdown or Login CTA -->
+        <div id="header-user-section" class="flex items-center gap-2">
+          <!-- Populated dynamically by app.js / auth.js -->
+          <a href="#landing" id="header-login-btn" class="apple-btn-secondary text-xs px-3.5 py-1.5">
+            <svg class="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+            <span>Sign In</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5. Dynamic Single Page View Root Container -->
+  <main id="app-root" class="relative z-10 flex-1 flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Initial Loading Skeleton / Fallback Content -->
+    <div id="app-init-loader" class="flex-1 flex flex-col items-center justify-center min-h-[60vh] gap-4">
+      <div class="apple-spinner"></div>
+      <p class="text-xs text-slate-400 font-mono tracking-wide">Initializing StudySync...</p>
+    </div>
+  </main>
+
+  <!-- 6. Modal Dialog Container -->
+  <div id="modal-container" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-md"></div>
+
+  <!-- 7. Footer -->
+  <footer class="relative z-10 border-t border-white/[0.08] glass-panel mt-auto py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-slate-300">StudySync Sri Lanka</span>
+        <span>•</span>
+        <span>G.C.E. A/L Study Accountability & Analytics System</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="verify.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Verify Member ID</span>
+        </a>
+        <span class="text-slate-600">|</span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-slate-400">Cloud Sync Active</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Main Application Module -->
+  <script type="module" src="src/js/app.js?v=2.4"></script>
+
+  <script>
+    // Initialize Lucide icons on load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

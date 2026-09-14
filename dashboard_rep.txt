@@ -1,0 +1,80 @@
+      {/* 1. Member Profile & Editorial Greeting Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#E5DDD0] dark:border-white/[0.08]">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-[11px] font-mono text-[#697D72] dark:text-[#8E9A90] uppercase tracking-widest">
+              Scholar Dossier
+            </span>
+            <span className="text-[#C85A32]">•</span>
+            <span className="text-xs text-[#697D72] dark:text-[#8E9A90] font-medium">{member.stream}</span>
+            <span className="text-[#E5DDD0] dark:text-white/[0.1]">•</span>
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-mono font-medium bg-[#EFE9DF] dark:bg-white/[0.06] text-[#2D5A43] dark:text-[#A3B5AA] border border-[#E5DDD0] dark:border-white/[0.08]">
+              {member.examYear ? `${member.examYear} A/L` : '2026 A/L'}
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-serif text-[#132219] dark:text-[#F2EFE9] tracking-tight">
+            Academic Desk of {member.fullName.split(' ')[0]}
+          </h1>
+          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+            <p className="text-xs sm:text-sm text-[#697D72] dark:text-[#8E9A90]">
+              {member.school} {member.optionalSubject ? `(${member.optionalSubject})` : ''}
+            </p>
+            <span className="text-[#E5DDD0] dark:text-white/[0.1]">•</span>
+            {user?.emailVerified ? (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-mono bg-[#2D5A43]/10 text-[#2D5A43] dark:text-[#A3B5AA] border border-[#2D5A43]/20">
+                <CheckCircle2 className="h-3 w-3" strokeWidth={1.5} /> Verified
+              </span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setEditProfileModalOpen(true)}
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-mono bg-[#C85A32]/10 text-[#C85A32] dark:text-[#E88965] border border-[#C85A32]/20 hover:bg-[#C85A32]/20 transition-colors cursor-pointer"
+              >
+                <AlertCircle className="h-3 w-3" strokeWidth={1.5} /> Verify Email
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2.5">
+          <Button
+            variant="outline"
+            onClick={() => setEditProfileModalOpen(true)}
+            className="border-[#E5DDD0] dark:border-white/[0.08] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-9 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+          >
+            <UserCog className="h-3.5 w-3.5 text-[#697D72]" strokeWidth={1.5} />
+            <span>Profile</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={() => setReportModalOpen(true)}
+            className="border-[#E5DDD0] dark:border-white/[0.08] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-9 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+          >
+            <FileText className="h-3.5 w-3.5 text-[#2D5A43]" strokeWidth={1.5} />
+            <span>Academic Transcript</span>
+          </Button>
+
+          <Link href="/id-card">
+            <Button
+              variant="outline"
+              className="border-[#E5DDD0] dark:border-white/[0.08] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-9 px-3.5 flex items-center gap-2 text-xs font-medium cursor-pointer"
+            >
+              <CreditCard className="h-3.5 w-3.5 text-[#9C6328]" strokeWidth={1.5} />
+              <span>Registry ID</span>
+            </Button>
+          </Link>
+
+          <button
+            onClick={handleCopyId}
+            className="inline-flex items-center gap-2 px-3 h-9 rounded-lg bg-[#F5F1E9] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] hover:border-[#C85A32]/40 text-[#132219] dark:text-[#F2EFE9] text-xs font-mono transition-colors cursor-pointer"
+          >
+            <span>{member.studyId}</span>
+            {copied ? (
+              <Check className="h-3.5 w-3.5 text-[#2D5A43]" strokeWidth={1.5} />
+            ) : (
+              <Copy className="h-3.5 w-3.5 text-[#697D72]" strokeWidth={1.5} />
+            )}
+          </button>
+        </div>
+      </div>

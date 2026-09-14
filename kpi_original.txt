@@ -1,0 +1,155 @@
+      {/* 9. Grounded Academic Performance & Real Test Mark Progress Hub */}
+      <div className="space-y-6 pt-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+              <BookOpen className="h-5 w-5" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-white font-display">Academic Summary & Test Mark Tracking</h2>
+              <p className="text-xs text-zinc-400">Grounded analysis of your actual study hours and exam paper results</p>
+            </div>
+          </div>
+
+          <Link href="/tests">
+            <Button
+              variant="outline"
+              className="min-h-[48px] border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 text-purple-300 hover:text-purple-200 rounded-xl px-5 text-xs font-semibold flex items-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
+            >
+              <PlusCircle className="h-4 w-4" />
+              <span>Record New Test Mark</span>
+            </Button>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Card 1: Clear Total Hours & Subject Allocation */}
+          <Card className="bg-zinc-900/50 backdrop-blur-xl border-zinc-800/80 shadow-xl lg:col-span-2">
+            <CardHeader className="pb-3 border-b border-zinc-800/60">
+              <CardTitle className="text-sm font-bold text-white flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-cyan-400" />
+                  <span>Subject Study Hours Breakdown</span>
+                </span>
+                <span className="font-mono text-xs text-zinc-400">
+                  Total: <strong className="text-white font-bold">{stats.totalHours.toFixed(1)}h</strong> across {stats.totalEntries} days
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-5 space-y-4">
+              <div className="space-y-3">
+                {streamSubjects.map((sub, idx) => {
+                  const hrs = idx === 0 ? sub1Hours : idx === 1 ? sub2Hours : sub3Hours;
+                  const pct = totalSubjectHours > 0 ? Math.round((hrs / totalSubjectHours) * 100) : 33;
+                  const colorClass = idx === 0 ? 'bg-indigo-500' : idx === 1 ? 'bg-cyan-500' : 'bg-emerald-500';
+                  const textClass = idx === 0 ? 'text-indigo-400' : idx === 1 ? 'text-cyan-400' : 'text-emerald-400';
+                  return (
+                    <div key={sub} className="p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80 space-y-2">
+                      <div className="flex items-center justify-between text-xs font-semibold">
+                        <span className="text-white flex items-center gap-2">
+                          <span className={`h-2.5 w-2.5 rounded-full ${colorClass}`} />
+                          <span>{sub}</span>
+                        </span>
+                        <div className="flex items-center gap-2 font-mono">
+                          <span className={`font-bold ${textClass}`}>{hrs.toFixed(1)} hrs</span>
+                          <span className="text-zinc-500">({pct}%)</span>
+                        </div>
+                      </div>
+                      <div className="h-2 rounded-full bg-zinc-900 overflow-hidden">
+                        <div className={`h-full ${colorClass} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Practical Action Takeaway */}
+              <div className="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/20 text-xs text-indigo-200 flex items-start gap-3">
+                <Sparkles className="h-4 w-4 text-indigo-400 shrink-0 mt-0.5" />
+                <p className="leading-relaxed">
+                  {groundedAdvice}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Card 2: Real Test Mark Tracking & Standings */}
+          <Card className="bg-zinc-900/50 backdrop-blur-xl border-zinc-800/80 shadow-xl lg:col-span-1 flex flex-col justify-between">
+            <CardHeader className="pb-3 border-b border-zinc-800/60">
+              <CardTitle className="text-sm font-bold text-white flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Award className="h-4 w-4 text-purple-400" />
+                  <span>Test Marks & Standing</span>
+                </span>
+                <span className="font-mono text-xs text-zinc-400">
+                  {testMarks.length} paper{testMarks.length === 1 ? '' : 's'}
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-4 flex-1 flex flex-col justify-between space-y-4">
+              {testMarks.length === 0 ? (
+                <div className="py-6 text-center space-y-3">
+                  <div className="h-10 w-10 mx-auto rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <p className="text-xs text-zinc-400 max-w-xs mx-auto leading-relaxed">
+                    No term test or model paper marks logged yet. Record your marks to view realistic A/L standings.
+                  </p>
+                  <Link href="/tests">
+                    <Button size="sm" className="min-h-[44px] bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs px-4">
+                      Add Your First Test Mark
+                    </Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <div className="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800 flex items-center justify-between">
+                    <span className="text-xs text-zinc-400 font-medium">Average Test Score:</span>
+                    <span className="font-mono text-sm font-bold text-white">{avgTestScore.toFixed(1)}%</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800 flex items-center justify-between">
+                    <span className="text-xs text-zinc-400 font-medium">Estimated Z-Score:</span>
+                    <span className="font-mono text-sm font-bold text-emerald-400">
+                      +{forecast.compositeZScore.toFixed(4)}
+                    </span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-zinc-950/60 border border-zinc-800 flex items-center justify-between">
+                    <span className="text-xs text-zinc-400 font-medium">Target Standing:</span>
+                    <span className="text-xs font-semibold text-cyan-300">{forecast.targetTier}</span>
+                  </div>
+
+                  {/* Recent Marks */}
+                  <div className="pt-2 border-t border-zinc-800/60 space-y-2">
+                    <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">
+                      Recent Test Papers
+                    </span>
+                    {testMarks.slice(0, 3).map((tm) => (
+                      <div key={tm.id} className="flex items-center justify-between text-xs py-1">
+                        <span className="text-zinc-300 truncate max-w-[140px]">{tm.paperTitle || tm.subject}</span>
+                        <div className="flex items-center gap-2 font-mono">
+                          <span className="font-bold text-white">{tm.score}%</span>
+                          <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                            tm.score >= 75 ? 'bg-emerald-500/20 text-emerald-300' :
+                            tm.score >= 65 ? 'bg-cyan-500/20 text-cyan-300' :
+                            tm.score >= 50 ? 'bg-amber-500/20 text-amber-300' :
+                            'bg-zinc-800 text-zinc-400'
+                          }`}>
+                            {tm.score >= 75 ? 'A' : tm.score >= 65 ? 'B' : tm.score >= 50 ? 'C' : tm.score >= 35 ? 'S' : 'F'}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <Link href="/tests">
+                <Button variant="ghost" className="w-full text-xs text-purple-300 hover:text-white hover:bg-purple-500/10 rounded-xl h-10">
+                  <span>View All Test Marks & Norms</span>
+                  <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+      </div>

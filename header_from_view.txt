@@ -1,0 +1,108 @@
+Created At: 2026-09-11T18:57:01+05:30
+Completed At: 2026-09-11T18:57:01+05:30
+File Path: `file:///c:/Users/alwis/Documents/antigravity/dazzling-bardeen/src/components/layout/Header.tsx`
+Total Lines: 366
+Total Bytes: 13410
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: 'use client';
+2: 
+3: import React, { useState } from 'react';
+4: import Link from 'next/link';
+5: import { usePathname } from 'next/navigation';
+6: import {
+7:   LayoutDashboard,
+8:   ClipboardPen,
+9:   Shield,
+10:   CreditCard,
+11:   Flame,
+12:   LogOut,
+13:   LogIn,
+14:   Menu,
+15:   X,
+16:   Zap,
+17:   BookOpen,
+18:   Calendar,
+19:   Fingerprint,
+20:   Inbox,
+21: } from 'lucide-react';
+22: import { cn } from '@/lib/utils';
+23: import { Button } from '@/components/ui/button';
+24: import { ThemeToggle } from '@/components/layout/ThemeToggle';
+25: import { AppLockModal } from '@/components/security/AppLockModal';
+26: import { UserInboxModal } from '@/components/dashboard/UserInboxModal';
+27: 
+28: export interface HeaderUserProps {
+29:   displayName?: string | null;
+30:   email?: string | null;
+31:   photoURL?: string | null;
+32: }
+33: 
+34: export interface HeaderMemberProps {
+35:   studyId?: string;
+36:   fullName?: string;
+37:   streakCount?: number;
+38:   role?: string;
+39: }
+40: 
+41: export interface HeaderProps {
+42:   user?: HeaderUserProps | null;
+43:   member?: HeaderMemberProps | null;
+44:   streak?: number;
+45:   isAdmin?: boolean;
+46:   onSignIn?: () => void;
+47:   onSignOut?: () => void;
+48: }
+49: 
+50: const ADMIN_EMAIL = 'alwisachalaanurada@gmail.com';
+51: 
+52: export function Header({
+53:   user,
+54:   member,
+55:   streak = 0,
+56:   isAdmin: propIsAdmin,
+57:   onSignIn,
+58:   onSignOut,
+59: }: HeaderProps) {
+60:   const pathname = usePathname();
+61:   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+62:   const [securityModalOpen, setSecurityModalOpen] = useState(false);
+63:   const [inboxModalOpen, setInboxModalOpen] = useState(false);
+64:   const [unreadCount, setUnreadCount] = useState(1);
+65: 
+66:   if (pathname === '/') {
+67:     return null;
+68:   }
+69: 
+70:   const isUserAdmin =
+71:     propIsAdmin ||
+72:     user?.email === ADMIN_EMAIL ||
+73:     member?.role === 'admin';
+74: 
+75:   const effectiveStreak = streak || member?.streakCount || 0;
+76: 
+77:   const navLinks = [
+78:     {
+79:       href: '/dashboard',
+80:       label: 'Dashboard',
+81:       icon: LayoutDashboard,
+82:       show: true,
+83:     },
+84:     {
+85:       href: '/daily',
+86:       label: 'Daily Log',
+87:       icon: ClipboardPen,
+88:       show: true,
+89:     },
+90:     {
+91:       href: '/calendar',
+92:       label: 'Calendar',
+93:       icon: Calendar,
+94:       show: true,
+95:     },
+96:     {
+97:       href: '/tests',
+98:       label: 'Tests & AI',
+99:       icon: BookOpen,
+100:       show: true,
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
