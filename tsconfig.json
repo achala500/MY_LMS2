@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "ES2022"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "out",
+    "backend",
+    "tests",
+    "server",
+    ".agents",
+    "CLOUDFLARE_DEPLOYMENT_GUIDE.ts",
+    "CRON_DAEMON_1_STREAK_EVALUATOR.ts",
+    "CRON_DAEMON_2_LEADERBOARD_REFRESHER.ts",
+    "PRESIGNED_URL_UPLOAD_PIPELINE.ts",
+    "RATE_LIMITING_ANOMALY_DETECTION.ts",
+    "TELEGRAM_BOT_INTEGRATION.ts"
+  ]
+}

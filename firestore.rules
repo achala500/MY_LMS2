@@ -1,0 +1,28 @@
+﻿rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // NIST PR.AA-1: Validate user identity and enforce absolute data isolation
+    match /candidates/{candidateId} {
+      allow read, write: if request.auth != null && request.auth.uid == candidateId;
+      
+      // Protect individual sub-collections like private Z-score logs
+      match /progressLogs/{logId} {
+        allow read, write: if request.auth != null && request.auth.uid == candidateId;
+      }
+    }
+
+    // NIST PR.PS-1: Public course parameters are readable, but writes are forbidden globally
+    match /curriculum2026/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only manageable via secure GCP environment service accounts
+    }
+
+    // Form responses: allow authenticated candidate creation
+    match /formResponses/{responseId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null && (request.auth.uid == resource.data.studyId || request.auth.token.role == 'admin');
+      allow update, delete: if request.auth != null && request.auth.token.role == 'admin';
+    }
+  }
+}

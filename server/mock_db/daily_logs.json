@@ -1,0 +1,248 @@
+[
+  {
+    "timestamp": "2026-08-24T15:00:00.000Z",
+    "studyId": "SG-BIO-0001",
+    "email": "kasun.p@gmail.com",
+    "dateOfStudy": "2026-08-24",
+    "subjects": [
+      {
+        "name": "Biology",
+        "hours": 2.5,
+        "focus": 8,
+        "productivity": 8
+      },
+      {
+        "name": "Chemistry",
+        "hours": 2,
+        "focus": 7,
+        "productivity": 8
+      },
+      {
+        "name": "Physics",
+        "hours": 1.5,
+        "focus": 9,
+        "productivity": 9
+      }
+    ],
+    "totalHours": 6,
+    "notes": "Covered Cell Biology and Organic Reaction Mechanisms.",
+    "telegram": "@kasun_p",
+    "proofPhotoUrl": ""
+  },
+  {
+    "timestamp": "2026-08-25T16:30:00.000Z",
+    "studyId": "SG-BIO-0001",
+    "email": "kasun.p@gmail.com",
+    "dateOfStudy": "2026-08-25",
+    "subjects": [
+      {
+        "name": "Biology",
+        "hours": 3,
+        "focus": 9,
+        "productivity": 9
+      },
+      {
+        "name": "Chemistry",
+        "hours": 1.5,
+        "focus": 8,
+        "productivity": 8
+      },
+      {
+        "name": "Physics",
+        "hours": 2,
+        "focus": 8,
+        "productivity": 8
+      }
+    ],
+    "totalHours": 6.5,
+    "notes": "Genetics essay questions & thermo physics revision.",
+    "telegram": "@kasun_p",
+    "proofPhotoUrl": ""
+  },
+  {
+    "timestamp": "2026-09-17T09:28:23.563Z",
+    "studyId": "SG-BIO-0002",
+    "email": "aravinda.bio@example.com",
+    "dateOfStudy": "2026-08-26",
+    "sessions": [],
+    "subjects": [
+      {
+        "name": "Biology",
+        "hours": 3.5,
+        "focus": 9,
+        "productivity": 8
+      },
+      {
+        "name": "Chemistry",
+        "hours": 2,
+        "focus": 8,
+        "productivity": 9
+      },
+      {
+        "name": "Physics",
+        "hours": 1.5,
+        "focus": 8,
+        "productivity": 8
+      }
+    ],
+    "subject1Hours": 3.5,
+    "subject2Hours": 2,
+    "subject3Hours": 1.5,
+    "hoursSubject1": 3.5,
+    "hoursSubject2": 2,
+    "hoursSubject3": 1.5,
+    "focusScore": 8,
+    "productivityScore": 8,
+    "totalHours": 7,
+    "notes": "Completed Cell Division and Reaction Kinetics.",
+    "telegram": "@aravinda_bio",
+    "proofPhotoUrl": "http://127.0.0.1:59223/uploads/SG-BIO-0002/2026-08-26/SG-BIO-0002_2026-08-26_bio_notes_aug26.jpg"
+  },
+  {
+    "timestamp": "2026-09-17T09:28:23.641Z",
+    "studyId": "SG-MATH-0003",
+    "email": "streak.master@example.com",
+    "dateOfStudy": "2026-08-24",
+    "sessions": [],
+    "subjects": [
+      {
+        "name": "Combined Maths",
+        "hours": 4,
+        "focus": 10,
+        "productivity": 10
+      },
+      {
+        "name": "Physics",
+        "hours": 2,
+        "focus": 9,
+        "productivity": 9
+      },
+      {
+        "name": "Chemistry",
+        "hours": 2,
+        "focus": 8,
+        "productivity": 8
+      }
+    ],
+    "subject1Hours": 4,
+    "subject2Hours": 2,
+    "subject3Hours": 2,
+    "hoursSubject1": 4,
+    "hoursSubject2": 2,
+    "hoursSubject3": 2,
+    "focusScore": 8,
+    "productivityScore": 8,
+    "totalHours": 8,
+    "notes": "",
+    "telegram": "@streakmaster",
+    "proofPhotoUrl": ""
+  },
+  {
+    "timestamp": "2026-09-17T09:28:23.651Z",
+    "studyId": "SG-MATH-0003",
+    "email": "streak.master@example.com",
+    "dateOfStudy": "2026-08-25",
+    "sessions": [],
+    "subjects": [
+      {
+        "name": "Combined Maths",
+        "hours": 3.5,
+        "focus": 9,
+        "productivity": 9
+      },
+      {
+        "name": "Physics",
+        "hours": 2.5,
+        "focus": 9,
+        "productivity": 9
+      },
+      {
+        "name": "Chemistry",
+        "hours": 1,
+        "focus": 8,
+        "productivity": 8
+      }
+    ],
+    "subject1Hours": 3.5,
+    "subject2Hours": 2.5,
+    "subject3Hours": 1,
+    "hoursSubject1": 3.5,
+    "hoursSubject2": 2.5,
+    "hoursSubject3": 1,
+    "focusScore": 8,
+    "productivityScore": 8,
+    "totalHours": 7,
+    "notes": "",
+    "telegram": "@streakmaster",
+    "proofPhotoUrl": ""
+  },
+  {
+    "timestamp": "2026-09-17T09:28:27.791Z",
+    "studyId": "SG-BIO-0004",
+    "email": "m4_test_1789637307686@gmail.com",
+    "dateOfStudy": "2026-08-26",
+    "sessions": [],
+    "subjects": [
+      {
+        "name": "Biology",
+        "hours": 2.5,
+        "focus": 8,
+        "productivity": 8
+      },
+      {
+        "name": "Chemistry",
+        "hours": 1.5,
+        "focus": 7,
+        "productivity": 8
+      },
+      {
+        "name": "Physics",
+        "hours": 2,
+        "focus": 9,
+        "productivity": 9
+      }
+    ],
+    "subject1Hours": 2.5,
+    "subject2Hours": 1.5,
+    "subject3Hours": 2,
+    "hoursSubject1": 2.5,
+    "hoursSubject2": 1.5,
+    "hoursSubject3": 2,
+    "focusScore": 8,
+    "productivityScore": 8,
+    "totalHours": 6,
+    "notes": "Cell Biology review and organic chemistry mechanisms.",
+    "telegram": "@m4_student",
+    "proofPhotoUrl": ""
+  },
+  {
+    "timestamp": "2026-09-17T09:28:33.612Z",
+    "studyId": "SG-MATH-0004",
+    "email": "chamara_1789637313283@gmail.com",
+    "dateOfStudy": "2026-09-17",
+    "subjects": [
+      {
+        "name": "Combined Maths",
+        "hours": 3,
+        "focus": 8,
+        "productivity": 8
+      },
+      {
+        "name": "Physics",
+        "hours": 2,
+        "focus": 8,
+        "productivity": 8
+      },
+      {
+        "name": "Chemistry",
+        "hours": 1.5,
+        "focus": 8,
+        "productivity": 8
+      }
+    ],
+    "totalHours": 6.5,
+    "notes": "2024 Past paper practice",
+    "telegram": "@chamara_1789637313283",
+    "proofPhotoUrl": ""
+  }
+]

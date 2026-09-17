@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.cdnfonts.com/css/product-sans');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #fef8f4;
+    --foreground: #1d1b19;
+
+    --card: #ffffff;
+    --card-foreground: #1d1b19;
+
+    --popover: #ffffff;
+    --popover-foreground: #1d1b19;
+
+    --primary: #c85a32;
+    --primary-foreground: #ffffff;
+
+    --secondary: #456644;
+    --secondary-foreground: #ffffff;
+
+    --tertiary: #854f00;
+    --tertiary-foreground: #ffffff;
+
+    --muted: #f3ede9;
+    --muted-foreground: #57423b;
+
+    --accent: #c85a32;
+    --accent-foreground: #ffffff;
+
+    --destructive: #ba1a1a;
+    --destructive-foreground: #ffffff;
+
+    --border: #e6e4dd;
+    --input: #e6e4dd;
+    --ring: #c85a32;
+
+    --radius: 0.75rem;
+    --success: #456644;
+
+    /* Kinfolk Academic Direct Theme Tokens */
+    --bg-canvas: #fef8f4;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-elevated: #f3ede9;
+
+    --border-subtle: #e6e4dd;
+    --border-focus: rgba(200, 90, 50, 0.5);
+    --border-glass: rgba(0, 0, 0, 0.08);
+
+    --font-sans: 'Plus Jakarta Sans', 'SF Pro Display', 'Product Sans', 'Google Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'Newsreader', 'Playfair Display', Georgia, serif;
+    --font-serif: 'Newsreader', 'Playfair Display', Georgia, serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .dark {
+    --background: #0F1114;
+    --foreground: #f6f0ec;
+
+    --card: #17191D;
+    --card-foreground: #f6f0ec;
+
+    --popover: #17191D;
+    --popover-foreground: #f6f0ec;
+
+    --primary: #c85a32;
+    --primary-foreground: #ffffff;
+
+    --secondary: #6b8e68;
+    --secondary-foreground: #ffffff;
+
+    --tertiary: #d98e32;
+    --tertiary-foreground: #ffffff;
+
+    --muted: #1F2227;
+    --muted-foreground: #a69f98;
+
+    --accent: #c85a32;
+    --accent-foreground: #ffffff;
+
+    --destructive: #ba1a1a;
+    --destructive-foreground: #ffffff;
+
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(255, 255, 255, 0.08);
+    --ring: #c85a32;
+
+    --radius: 0.75rem;
+    --success: #5FAE74;
+
+    /* Kinfolk Academic Direct Theme Tokens */
+    --bg-canvas: #0F1114;
+    --bg-surface: #17191D;
+    --bg-card: #17191D;
+    --bg-elevated: #1F2227;
+
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-focus: rgba(200, 90, 50, 0.5);
+    --border-glass: rgba(255, 255, 255, 0.12);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  body {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+    selection-background-color: rgba(194, 73, 66, 0.3);
+    selection-color: #EDEDEA;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(7, 9, 14, 0.7);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  background-clip: content-box;
+}
+
+/* ==========================================================================
+   Aurora 4-Orb Mesh Keyframes & Floating Animations
+   ========================================================================== */
+@keyframes aurora-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(80px, 60px, 0) scale(1.15); }
+  100% { transform: translate3d(-60px, 120px, 0) scale(0.95); }
+}
+
+@keyframes aurora-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-100px, -50px, 0) scale(1.1); }
+  100% { transform: translate3d(50px, 80px, 0) scale(0.9); }
+}
+
+@keyframes aurora-3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, -80px, 0) scale(1.2); }
+  100% { transform: translate3d(-50px, -40px, 0) scale(1); }
+}
+
+@keyframes aurora-4 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-70px, 50px, 0) scale(1.1); }
+  100% { transform: translate3d(60px, -60px, 0) scale(0.95); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ==========================================================================
+   Glassmorphic & Apple Design System Utilities
+   ========================================================================== */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-card {
+  background: rgba(19, 27, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 16px 40px -10px rgba(99, 102, 241, 0.22);
+}
+
+.glass-input {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), 0 0 20px rgba(99, 102, 241, 0.2);
+  outline: none;
+}
+
+.apple-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apple-gradient-accent {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apple-btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.apple-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+.apple-btn-primary:active {
+  transform: translateY(0);
+}
+
+.apple-btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.apple-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Apple Wallet ID Card 3D Perspective & EMV Chip
+   ========================================================================== */
+.wallet-card-container {
+  perspective: 1000px;
+}
+
+.wallet-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1.586 / 1;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #0a0e1a 0%, #1e1b4b 50%, #311042 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px -10px rgba(99, 102, 241, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.wallet-card:hover {
+  transform: translateY(-4px) rotateX(3deg) rotateY(-3deg);
+  box-shadow: 0 30px 70px -10px rgba(139, 92, 246, 0.45), 0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+.card-emv-chip {
+  width: 44px;
+  height: 34px;
+  background: linear-gradient(135deg, #ffd700 0%, #b8860b 50%, #d4af37 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.card-emv-chip::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(0,0,0,0.15) 6px, rgba(0,0,0,0.15) 7px);
+}
+
+.card-hologram-seal {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(217, 70, 239, 0.3) 50%, rgba(245, 158, 11, 0.3) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* =========================================================================
+   Monoline Vector CSS Micro-Animation Engine
+   ========================================================================= */
+
+@keyframes monoline-star-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(2px, -3px, 0) scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes monoline-lamp-glow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes monoline-cloud-drift {
+  0% {
+    transform: translate3d(-6px, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -2px, 0);
+  }
+  100% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+
+@keyframes monoline-breath-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes monoline-steam-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(2px, -6px, 0);
+    opacity: 0;
+  }
+}
+
+/* Micro-Animation Utility Classes */
+.animate-monoline-star {
+  animation: monoline-star-drift 4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.animate-monoline-lamp {
+  animation: monoline-lamp-glow 3.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.animate-monoline-cloud {
+  animation: monoline-cloud-drift 6s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.animate-monoline-breath {
+  animation: monoline-breath-pulse 4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.animate-monoline-steam {
+  animation: monoline-steam-rise 3s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Tactile Interactive States */
+.hover-monoline-lift {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease;
+  will-change: transform;
+}
+.hover-monoline-lift:hover {
+  transform: translate3d(0, -3px, 0) scale(1.02);
+}
+.hover-monoline-lift:active {
+  transform: translate3d(0, 1px, 0) scale(0.98);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-aurora-3,
+  .animate-aurora-4,
+  .animate-monoline-star,
+  .animate-monoline-lamp,
+  .animate-monoline-cloud,
+  .animate-monoline-breath,
+  .animate-monoline-steam {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hover-monoline-lift:hover {
+    transform: none !important;
+  }
+}
+

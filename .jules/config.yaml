@@ -1,0 +1,30 @@
+version: "1.0"
+project: "StudySync A/L Platform"
+agent:
+  name: "Google Jules"
+  role: "Autonomous Full-Stack Systems Maintainer"
+  identity_rules:
+    preserve_theme: true
+    design_system: "Apple HIG + Kinfolk Monoline"
+    color_palette:
+      canvas: "#fef8f4"
+      surface: "#ffffff"
+      ink: "#1d1b19"
+      terracotta: "#c85a32"
+      sage: "#456644"
+      border: "#ede3da"
+    emojis_allowed: false
+    svg_heavy_filters_allowed: false
+security:
+  framework: "NIST SP 800-53 Rev. 5"
+  ac_3_access_enforcement:
+    admin_lookup_public_allowed: false
+    admin_id_masking: true
+quality_gates:
+  type_check_command: "npx tsc --noEmit"
+  test_command: "npm test"
+  build_command: "npm run build"
+  forbidden_patterns:
+    - "filter=\"drop-shadow"
+    - "backdrop-blur-3xl"
+    - "any emoji character"

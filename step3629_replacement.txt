@@ -1,0 +1,95 @@
+      {/* 5. Quick Actions */}
+      <div className="flex flex-wrap items-center gap-3">
+        <Link href="/daily">
+          <Button className="bg-[#132219] dark:bg-[#F2EFE9] hover:bg-[#2D5A43] dark:hover:bg-white text-[#FBF9F5] dark:text-[#132219] font-medium text-xs rounded-lg h-10 px-4 shadow-sm transition-all flex items-center gap-2 cursor-pointer">
+            <PlusCircle className="h-4 w-4 text-[#C85A32]" />
+            <span>Log Study Today</span>
+          </Button>
+        </Link>
+        <Link href="/calendar">
+          <Button variant="outline" className="border-[#E5DDD0] dark:border-white/[0.1] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-10 px-4 text-xs font-medium transition-all flex items-center gap-2 cursor-pointer">
+            <Calendar className="h-4 w-4 text-[#2D5A43]" />
+            <span>Study Calendar</span>
+          </Button>
+        </Link>
+        <Link href="/tests">
+          <Button variant="outline" className="border-[#E5DDD0] dark:border-white/[0.1] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-10 px-4 text-xs font-medium transition-all flex items-center gap-2 cursor-pointer">
+            <BookOpen className="h-4 w-4 text-[#9C6328]" />
+            <span>Test Scores & Z-Score</span>
+          </Button>
+        </Link>
+        <Link href="/verify">
+          <Button variant="outline" className="border-[#E5DDD0] dark:border-white/[0.1] bg-[#F5F1E9] dark:bg-[#17201D] hover:bg-[#EFE9DF] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-10 px-4 text-xs font-medium transition-all flex items-center gap-2 cursor-pointer">
+            <CheckCircle2 className="h-4 w-4 text-[#2D5A43]" />
+            <span>Verify Student ID</span>
+          </Button>
+        </Link>
+      </div>
+
+
+      {/* 8. Study History Table with Expandable Rows, Session Badges & Details Drawer */}
+      <div className="rounded-xl border border-[#E5DDD0] dark:border-white/[0.08] bg-[#F5F1E9] dark:bg-[#17201D] shadow-sm overflow-hidden">
+        <div className="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5DDD0] dark:border-white/[0.08]">
+          <div>
+            <h3 className="text-lg font-serif text-[#132219] dark:text-[#F2EFE9] flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-[#C85A32]" />
+              <span>Your Study History</span>
+            </h3>
+            <p className="text-xs text-[#697D72] dark:text-[#8E9A90] mt-0.5">
+              Every day you studied, with your session breakdowns
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            <div className="relative flex-1 sm:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#697D72] dark:text-[#8E9A90]" />
+              <Input
+                placeholder="Search date, topic or subject..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-8 bg-[#FBF9F5] dark:bg-[#111614] border-[#E5DDD0] dark:border-white/[0.1] text-xs h-9 text-[#132219] dark:text-[#F2EFE9] rounded-lg placeholder:text-[#8E9A90]"
+              />
+            </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setReportModalOpen(true)}
+              className="border-[#E5DDD0] dark:border-white/[0.1] bg-[#EFE9DF] dark:bg-white/[0.04] hover:bg-[#E5DDD0] text-[#132219] dark:text-[#F2EFE9] rounded-lg h-9 px-3.5 text-xs flex items-center gap-1.5 shrink-0 transition-all cursor-pointer"
+            >
+              <Download className="h-3.5 w-3.5 text-[#C85A32]" />
+              <span className="hidden sm:inline">Export Report</span>
+            </Button>
+          </div>
+        </div>
+
+        <div>
+          {fetchingHistory ? (
+            <div className="p-8 text-center">
+              <Loader2 className="h-6 w-6 text-[#C85A32] animate-spin mx-auto mb-2" />
+              <p className="text-xs text-[#697D72] dark:text-[#8E9A90]">Getting your study history...</p>
+            </div>
+          ) : filteredLogs.length === 0 ? (
+            <div className="p-12 text-center space-y-3">
+              <p className="text-sm text-[#697D72] dark:text-[#8E9A90]">No study logs yet.</p>
+              <Link href="/daily">
+                <Button size="sm" className="bg-[#132219] dark:bg-[#F2EFE9] hover:bg-[#2D5A43] dark:hover:bg-white text-[#FBF9F5] dark:text-[#132219] rounded-lg text-xs h-9 px-5 transition-all shadow-sm cursor-pointer">
+                  Log today&apos;s study
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader className="bg-[#EFE9DF]/60 dark:bg-white/[0.02]">
+                  <TableRow className="border-b border-[#E5DDD0] dark:border-white/[0.08]">
+                    <TableHead className="w-9 px-2 text-center"></TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono">Date</TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono">What You Studied</TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono">Total Hours</TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono">Focus</TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono">Notes</TableHead>
+                    <TableHead className="text-xs text-[#697D72] dark:text-[#8E9A90] font-mono text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>

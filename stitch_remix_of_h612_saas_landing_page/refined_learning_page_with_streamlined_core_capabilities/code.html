@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Learning Platform - Minimal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Noto+Serif:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-tertiary-container": "#636565",
+                "inverse-on-surface": "#313030",
+                "outline": "#8e9192",
+                "on-primary": "#2f3131",
+                "on-error-container": "#ffdad6",
+                "inverse-primary": "#5d5f5f",
+                "surface-container-high": "#2a2a2a",
+                "surface-bright": "#3a3939",
+                "error": "#ffb4ab",
+                "on-tertiary-fixed-variant": "#454747",
+                "background": "#141313",
+                "surface-variant": "#353434",
+                "surface-container-lowest": "#0e0e0e",
+                "on-secondary-fixed": "#1a1c1c",
+                "inverse-surface": "#e5e2e1",
+                "tertiary-container": "#e2e2e2",
+                "outline-variant": "#444748",
+                "on-tertiary-fixed": "#1a1c1c",
+                "surface-tint": "#c6c6c7",
+                "on-secondary-container": "#b8b8b8",
+                "surface-container-low": "#1c1b1b",
+                "on-surface": "#e5e2e1",
+                "on-secondary-fixed-variant": "#464747",
+                "surface-container-highest": "#353434",
+                "primary": "#ffffff",
+                "primary-fixed-dim": "#c6c6c7",
+                "on-background": "#e5e2e1",
+                "tertiary-fixed": "#e2e2e2",
+                "secondary-fixed": "#e3e2e2",
+                "primary-fixed": "#e2e2e2",
+                "error-container": "#93000a",
+                "on-primary-container": "#636565",
+                "secondary-container": "#484949",
+                "primary-container": "#e2e2e2",
+                "surface": "#141313",
+                "on-surface-variant": "#c4c7c8",
+                "on-tertiary": "#2f3131",
+                "on-secondary": "#2f3131",
+                "secondary": "#c7c6c6",
+                "on-error": "#690005",
+                "secondary-fixed-dim": "#c7c6c6",
+                "on-primary-fixed-variant": "#454747",
+                "surface-dim": "#141313",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "tertiary": "#ffffff",
+                "surface-container": "#201f1f",
+                "on-primary-fixed": "#1a1c1c"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "8px",
+                "container-max": "1200px",
+                "margin-mobile": "20px",
+                "gutter": "32px",
+                "section-gap": "120px"
+        },
+        "fontFamily": {
+                "label-sm": [
+                        "Manrope", "sans-serif"
+                ],
+                "display-xl": [
+                        "Noto Serif", "serif"
+                ],
+                "headline-md": [
+                        "Noto Serif", "serif"
+                ],
+                "body-lg": [
+                        "Manrope", "sans-serif"
+                ],
+                "headline-lg": [
+                        "Noto Serif", "serif"
+                ],
+                "body-md": [
+                        "Manrope", "sans-serif"
+                ],
+                "sans": ["Manrope", "sans-serif"],
+                "serif": ["Noto Serif", "serif"]
+        },
+        "fontSize": {
+                "label-sm": [
+                        "0.75rem",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-xl": [
+                        "4.5rem",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "2rem",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "1.125rem",
+                        {
+                                "lineHeight": "1.6",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "2.5rem",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "1rem",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .parallax-hero {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .logo-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        /* Continuous slow pan for smart insight images */
+        @keyframes panImage {
+            0% { transform: translateX(-10%); }
+            50% { transform: translateX(0%); }
+            100% { transform: translateX(-10%); }
+        }
+        .pan-image {
+            animation: panImage 15s ease-in-out infinite;
+        }
+    
+        @keyframes liquidFlow {
+            0% { border-radius: 50%; transform: rotate(0deg) scale(1); }
+            50% { border-radius: 50%; transform: rotate(180deg) scale(1.05); }
+            100% { border-radius: 50%; transform: rotate(360deg) scale(1); }
+        }
+        .liquid-orb {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            background: linear-gradient(45deg, #2196f3, #e91e63, #ffeb3b, #4caf50, #9c27b0);
+            background-size: 300% 300%;
+            animation: liquidFlow 6s ease-in-out infinite, gradientShift 8s ease infinite;
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.6);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, 40px); }
+            50% { transform: translate(-20px, 60px); }
+            75% { transform: translate(-40px, 20px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased selection:bg-primary-container selection:text-on-primary">
+<!-- TopNavBar -->
+<main class="w-full">
+<!-- Main Title Area -->
+<section class="relative w-full overflow-hidden flex flex-col items-center justify-center pt-[20px] pb-[60px] px-[20px]">
+<div class="relative w-full max-w-[1200px] mx-auto rounded-[20px] overflow-hidden flex items-center justify-center min-h-[600px] pt-32 pb-12"><div class="absolute top-10 left-0 right-0 flex justify-center z-20">
+<div class="text-xl font-bold tracking-tight text-primary">Horizon</div>
+</div>
+<img alt="A serene mountain sunrise viewed from an airy, minimalist interior space." class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtopVqu60DfLcViRBn3U6eV7ofuehct-4sa-JVwlY_-O5PYDCjf0UThps6cJAeoXZIfOknBgcwAbbjhRYy9macnVSvsvJSbVQoAlnLMnYAE42llhcJ0A__PFIY20yMIu2HKR38qz4x3hkPlq_qjlxdJP4-xHN7VDNcsquM96LgPj3gBJmToqyj9VdKoOsIGHR_pLpi11BbVBHbomPH6YjyX2WZqp_tJ4Le-T7JVz7TtggKRcMaQeyT8NE5O21wZYIwLjW_pfNJax6r"/>
+<div class="absolute inset-0 bg-black/30"></div>
+<div class="relative z-10 w-full px-8 text-center">
+<h1 class="text-4xl md:text-6xl font-light text-primary leading-tight tracking-tight mb-8">Master the Art of Minimalist<br/>Design in the Modern Era</h1>
+<button class="bg-primary text-on-primary text-base font-semibold px-8 py-4 rounded-full hover:bg-primary-container transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200">Get Started Today</button>
+</div>
+</div>
+</section>
+<!-- Parallax Hero Image -->
+<!-- Intro Text -->
+<section class="pb-24 px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="max-w-2xl">
+<p class="text-secondary leading-relaxed font-light text-lg">
+                    This comprehensive course strips away the unnecessary, focusing on core principles of spatial relationship, typography, and purposeful white space. Discover how less truly can be more in creating sophisticated digital experiences.
+                </p>
+</div>
+</div>
+</section>
+<!-- Logo Roll -->
+<section class="w-full overflow-hidden mb-16 bg-surface">
+<div class="logo-track opacity-40">
+<!-- Group 1 -->
+<div class="flex items-center gap-32 pr-32">
+<div class="text-xl text-primary font-bold tracking-tight">VOGUE</div>
+<div class="text-xl text-primary tracking-widest font-light">MONOCLE</div>
+<div class="text-xl text-primary italic font-medium">Kinfolk</div>
+<div class="text-xl text-primary uppercase font-semibold">Cereal</div>
+<div class="text-xl text-primary tracking-wide">MUSEUM</div>
+</div>
+<!-- Group 2 -->
+<div class="flex items-center gap-32 pr-32">
+<div class="text-xl text-primary font-bold tracking-tight">VOGUE</div>
+<div class="text-xl text-primary tracking-widest font-light">MONOCLE</div>
+<div class="text-xl text-primary italic font-medium">Kinfolk</div>
+<div class="text-xl text-primary uppercase font-semibold">Cereal</div>
+<div class="text-xl text-primary tracking-wide">MUSEUM</div>
+</div>
+</div>
+</section>
+<!-- Smart Insights Section (Replicated & Adjusted) -->
+<section class="pt-32 pb-12 px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="max-w-full">
+<span class="text-xs font-semibold text-secondary tracking-[0.2em] uppercase">Core Capabilities</span>
+<h2 class="font-light text-primary mt-4 leading-tight text-[42px]">Everything you need to<br/>master your workflow</h2>
+</div>
+</div>
+</section>
+<!-- Duplicated Smart Insights Section (Swapped Layout) -->
+<section class="pt-12 pb-12 px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="max-w-full">
+<span class="text-xs font-semibold text-secondary tracking-[0.2em] uppercase">Core Capabilities</span>
+<h2 class="font-light text-primary mt-4 leading-tight text-[42px]">Everything you need to<br/>master your workflow</h2>
+</div>
+</div>
+</section>
+<!-- Features Grid Section -->
+<section class="pb-24 px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="mb-16">
+<span class="text-xs font-semibold text-secondary tracking-[0.2em] uppercase">Core Capabilities</span>
+<h2 class="md:text-4xl font-light text-primary mt-4 leading-tight font-sans text-[42px]">Advanced tools for<br/>modern scholarship</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col relative">
+<div class="w-full border-t border-outline-variant"></div>
+<span class="material-symbols-outlined text-primary text-2xl mt-6">library_books</span>
+<h3 class="text-[20px] font-medium text-primary mb-3 pt-[100px] tracking-tight font-sans">Structured Libraries</h3>
+<p class="text-[16px] text-secondary font-light leading-relaxed font-sans">Organize your materials by discipline, methodology, or specific research question with precise control.</p>
+</div>
+<div class="flex flex-col relative">
+<div class="w-full border-t border-outline-variant"></div>
+<span class="material-symbols-outlined text-primary text-2xl mt-6">hub</span>
+<h3 class="text-[20px] font-medium text-primary mb-3 pt-[100px] tracking-tight font-sans">Knowledge Graph</h3>
+<p class="text-[16px] text-secondary font-light leading-relaxed font-sans">Visualize connections between concepts and authors across your entire scholarly library.</p>
+</div>
+<div class="flex flex-col relative">
+<div class="w-full border-t border-outline-variant"></div>
+<span class="material-symbols-outlined text-primary text-2xl mt-6">history_edu</span>
+<h3 class="text-[20px] font-medium text-primary mb-3 pt-[100px] tracking-tight font-sans">Citation Tracking</h3>
+<p class="text-[16px] text-secondary font-light leading-relaxed font-sans">Automatically generate and verify citations in any major academic format seamlessly.</p>
+</div>
+<div class="flex flex-col relative">
+<div class="w-full border-t border-outline-variant"></div>
+<span class="material-symbols-outlined text-primary text-2xl mt-6">group_work</span>
+<h3 class="text-[20px] font-medium text-primary mb-3 pt-[100px] tracking-tight font-sans">Peer Collaboration</h3>
+<p class="text-[16px] text-secondary font-light leading-relaxed font-sans">Share annotations and debate interpretations in a shared, focused academic environment.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Sign Off Section -->
+<section class="bg-background pb-0 px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="relative w-full h-[400px] md:h-[500px] rounded-[20px] overflow-hidden flex items-center justify-center">
+<!-- Background Image with Overlay for Readability -->
+<img alt="A serene mountain sunrise viewed from an airy, minimalist interior space." class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4CxDnOE2VkP7p0wlYdgIgtrKYi2004Gp6zN881gyR_tLL05QtlPAjnz-xBdeAtB_1V8fEOiHCC72Lx-bPffN0oik8zuw__oBcRcrxcP5CtC9da5A2hogadXkOY0mPpaoe5CKdIhZ8cUzCjayHeUSvkz-ECF5aVb6H37ketw7VGTaG4F8cZF9aAXSsitlS3qUiqh9_OZEYX7NYT7ix4eR_z_PJ3KfGZZpFetnmp94BDtIdu438DdTo-TkVS0Sa7YaM7UkB_t4NTUw0"/>
+<div class="absolute inset-0 bg-background/40 backdrop-blur-[2px]"></div>
+<!-- Centered Content Over Image -->
+<div class="relative z-10 flex flex-col items-center text-center px-6">
+<span class="text-xs font-semibold text-primary tracking-[0.2em] uppercase mb-6">Core Capabilities</span>
+<h2 class="text-4xl md:text-5xl font-light text-primary leading-tight max-w-2xl">Ready to elevate your digital experience?</h2>
+<button class="mt-10 bg-primary text-on-primary text-base font-semibold px-8 py-4 rounded-full hover:bg-primary-container transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 duration-200 px-6 py-2 text-sm">
+                Start Learning Now
+            </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- New Footer Section -->
+<footer class="pt-2 pb-[20px] bg-background w-full mt-[10px] px-[20px]">
+<div class="max-w-[1200px] mx-auto">
+<div class="w-full h-[400px] md:h-[500px] rounded-[20px] flex flex-col justify-between relative border bg-[#151515] border-outline-variant p-[20px]">
+<div class="max-w-md">
+<h3 class="text-3xl md:text-4xl font-light text-primary mb-4">Embrace the minimal.</h3>
+<p class="text-secondary leading-relaxed font-light">
+            Focus on what matters. Our platform strips away distractions, allowing you to master the core principles of design in a focused environment.
+        </p>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-end w-full gap-8">
+<div class="text-6xl md:text-[8rem] font-bold tracking-tighter text-primary/80 leading-none">Learn</div>
+<div class="flex flex-col items-end gap-6 mb-2">
+<div class="flex gap-6 flex-wrap justify-end">
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">Contact</a>
+<a class="text-sm text-secondary hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="text-xs text-secondary font-light text-right">
+                © 2024 Learning Platform. Built with intention.
+            </div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
