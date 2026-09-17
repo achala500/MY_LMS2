@@ -575,11 +575,11 @@ export class AdminView {
     let rankBadge = `<span class="font-mono text-slate-400 font-bold">${rank}</span>`;
 
     if (rank === 1) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-sm shadow-md shadow-amber-500/20" title="1st Place (Gold)">ðŸ¥‡</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-sm shadow-md shadow-amber-500/20" title="1st Place (Gold)">🥇</span>`;
     } else if (rank === 2) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300/20 border border-slate-300/40 text-slate-200 font-bold text-sm" title="2nd Place (Silver)">ðŸ¥ˆ</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300/20 border border-slate-300/40 text-slate-200 font-bold text-sm" title="2nd Place (Silver)">🥈</span>`;
     } else if (rank === 3) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700/20 border border-amber-700/40 text-amber-500 font-bold text-sm" title="3rd Place (Bronze)">ðŸ¥‰</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700/20 border border-amber-700/40 text-amber-500 font-bold text-sm" title="3rd Place (Bronze)">🥉</span>`;
     }
 
     const isBio = (item.stream || '').includes('Bio');

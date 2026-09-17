@@ -84,8 +84,8 @@ export class CustomSlider {
       };
     } else {
       return {
-        status: 'Deep Flow State ðŸ”¥',
-        emoji: 'ðŸ”¥',
+        status: 'Deep Flow State 🔥',
+        emoji: '🔥',
         tone: 'purple',
         primaryColor: '#06b6d4',
         secondaryColor: '#8b5cf6',

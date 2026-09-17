@@ -93,6 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
    */
   useEffect(() => {
     let isMounted = true;
+    let unsubscribeAuth: (() => void) | null = null;
 
     async function initAuth() {
       // 1. Instant local session restore
@@ -106,7 +107,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const auth = await waitForFirebaseAuth(3000);
         if (auth && isMounted) {
-          auth.onAuthStateChanged(async (firebaseUser: any) => {
+          unsubscribeAuth = auth.onAuthStateChanged(async (firebaseUser: any) => {
             if (!isMounted) return;
 
             if (firebaseUser) {
@@ -143,6 +144,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return () => {
       isMounted = false;
+      if (unsubscribeAuth) {
+        unsubscribeAuth();
+      }
     };
   }, [syncMemberProfile]);
 

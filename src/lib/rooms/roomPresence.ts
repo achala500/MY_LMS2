@@ -369,6 +369,21 @@ class RoomPresenceManager {
       window.dispatchEvent(new CustomEvent('studysync_room_cheer_received', { detail: cheer }));
     }
   }
+
+  public destroy() {
+    this.leaveRoom();
+    if (this.tickTimer) {
+      clearInterval(this.tickTimer);
+      this.tickTimer = null;
+    }
+    if (this.channel) {
+      try {
+        this.channel.close();
+      } catch (e) {}
+      this.channel = null;
+    }
+  }
 }
 
 export const roomPresenceManager = new RoomPresenceManager();
+

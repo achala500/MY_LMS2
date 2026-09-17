@@ -247,6 +247,13 @@ class AmbientSoundSynth {
       osc.connect(gain);
       gain.connect(this.masterGain);
 
+      osc.onended = () => {
+        try {
+          osc.disconnect();
+          gain.disconnect();
+        } catch (e) {}
+      };
+
       osc.start();
       osc.stop(this.ctx.currentTime + 0.045);
     };

@@ -52,13 +52,13 @@ export function resolveStreamSubjects(stream, optionalSubject) {
  */
 export function getSubjectIcon(subjectName) {
   switch (subjectName) {
-    case 'Biology': return 'ðŸ§¬';
-    case 'Chemistry': return 'âš—ï¸';
-    case 'Physics': return 'âš›ï¸';
-    case 'Agriculture': return 'ðŸŒ±';
-    case 'Combined Maths': return 'ðŸ“';
-    case 'ICT': return 'ðŸ’»';
-    default: return 'ðŸ“š';
+    case 'Biology': return '🧬';
+    case 'Chemistry': return '⚗️';
+    case 'Physics': return '⚛️';
+    case 'Agriculture': return '🌱';
+    case 'Combined Maths': return '📐';
+    case 'ICT': return '💻';
+    default: return '📚';
   }
 }
 

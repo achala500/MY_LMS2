@@ -13,7 +13,7 @@ interface FocusTownDeskProps {
   isSelf?: boolean;
 }
 
-export const FocusTownDesk: React.FC<FocusTownDeskProps> = ({
+const FocusTownDeskComponent: React.FC<FocusTownDeskProps> = ({
   peer,
   deskNumber,
   onClaim,
@@ -59,104 +59,103 @@ export const FocusTownDesk: React.FC<FocusTownDeskProps> = ({
             <rect x="36" y="28" width="28" height="20" rx="2" strokeDasharray="2 2" />
             <line x1="42" y1="34" x2="58" y2="34" />
             <line x1="42" y1="40" x2="54" y2="40" />
-            {/* Desk Lamp Base */}
-            <circle cx="25" cy="30" r="3" />
+            {/* Study Lamp */}
+            <circle cx="24" cy="28" r="4" />
+            <line x1="24" y1="32" x2="24" y2="38" />
           </svg>
         </div>
 
-        <button
-          type="button"
-          className="w-full py-1.5 rounded-full bg-white group-hover:bg-[#c85a32] group-hover:text-white border border-[#dec0b7] group-hover:border-[#c85a32] text-[11px] font-medium text-[#57423b] transition-all shadow-xs"
-        >
-          Claim Station
-        </button>
+        <div className="w-full text-center">
+          <span className="inline-flex items-center gap-1 text-xs font-mono font-medium text-[#8a726a] group-hover:text-[#c85a32]">
+            <span>+ Claim Desk</span>
+          </span>
+        </div>
       </div>
     );
   }
 
-  const isStudying = peer.status === 'focus' || peer.status === 'deep_work';
   const isBreak = peer.status === 'break';
 
   return (
     <div
       className={cn(
-        'relative group rounded-2xl bg-white border transition-all duration-200 p-4 flex flex-col justify-between shadow-xs hover:shadow-md select-none',
-        isSelf ? 'border-[#c85a32] ring-2 ring-[#c85a32]/20' : 'border-[#e7e1de] hover:border-[#8a726a]'
+        'group relative rounded-2xl border-2 transition-all duration-300 p-4 flex flex-col justify-between min-h-[190px] shadow-sm select-none',
+        isSelf
+          ? 'bg-[#ffffff] border-[#c85a32] shadow-md ring-2 ring-[#c85a32]/20'
+          : isBreak
+          ? 'bg-[#fef8f4] border-[#dec0b7] opacity-85'
+          : 'bg-[#ffffff] border-[#dec0b7] hover:border-[#1d1b19]'
       )}
     >
       {/* Header Info */}
-      <div className="flex items-center justify-between gap-1.5 pb-2 border-b border-[#f3ede9]">
-        <div className="flex items-center gap-1.5 min-w-0">
-          <span
-            className={cn(
-              'w-2 h-2 rounded-full shrink-0 animate-pulse',
-              isStudying ? 'bg-[#456644]' : 'bg-[#fcd34d]'
-            )}
-          />
-          <span className="font-serif font-bold text-xs text-[#1d1b19] truncate">{peer.name}</span>
+      <div className="flex items-center justify-between text-[11px] font-mono">
+        <div className="flex items-center gap-1.5">
+          <span className="font-bold text-[#1d1b19]">
+            #{String(deskNumber).padStart(2, '0')}
+          </span>
           {isSelf && (
-            <span className="px-1.5 py-0.5 rounded-full bg-[#ffdcbc] text-[#854f00] text-[9px] font-mono font-bold">
+            <span className="px-1.5 py-0.5 rounded bg-[#c85a32] text-white text-[9px] font-bold">
               YOU
             </span>
           )}
         </div>
 
-        <span
-          className={cn(
-            'px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider border',
-            isBreak
-              ? 'bg-[#ffdcbc] text-[#854f00] border-[#854f00]/30'
-              : 'bg-[#c6edc1] text-[#022106] border-[#456644]/40'
-          )}
-        >
-          {isBreak ? 'Break' : 'Focus'}
-        </span>
+        {/* Status Pill */}
+        <div className="flex items-center gap-1">
+          <span
+            className={cn(
+              'w-2 h-2 rounded-full',
+              isBreak ? 'bg-amber-400' : 'bg-emerald-500 animate-pulse'
+            )}
+          />
+          <span
+            className={cn(
+              'text-[10px] uppercase tracking-wider font-semibold',
+              isBreak ? 'text-amber-600' : 'text-emerald-700'
+            )}
+          >
+            {isBreak ? 'Taking Break' : 'Deep Focus'}
+          </span>
+        </div>
       </div>
 
-      {/* Top-Down Architectural Monolinear Claimed Desk Vector with Custom Line-Art Avatar */}
-      <div className="w-full aspect-[4/3] bg-[#fef8f4] rounded-xl my-2 flex items-center justify-center relative overflow-hidden border border-[#f3ede9]">
-        <svg viewBox="0 0 120 90" width="100%" height="100%" fill="none" stroke="#1d1b19" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          {/* Desk Surface */}
-          <rect x="15" y="12" width="90" height="46" rx="4" fill="#ffffff" stroke="#1d1b19" />
+      {/* Center Character/Avatar & Mascot Desk Presentation */}
+      <div className="my-2 relative flex flex-col items-center justify-center">
+        {/* Top-Down Architectural Vector of Occupied Desk */}
+        <div className="w-20 h-20 relative flex items-center justify-center">
+          <svg viewBox="0 0 100 100" width="76" height="76" fill="none" stroke="#1d1b19" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {/* Desk Surface */}
+            <rect x="15" y="20" width="70" height="40" rx="4" fill="#f8f2ef" />
+            {/* Open Book with Real Pages */}
+            <rect x="34" y="26" width="32" height="24" rx="2" fill="#ffffff" />
+            <line x1="50" y1="26" x2="50" y2="50" stroke="#c85a32" />
+            <line x1="38" y1="32" x2="46" y2="32" stroke="#8a726a" strokeWidth="1.5" />
+            <line x1="38" y1="38" x2="46" y2="38" stroke="#8a726a" strokeWidth="1.5" />
+            <line x1="54" y1="32" x2="62" y2="32" stroke="#8a726a" strokeWidth="1.5" />
+            <line x1="54" y1="38" x2="62" y2="38" stroke="#8a726a" strokeWidth="1.5" />
+            {/* Scholar Head / Cap */}
+            <circle cx="50" cy="72" r="12" fill={isSelf ? '#fef3c7' : '#ffffff'} stroke="#1d1b19" />
+            {/* Study Lamp Head */}
+            <circle cx="24" cy="28" r="4" fill="#fcd34d" stroke="#1d1b19" />
+            <line x1="24" y1="32" x2="24" y2="38" />
+            {/* Scholar Arms on Table */}
+            <path d="M 40 68 Q 36 50 42 46" />
+            <path d="M 60 68 Q 64 50 58 46" />
+          </svg>
+        </div>
 
-          {/* Open Notebook & Derivation Lines */}
-          <rect x="42" y="20" width="36" height="26" rx="2" fill="#f8f2ef" stroke="#1d1b19" strokeWidth="1.5" />
-          <line x1="47" y1="26" x2="73" y2="26" stroke="#c85a32" strokeWidth="1.5" />
-          <line x1="47" y1="31" x2="69" y2="31" stroke="#8a726a" strokeWidth="1" />
-          <line x1="47" y1="36" x2="65" y2="36" stroke="#8a726a" strokeWidth="1" />
+        {/* Scholar Identity Tag */}
+        <div className="text-center mt-1">
+          <p className="text-xs font-bold text-[#1d1b19] line-clamp-1">
+            {peer.name}
+          </p>
+          <p className="text-[10px] font-mono text-[#8a726a] line-clamp-1">
+            {peer.school || peer.district || 'A/L Scholar'}
+          </p>
+        </div>
 
-          {/* Top-Down Seated Student Avatar */}
-          <circle cx="60" cy="74" r="11" fill="#fef8f4" stroke="#1d1b19" strokeWidth="2" />
-          <path d="M42 86 C42 78 50 75 60 75 C70 75 78 78 78 86" fill="#fef8f4" stroke="#1d1b19" strokeWidth="2" />
-
-          {/* Arms Reaching to Desk */}
-          <path d="M44 80 Q40 50 48 40" stroke="#1d1b19" strokeWidth="2" />
-          <path d="M76 80 Q80 50 72 40" stroke="#1d1b19" strokeWidth="2" />
-
-          {/* Companion Vector Indicator (Focus Pulse, Flame Streak, or Tea Mug - Zero Emojis) */}
-          {peer.companion === 'tea' || isBreak ? (
-            <g transform="translate(86, 20)">
-              {/* Monolinear Tea Mug */}
-              <rect x="0" y="4" width="10" height="12" rx="2" stroke="#854f00" strokeWidth="1.5" />
-              <path d="M10 7 C13 7 13 13 10 13" stroke="#854f00" strokeWidth="1.5" />
-              <path d="M3 1 Q4 -2 5 1" stroke="#854f00" strokeWidth="1" />
-            </g>
-          ) : peer.companion === 'cat' ? (
-            <g transform="translate(24, 20)">
-              {/* Flame Streak Indicator */}
-              <path d="M5 14 C2 10 3 6 6 3 C7 5 8 6 9 8 C10 6 12 7 11 11 C10 14 7 15 5 14 Z" stroke="#c85a32" strokeWidth="1.5" fill="none" />
-            </g>
-          ) : (
-            <g transform="translate(24, 20)">
-              {/* Focus Pulse Concentric Circles */}
-              <circle cx="6" cy="8" r="3" stroke="#456644" strokeWidth="1.5" />
-              <circle cx="6" cy="8" r="6" stroke="#456644" strokeWidth="1" strokeDasharray="2 2" />
-            </g>
-          )}
-        </svg>
-
-        {/* Ambient Subtle Lamp Glow */}
-        {isStudying && (
+        {/* Desk Lamp Ambient Spot Glow */}
+        {!isBreak && (
           <div className="absolute top-2 right-2 w-10 h-10 bg-[radial-gradient(circle,rgba(252,211,77,0.25)_0%,transparent_70%)] rounded-full pointer-events-none" />
         )}
       </div>
@@ -177,4 +176,5 @@ export const FocusTownDesk: React.FC<FocusTownDeskProps> = ({
   );
 };
 
+export const FocusTownDesk = React.memo(FocusTownDeskComponent);
 export default FocusTownDesk;

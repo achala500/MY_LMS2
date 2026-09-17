@@ -37,6 +37,7 @@ import type {
 export class ApiClientEngine {
   private baseUrl: string;
   private timeoutMs: number;
+  private inFlightRequests: Map<string, Promise<ApiResponse<any>>> = new Map();
 
   constructor(customUrl?: string, timeoutMs: number = 12000) {
     if (customUrl) {
@@ -78,32 +79,9 @@ export class ApiClientEngine {
   ): Promise<ApiResponse<T>> {
     const isGet = method.toUpperCase() === 'GET';
     let url = this.baseUrl;
-    const requestPayload = { action, ...payload };
-
-    const headers: Record<string, string> = {
-      Accept: 'application/json',
-    };
-
-    const fetchOptions: RequestInit = {
-      method: isGet ? 'GET' : 'POST',
-      headers,
-    };
-
-    if (isGet) {
-      const queryParams = new URLSearchParams();
-      queryParams.set('action', action);
-      for (const [key, val] of Object.entries(payload)) {
-        if (val !== undefined && val !== null) {
-          queryParams.set(key, String(val));
-        }
-      }
-      url = `${url}${url.includes('?') ? '&' : '?'}${queryParams.toString()}`;
-    } else {
-      // For Google Apps Script Web App, text/plain;charset=utf-8 prevents CORS preflight OPTIONS failure
-      // while allowing JSON payload parsing on the server.
-      headers['Content-Type'] = 'text/plain;charset=utf-8';
-      fetchOptions.body = JSON.stringify(requestPayload);
-    }
+    const cleanPayload = { ...payload };
+    const skipCache = Boolean(cleanPayload._skipCache);
+    delete cleanPayload._skipCache;
 
     const isReadQuery = [
       'getStudentHistory',
@@ -128,11 +106,11 @@ export class ApiClientEngine {
     ].includes(action);
 
     const cacheKey = isReadQuery
-      ? `studysync_cache_${action}_${JSON.stringify(payload)}`
+      ? `studysync_cache_${action}_${JSON.stringify(cleanPayload)}`
       : null;
 
     // Fast-path: Check memory and session cache for 0ms perceived latency
-    if (isReadQuery && cacheKey && typeof window !== 'undefined') {
+    if (isReadQuery && cacheKey && !skipCache && typeof window !== 'undefined') {
       try {
         const cachedRaw = safeSessionStorage.getItem(cacheKey);
         if (cachedRaw) {
@@ -145,114 +123,157 @@ export class ApiClientEngine {
           // If stale but usable (< 5 min), trigger background refresh and return cached immediately (SWR)
           if (age < 300000 && cachedEntry.data) {
             setTimeout(() => {
-              this.request<T>(action, { ...payload, _skipCache: true }, method).catch(() => {});
+              this.request<T>(action, { ...cleanPayload, _skipCache: true }, method).catch(() => {});
             }, 10);
-            if (!payload._skipCache) {
-              return cachedEntry.data as ApiResponse<T>;
-            }
+            return cachedEntry.data as ApiResponse<T>;
           }
         }
       } catch (cacheReadErr) {}
     }
 
-    // If mutation, invalidate related caches immediately
-    if (isMutation && typeof window !== 'undefined') {
-      try {
-        const keys = safeSessionStorage.keys();
-        keys.forEach((k) => {
-          if (k && k.startsWith('studysync_cache_')) {
-            safeSessionStorage.removeItem(k);
-          }
-        });
-      } catch (cacheClearErr) {}
+    // In-Flight Request Deduplication to prevent multiple concurrent identical HTTP requests
+    const flightKey = `${method}_${action}_${JSON.stringify(cleanPayload)}`;
+    if (isReadQuery && !skipCache && this.inFlightRequests.has(flightKey)) {
+      return this.inFlightRequests.get(flightKey) as Promise<ApiResponse<T>>;
     }
 
-    // Exponential Backoff Retry Strategy for network resilience
-    const maxRetries = method.toUpperCase() === 'GET' ? 3 : 2;
-    let lastErrorMsg = 'Network request failed';
+    const executeRequest = async (): Promise<ApiResponse<T>> => {
+      const requestPayload = { action, ...cleanPayload };
 
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), this.timeoutMs);
-        fetchOptions.signal = controller.signal;
+      const headers: Record<string, string> = {
+        Accept: 'application/json',
+      };
 
-        const response = await fetch(url, fetchOptions);
-        clearTimeout(timeoutId);
+      const fetchOptions: RequestInit = {
+        method: isGet ? 'GET' : 'POST',
+        headers,
+      };
 
-        const rawText = await response.text();
-        let resJson: any = null;
-
-        try {
-          resJson = JSON.parse(rawText);
-        } catch (jsonErr) {
-          return {
-            success: false,
-            data: null,
-            error: `Non-JSON response from server (HTTP ${response.status}): ${rawText.substring(0, 150)}`,
-            timestamp: new Date().toISOString(),
-          };
-        }
-
-        let finalResponse: ApiResponse<T>;
-        // If backend returned standard envelope { success, data, error, timestamp }
-        if (typeof resJson.success === 'boolean') {
-          finalResponse = resJson as ApiResponse<T>;
-        } else {
-          // Fallback normalization
-          finalResponse = {
-            success: response.ok,
-            data: resJson as T,
-            error: response.ok ? null : (resJson.error || `HTTP ${response.status}`),
-            timestamp: new Date().toISOString(),
-          };
-        }
-
-        // Do not retry on permanent errors (unknown action, access denied, validation errors)
-        if (!finalResponse.success && typeof finalResponse.error === 'string') {
-          const errStr = finalResponse.error.toLowerCase();
-          if (errStr.includes('unknown post action') || errStr.includes('unknown get action') || errStr.includes('access denied')) {
-            return finalResponse;
+      if (isGet) {
+        const queryParams = new URLSearchParams();
+        queryParams.set('action', action);
+        for (const [key, val] of Object.entries(cleanPayload)) {
+          if (val !== undefined && val !== null) {
+            queryParams.set(key, String(val));
           }
         }
+        url = `${url}${url.includes('?') ? '&' : '?'}${queryParams.toString()}`;
+      } else {
+        // For Google Apps Script Web App, text/plain;charset=utf-8 prevents CORS preflight OPTIONS failure
+        // while allowing JSON payload parsing on the server.
+        headers['Content-Type'] = 'text/plain;charset=utf-8';
+        fetchOptions.body = JSON.stringify(requestPayload);
+      }
 
-        // Cache successful read queries
-        if (isReadQuery && cacheKey && finalResponse.success && typeof window !== 'undefined') {
+      // If mutation, invalidate related caches immediately
+      if (isMutation && typeof window !== 'undefined') {
+        try {
+          const keys = safeSessionStorage.keys();
+          keys.forEach((k) => {
+            if (k && k.startsWith('studysync_cache_')) {
+              safeSessionStorage.removeItem(k);
+            }
+          });
+        } catch (cacheClearErr) {}
+      }
+
+      // Exponential Backoff Retry Strategy for network resilience
+      const maxRetries = method.toUpperCase() === 'GET' ? 3 : 2;
+      let lastErrorMsg = 'Network request failed';
+
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), this.timeoutMs);
+          fetchOptions.signal = controller.signal;
+
+          const response = await fetch(url, fetchOptions);
+          clearTimeout(timeoutId);
+
+          const rawText = await response.text();
+          let resJson: any = null;
+
           try {
-            safeSessionStorage.setItem(
-              cacheKey,
-              JSON.stringify({
-                cachedAt: Date.now(),
-                data: finalResponse,
-              })
+            resJson = JSON.parse(rawText);
+          } catch (jsonErr) {
+            return {
+              success: false,
+              data: null,
+              error: `Non-JSON response from server (HTTP ${response.status}): ${rawText.substring(0, 150)}`,
+              timestamp: new Date().toISOString(),
+            };
+          }
+
+          let finalResponse: ApiResponse<T>;
+          // If backend returned standard envelope { success, data, error, timestamp }
+          if (typeof resJson.success === 'boolean') {
+            finalResponse = resJson as ApiResponse<T>;
+          } else {
+            // Fallback normalization
+            finalResponse = {
+              success: response.ok,
+              data: resJson as T,
+              error: response.ok ? null : (resJson.error || `HTTP ${response.status}`),
+              timestamp: new Date().toISOString(),
+            };
+          }
+
+          // Do not retry on permanent errors (unknown action, access denied, validation errors)
+          if (!finalResponse.success && typeof finalResponse.error === 'string') {
+            const errStr = finalResponse.error.toLowerCase();
+            if (errStr.includes('unknown post action') || errStr.includes('unknown get action') || errStr.includes('access denied')) {
+              return finalResponse;
+            }
+          }
+
+          // Cache successful read queries
+          if (isReadQuery && cacheKey && finalResponse.success && typeof window !== 'undefined') {
+            try {
+              safeSessionStorage.setItem(
+                cacheKey,
+                JSON.stringify({
+                  cachedAt: Date.now(),
+                  data: finalResponse,
+                })
+              );
+            } catch (writeErr) {}
+          }
+
+          return finalResponse;
+        } catch (err: any) {
+          lastErrorMsg =
+            err.name === 'AbortError'
+              ? 'Request timed out. Please check your network connection.'
+              : (err.message || 'Network request failed');
+
+          if (attempt < maxRetries) {
+            const delayMs = Math.min(1000 * Math.pow(2, attempt - 1), 4000);
+            console.warn(
+              `[ApiClient] Attempt ${attempt} failed for '${action}', retrying in ${delayMs}ms...`
             );
-          } catch (writeErr) {}
-        }
-
-        return finalResponse;
-      } catch (err: any) {
-        lastErrorMsg =
-          err.name === 'AbortError'
-            ? 'Request timed out. Please check your network connection.'
-            : (err.message || 'Network request failed');
-
-        if (attempt < maxRetries) {
-          const delayMs = Math.min(1000 * Math.pow(2, attempt - 1), 4000);
-          console.warn(
-            `[ApiClient] Attempt ${attempt} failed for '${action}', retrying in ${delayMs}ms...`
-          );
-          await new Promise((resolve) => setTimeout(resolve, delayMs));
+            await new Promise((resolve) => setTimeout(resolve, delayMs));
+          }
         }
       }
+
+      console.warn(`[ApiClient] All ${maxRetries} attempts failed for action '${action}':`, lastErrorMsg);
+      return {
+        success: false,
+        data: null,
+        error: lastErrorMsg,
+        timestamp: new Date().toISOString(),
+      };
+    };
+
+    if (isReadQuery && !skipCache) {
+      const reqPromise = executeRequest().finally(() => {
+        this.inFlightRequests.delete(flightKey);
+      });
+      this.inFlightRequests.set(flightKey, reqPromise);
+      return reqPromise;
     }
 
-    console.warn(`[ApiClient] All ${maxRetries} attempts failed for action '${action}':`, lastErrorMsg);
-    return {
-      success: false,
-      data: null,
-      error: lastErrorMsg,
-      timestamp: new Date().toISOString(),
-    };
+    return executeRequest();
   }
 
   // ==========================================================================
