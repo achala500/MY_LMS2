@@ -241,7 +241,11 @@
           resSchool.textContent = member.school || 'Sri Lanka School';
           resStream.textContent = `${member.stream || 'A/L Stream'}${member.optionalSubject ? ` (${member.optionalSubject})` : ''}`;
           resDate.textContent = formatDate(member.registrationDate || new Date(), 'medium');
-          resStatus.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ${member.status || 'Active Member'}`;
+          resStatus.textContent = '';
+          const dotSpan = document.createElement('span');
+          dotSpan.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          resStatus.appendChild(dotSpan);
+          resStatus.appendChild(document.createTextNode(` ${member.status || 'Active Member'}`));
           resTimestamp.textContent = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
 
           successEl.classList.remove('hidden');
