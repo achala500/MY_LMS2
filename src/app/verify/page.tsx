@@ -269,7 +269,7 @@ function VerifyContent() {
                   Cohort & Status
                 </span>
                 <span className="font-mono font-bold text-sm text-[#456644] mt-0.5 block">
-                  2026 Batch · Active Scholar
+                  2026 Batch Â· Active Scholar
                 </span>
               </div>
 

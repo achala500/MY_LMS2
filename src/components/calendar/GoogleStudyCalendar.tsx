@@ -339,7 +339,7 @@ export function GoogleStudyCalendar() {
     ctx.fillText('STUDYSYNC SRI LANKA', 540, 240);
     ctx.font = '500 28px monospace';
     ctx.fillStyle = '#94a3b8';
-    ctx.fillText('STUDENT: ' + (member?.studyId || 'AL-STUDENT') + ' • ' + (member?.stream || 'Physical Science'), 540, 300);
+    ctx.fillText('STUDENT: ' + (member?.studyId || 'AL-STUDENT') + ' â€¢ ' + (member?.stream || 'Physical Science'), 540, 300);
     ctx.font = 'extrabold 180px sans-serif';
     ctx.fillStyle = '#ffffff';
     ctx.fillText(String(countdown.daysRemaining), 540, 580);
@@ -355,7 +355,7 @@ export function GoogleStudyCalendar() {
     ctx.font = 'italic 34px sans-serif';
     ctx.fillStyle = '#a5b4fc';
     ctx.textAlign = 'center';
-    ctx.fillText('“Consistency today builds university success tomorrow.”', 540, 1540);
+    ctx.fillText('â€œConsistency today builds university success tomorrow.â€', 540, 1540);
     const image = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = image;
@@ -676,7 +676,7 @@ export function GoogleStudyCalendar() {
               <div className="flex items-center justify-between p-4 bg-[#F5F1E9] dark:bg-[#131B18] rounded-xl border border-[#E5DDD0] dark:border-white/[0.08]">
                 <div>
                   <h3 className="text-base font-serif font-bold text-[#132219] dark:text-[#F5F1E9]">{currentDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</h3>
-                  <p className="text-xs text-[#6E6259] dark:text-[#9E9287]">{dayEvents.length} scheduled sessions · {dayEvents.reduce((acc, ev) => acc + (ev.durationHours || 0), 0).toFixed(1)} hrs total</p>
+                  <p className="text-xs text-[#6E6259] dark:text-[#9E9287]">{dayEvents.length} scheduled sessions Â· {dayEvents.reduce((acc, ev) => acc + (ev.durationHours || 0), 0).toFixed(1)} hrs total</p>
                 </div>
                 <Button
                   size="sm"
@@ -697,7 +697,7 @@ export function GoogleStudyCalendar() {
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold text-[#6E6259] dark:text-[#9E9287]">{ev.startTime} – {ev.endTime}</span>
+                        <span className="text-xs font-mono font-bold text-[#6E6259] dark:text-[#9E9287]">{ev.startTime} â€“ {ev.endTime}</span>
                         <span className="px-2 py-0.5 rounded text-[10px] font-semibold text-white" style={{ backgroundColor: ev.color }}>{ev.subject}</span>
                       </div>
                       <h4 className="text-sm font-serif font-bold text-[#132219] dark:text-[#F5F1E9]">{ev.title}</h4>
@@ -730,7 +730,7 @@ export function GoogleStudyCalendar() {
       </Card>
 
       {selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60  animate-in fade-in">
           <div className="bg-[#FBF9F5] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
             <button onClick={() => setSelectedEvent(null)} className="absolute top-5 right-5 text-[#9E9287] hover:text-[#132219] dark:hover:text-[#F5F1E9] transition-colors">
               <X className="h-5 w-5" />
@@ -740,7 +740,7 @@ export function GoogleStudyCalendar() {
                 <span className="px-3 py-1 rounded text-xs font-medium text-white" style={{ backgroundColor: selectedEvent.color }}>
                   {selectedEvent.subject}
                 </span>
-                <span className="text-xs text-[#6E6259] dark:text-[#9E9287] font-mono">{selectedEvent.date} · {selectedEvent.startTime} - {selectedEvent.endTime}</span>
+                <span className="text-xs text-[#6E6259] dark:text-[#9E9287] font-mono">{selectedEvent.date} Â· {selectedEvent.startTime} - {selectedEvent.endTime}</span>
               </div>
               <h3 className="text-xl font-serif font-bold text-[#132219] dark:text-[#F5F1E9]">{selectedEvent.title}</h3>
             </div>
@@ -793,7 +793,7 @@ export function GoogleStudyCalendar() {
       )}
 
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60  animate-in fade-in">
           <div className="bg-[#FBF9F5] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
             <button onClick={() => setIsAddModalOpen(false)} className="absolute top-5 right-5 text-[#9E9287] hover:text-[#132219] dark:hover:text-[#F5F1E9] transition-colors">
               <X className="h-5 w-5" />
@@ -886,7 +886,7 @@ export function GoogleStudyCalendar() {
       )}
 
       {isSubjectColorsOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60  animate-in fade-in">
           <div className="bg-[#FBF9F5] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 max-w-md w-full space-y-6 shadow-2xl relative">
             <button onClick={() => setIsSubjectColorsOpen(false)} className="absolute top-5 right-5 text-[#9E9287] hover:text-[#132219] dark:hover:text-[#F5F1E9] transition-colors">
               <X className="h-5 w-5" />
@@ -923,7 +923,7 @@ export function GoogleStudyCalendar() {
       )}
 
       {isCountdownModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60  animate-in fade-in">
           <div className="bg-[#FBF9F5] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
             <button onClick={() => setIsCountdownModalOpen(false)} className="absolute top-5 right-5 text-[#9E9287] hover:text-[#132219] dark:hover:text-[#F5F1E9] transition-colors">
               <X className="h-5 w-5" />
@@ -956,7 +956,7 @@ export function GoogleStudyCalendar() {
       )}
 
       {isAiScheduleConfirmOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60  animate-in fade-in">
           <div className="bg-[#FBF9F5] dark:bg-[#17201D] border border-[#E5DDD0] dark:border-white/[0.08] rounded-2xl p-6 sm:p-8 max-w-md w-full space-y-6 shadow-2xl relative">
             <button onClick={() => setIsAiScheduleConfirmOpen(false)} className="absolute top-5 right-5 text-[#9E9287] hover:text-[#132219] dark:hover:text-[#F5F1E9] transition-colors">
               <X className="h-5 w-5" />

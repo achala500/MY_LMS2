@@ -1,5 +1,5 @@
 /**
- * StudySync — API Request & Response Types for Google Apps Script Backend
+ * StudySync â€” API Request & Response Types for Google Apps Script Backend
  */
 
 import { MemberData, VerifiedMember, GenderType, StreamType, MemberStatus } from './member';

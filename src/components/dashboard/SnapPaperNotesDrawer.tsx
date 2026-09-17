@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useRef } from 'react';
 import {
@@ -123,7 +123,7 @@ export function SnapPaperNotesDrawer({
       setPreviewUrl(dataUrl);
       setRotation(0);
       toast.success(
-        `Optimized: ${(selected.size / (1024 * 1024)).toFixed(1)}MB → ${(blob.size / 1024).toFixed(0)}KB (${Math.round((1 - blob.size / selected.size) * 100)}% saved)`
+        `Optimized: ${(selected.size / (1024 * 1024)).toFixed(1)}MB ? ${(blob.size / 1024).toFixed(0)}KB (${Math.round((1 - blob.size / selected.size) * 100)}% saved)`
       );
     } catch (err) {
       console.error(err);
@@ -177,7 +177,7 @@ export function SnapPaperNotesDrawer({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[#19202e]/60 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[#19202e]/60  animate-in fade-in duration-200">
       <div className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#ffffff] rounded-t-3xl sm:rounded-2xl border border-[#e7e1de] shadow-2xl overflow-hidden">
         {/* Header */}
         <div className="px-6 py-4 border-b border-[#f0eae6] flex items-center justify-between bg-[#fefaf8]">
@@ -267,7 +267,7 @@ export function SnapPaperNotesDrawer({
                 />
 
                 {/* Control Overlay */}
-                <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 bg-[#19202e]/80 backdrop-blur-xs p-1 rounded-full text-white">
+                <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5 bg-[#19202e]/80  p-1 rounded-full text-white">
                   <button
                     type="button"
                     onClick={rotateImage}
@@ -291,9 +291,9 @@ export function SnapPaperNotesDrawer({
                 </div>
 
                 {/* Size badge */}
-                <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#19202e]/85 backdrop-blur-xs text-[11px] font-mono text-white flex items-center gap-2">
+                <div className="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#19202e]/85  text-[11px] font-mono text-white flex items-center gap-2">
                   <span className="line-through text-gray-400">{formatSize(originalSize)}</span>
-                  <span className="text-[#fcd34d] font-semibold">→ {compressedBlob ? formatSize(compressedBlob.size) : ''}</span>
+                  <span className="text-[#fcd34d] font-semibold">? {compressedBlob ? formatSize(compressedBlob.size) : ''}</span>
                 </div>
               </div>
 

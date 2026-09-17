@@ -29,8 +29,8 @@ export interface SubjectZScoreDetail {
   zScore: number;
   grade: 'A' | 'B' | 'C' | 'S' | 'F';
   confidencePct: number;
-  sensitivity: number; // ∂Z/∂X_j = 1 / (3 * σ_j)
-  marksNeededPer01Z: number; // 3 * σ_j * 0.1
+  sensitivity: number; // âˆ‚Z/âˆ‚X_j = 1 / (3 * Ïƒ_j)
+  marksNeededPer01Z: number; // 3 * Ïƒ_j * 0.1
   percentile: number;
 }
 
@@ -79,7 +79,7 @@ export interface CognitiveFatigueMetrics {
 
 export interface SubjectEquilibriumMetrics {
   entropyScore: number; // Shannon entropy H
-  maxEntropy: number; // ln(3) ≈ 1.0986
+  maxEntropy: number; // ln(3) â‰ˆ 1.0986
   equilibriumPct: number; // (H / ln(3)) * 100
   assessment: string;
   isNeglected: boolean;

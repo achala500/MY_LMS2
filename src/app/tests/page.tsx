@@ -321,7 +321,7 @@ export default function TestsAndForecastPage() {
               <div>
                 <h2 className="font-serif text-xl font-semibold text-[#1d1b19]">Forecast Simulator</h2>
                 <p className="font-sans text-xs text-[#2d2420]">
-                  What-if test simulator — tweak your scores and see your Z-score change on the fly.
+                  What-if test simulator â€” tweak your scores and see your Z-score change on the fly.
                 </p>
               </div>
               <div className="flex items-center gap-2">

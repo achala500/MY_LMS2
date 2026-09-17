@@ -100,7 +100,7 @@ export const RoomControlsDrawer: React.FC<RoomControlsDrawerProps> = ({
       totalHours: hours,
       focusScore: 9,
       productivityScore: 9,
-      notes: `Focus Town Live Room: ${currentSubject} — ${currentTopic || 'Deep focus revision'}`,
+      notes: `Focus Town Live Room: ${currentSubject} â€” ${currentTopic || 'Deep focus revision'}`,
       subjects: [
         {
           name: currentSubject,

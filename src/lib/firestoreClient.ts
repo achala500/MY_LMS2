@@ -1,4 +1,4 @@
-﻿/**
+/**
  * StudySync — Thick Client Firestore & NIST Offline Persistence Engine
  * 
  * Provides:

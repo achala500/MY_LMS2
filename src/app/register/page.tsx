@@ -328,7 +328,7 @@ export default function RegisterPage() {
                           required
                           value={candidatePin}
                           onChange={(e) => setCandidatePin(e.target.value)}
-                          placeholder="••••"
+                          placeholder="â€¢â€¢â€¢â€¢"
                           maxLength={8}
                           className="w-full px-4 py-2.5 rounded-xl bg-[#f8f2ef] border border-[#e7e1de] text-xs font-mono text-[#1d1b19] focus:outline-none focus:border-[#c85a32] transition-colors tracking-widest"
                         />
@@ -407,7 +407,7 @@ export default function RegisterPage() {
                         <datalist id="register-schools-datalist">
                           {SRI_LANKAN_SCHOOLS.map((s) => (
                             <option key={s.id || s.name} value={s.name}>
-                              {s.district} District • {s.type}
+                              {s.district} District â€¢ {s.type}
                             </option>
                           ))}
                         </datalist>

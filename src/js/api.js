@@ -1,5 +1,5 @@
 /**
- * StudySync — Unified ApiClient
+ * StudySync â€” Unified ApiClient
  * Connects frontend views to Node.js Mock Server or live Google Apps Script Web App (Code.gs).
  * Implements all 7 authoritative action endpoints with error handling, retry resilience, and mock fallback.
  */

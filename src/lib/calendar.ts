@@ -1,5 +1,5 @@
 /**
- * StudySync — Google Calendar Integration & Study Schedule Utilities
+ * StudySync â€” Google Calendar Integration & Study Schedule Utilities
  */
 
 import { safeStorage } from './storage/safeStorage';

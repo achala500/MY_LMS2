@@ -109,7 +109,7 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
                   )}
                 </DialogTitle>
                 <DialogDescription className="text-xs text-[#2d2420]">
-                  {studentName ? `${studentName} • ` : ''}{dateOfStudy || 'Verified daily log proof'}
+                  {studentName ? `${studentName} â€¢ ` : ''}{dateOfStudy || 'Verified daily log proof'}
                 </DialogDescription>
               </div>
             </div>
@@ -156,7 +156,7 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
         {/* Content Canvas */}
         <div className="mt-4 relative rounded-2xl overflow-hidden border border-[#dec0b7]/60 bg-white min-h-[340px] max-h-[540px] flex items-center justify-center">
           {loading && !isPdf && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#fef8f4]/80 backdrop-blur-xs gap-2">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#fef8f4]/80  gap-2">
               <Loader2 className="h-6 w-6 text-[#c85a32] animate-spin" />
               <span className="text-xs text-[#2d2420] font-mono">Loading high-resolution proof...</span>
             </div>

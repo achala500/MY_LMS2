@@ -1,5 +1,5 @@
 /**
- * StudySync — Admin Custom Forms & Student Inbox Types
+ * StudySync â€” Admin Custom Forms & Student Inbox Types
  */
 
 export type FormFieldType = 

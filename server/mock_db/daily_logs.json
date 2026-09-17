@@ -60,7 +60,7 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T09:28:23.563Z",
+    "timestamp": "2026-09-17T09:55:43.214Z",
     "studyId": "SG-BIO-0002",
     "email": "aravinda.bio@example.com",
     "dateOfStudy": "2026-08-26",
@@ -96,11 +96,11 @@
     "totalHours": 7,
     "notes": "Completed Cell Division and Reaction Kinetics.",
     "telegram": "@aravinda_bio",
-    "proofPhotoUrl": "http://127.0.0.1:59223/uploads/SG-BIO-0002/2026-08-26/SG-BIO-0002_2026-08-26_bio_notes_aug26.jpg"
+    "proofPhotoUrl": "http://127.0.0.1:52597/uploads/SG-BIO-0002/2026-08-26/SG-BIO-0002_2026-08-26_bio_notes_aug26.jpg"
   },
   {
-    "timestamp": "2026-09-17T09:28:23.641Z",
-    "studyId": "SG-MATH-0003",
+    "timestamp": "2026-09-17T09:55:43.315Z",
+    "studyId": "SG-MATH-0004",
     "email": "streak.master@example.com",
     "dateOfStudy": "2026-08-24",
     "sessions": [],
@@ -138,8 +138,8 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T09:28:23.651Z",
-    "studyId": "SG-MATH-0003",
+    "timestamp": "2026-09-17T09:55:43.327Z",
+    "studyId": "SG-MATH-0004",
     "email": "streak.master@example.com",
     "dateOfStudy": "2026-08-25",
     "sessions": [],
@@ -177,9 +177,9 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T09:28:27.791Z",
+    "timestamp": "2026-09-17T09:55:49.322Z",
     "studyId": "SG-BIO-0004",
-    "email": "m4_test_1789637307686@gmail.com",
+    "email": "m4_test_1789638949203@gmail.com",
     "dateOfStudy": "2026-08-26",
     "sessions": [],
     "subjects": [
@@ -216,9 +216,9 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T09:28:33.612Z",
-    "studyId": "SG-MATH-0004",
-    "email": "chamara_1789637313283@gmail.com",
+    "timestamp": "2026-09-17T09:56:02.764Z",
+    "studyId": "SG-MATH-0005",
+    "email": "chamara_1789638962543@gmail.com",
     "dateOfStudy": "2026-09-17",
     "subjects": [
       {
@@ -242,7 +242,7 @@
     ],
     "totalHours": 6.5,
     "notes": "2024 Past paper practice",
-    "telegram": "@chamara_1789637313283",
+    "telegram": "@chamara_1789638962543",
     "proofPhotoUrl": ""
   }
 ]

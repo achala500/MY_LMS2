@@ -15,7 +15,7 @@ export default function NotFound() {
         {/* 404 Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-300 shadow-inner">
           <HelpCircle className="h-4 w-4" />
-          <span>Error 404 — Page Not Found</span>
+          <span>Error 404 â€” Page Not Found</span>
         </div>
 
         {/* Heading */}

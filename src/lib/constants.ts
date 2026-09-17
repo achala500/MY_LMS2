@@ -1,5 +1,5 @@
 /**
- * StudySync — Authoritative Application Constants
+ * StudySync â€” Authoritative Application Constants
  */
 
 // Google Apps Script Web App Endpoint URL

@@ -157,7 +157,7 @@ export function evaluateBadges(streak = 0, totalHours = 0, balanceScore = 100, l
     {
       id: 'equilibrium-master',
       title: 'Subject Equilibrium Master',
-      description: 'Attain a Subject Balance score ≥85% across all 3 subjects.',
+      description: 'Attain a Subject Balance score â‰¥85% across all 3 subjects.',
       icon: 'Scale',
       category: 'mastery',
       unlocked: safeBalance >= 85 && safeHours >= 10,

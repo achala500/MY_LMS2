@@ -192,7 +192,7 @@ export default function DigitalStudentPassPage() {
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-[#456644]" />
                 <span className="font-mono text-[11px] uppercase tracking-widest text-[#456644] font-semibold">
-                  Department of Advanced Studies • Identity Ledger
+                  Department of Advanced Studies â€¢ Identity Ledger
                 </span>
               </div>
               <h1 className="font-serif text-2xl sm:text-4xl font-bold text-[#1d1b19] tracking-tight">
@@ -259,7 +259,7 @@ export default function DigitalStudentPassPage() {
               {/* Security Microprint Ribbon */}
               <div className="w-full bg-[#f8f5f1] border-b border-[#ebdcd2] py-1 px-4 overflow-hidden select-none">
                 <div className="whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.24em] text-[#4a3b35]/80 leading-none">
-                  G.C.E. ADVANCED LEVEL EXAMINATION • DEPARTMENT OF EXAMINATIONS SRI LANKA • OFFICIAL ADMISSION PASSPORT • SECURE ENCLAVE VERIFIED • CRYPTOGRAPHIC TRUST LEDGER • G.C.E. ADVANCED LEVEL EXAMINATION • DEPARTMENT OF EXAMINATIONS SRI LANKA • OFFICIAL ADMISSION PASSPORT
+                  G.C.E. ADVANCED LEVEL EXAMINATION â€¢ DEPARTMENT OF EXAMINATIONS SRI LANKA â€¢ OFFICIAL ADMISSION PASSPORT â€¢ SECURE ENCLAVE VERIFIED â€¢ CRYPTOGRAPHIC TRUST LEDGER â€¢ G.C.E. ADVANCED LEVEL EXAMINATION â€¢ DEPARTMENT OF EXAMINATIONS SRI LANKA â€¢ OFFICIAL ADMISSION PASSPORT
                 </div>
               </div>
 
@@ -315,14 +315,14 @@ export default function DigitalStudentPassPage() {
                           Candidate Name
                         </span>
                         <span className="text-xs text-[#456644] font-mono tracking-wider">
-                          ● ACTIVE ADMISSION
+                          â— ACTIVE ADMISSION
                         </span>
                       </div>
                       <h2 className="font-mono text-2xl sm:text-3xl font-bold text-[#9f3c16] tracking-tight mt-0.5">
                         {effectiveMember?.fullName || 'A/L Candidate'}
                       </h2>
                       <p className="font-serif italic text-base sm:text-lg text-[#2d2420] mt-1">
-                        G.C.E. Advanced Level Examination •{' '}
+                        G.C.E. Advanced Level Examination â€¢{' '}
                         <span className="font-mono not-italic font-semibold text-[#1d1b19]">
                           {effectiveMember?.stream || 'Physical Science'}
                         </span>
@@ -354,7 +354,7 @@ export default function DigitalStudentPassPage() {
                           District &amp; Province
                         </span>
                         <span className="font-mono text-sm font-semibold text-[#1d1b19] mt-0.5 block">
-                          {(effectiveMember as any)?.district || 'Colombo'} • Western
+                          {(effectiveMember as any)?.district || 'Colombo'} â€¢ Western
                         </span>
                       </div>
                       <div className="sm:col-span-2">
@@ -403,7 +403,7 @@ export default function DigitalStudentPassPage() {
                         </strong>
                       </span>
                     </div>
-                    <span className="text-[#dec0b7]">•</span>
+                    <span className="text-[#dec0b7]">â€¢</span>
                     <div className="flex items-center gap-1.5">
                       <span className="text-[#9f3c16]"></span>
                       <span>
@@ -411,7 +411,7 @@ export default function DigitalStudentPassPage() {
                         <strong className="text-[#9f3c16] font-semibold">{logs.length}</strong>
                       </span>
                     </div>
-                    <span className="text-[#dec0b7]">•</span>
+                    <span className="text-[#dec0b7]">â€¢</span>
                     <div className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#456644]" />
                       <span>
@@ -482,7 +482,7 @@ export default function DigitalStudentPassPage() {
 
       {/* Apple Wallet Format Modal */}
       {showWalletModal && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/60  flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl relative border border-[#dec0b7]/50">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

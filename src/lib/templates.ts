@@ -1,5 +1,5 @@
 /**
- * templates.ts — Centralized Template Variable Engine
+ * templates.ts â€” Centralized Template Variable Engine
  * Parses {{variable}} placeholders in copy strings for personalized Gen-Z messaging.
  */
 
@@ -39,7 +39,7 @@ export function interpolate(template: string, vars: TemplateVars = {}): string {
  */
 export const COPY = {
   // Greetings
-  greeting_morning: '{{user_name}}, you\'re locked in early — that\'s different',
+  greeting_morning: '{{user_name}}, you\'re locked in early â€” that\'s different',
   greeting_afternoon: 'Back at it, {{user_name}}? Let\'s make it count',
   greeting_evening: 'Late-night session? Respect, {{user_name}}',
   greeting_first_time: 'Welcome to the StudySync workspace, {{user_name}}',
@@ -52,8 +52,8 @@ export const COPY = {
   streak_start: 'Day 1 starts now. Every top rank started right here, {{user_name}}',
 
   // Exam countdown
-  countdown_chill: '{{exam_countdown_days}} days remaining — stay strategic and steady',
-  countdown_focus: '{{exam_countdown_days}} days until A/Ls — time to consolidate your revision',
+  countdown_chill: '{{exam_countdown_days}} days remaining â€” stay strategic and steady',
+  countdown_focus: '{{exam_countdown_days}} days until A/Ls â€” time to consolidate your revision',
   countdown_crunch: '{{exam_countdown_days}} days remaining. Full focus, {{user_name}}',
   countdown_final: '{{exam_countdown_days}} days. You have prepared for this. Execute with confidence',
 
@@ -61,12 +61,12 @@ export const COPY = {
   session_start: 'Starting {{subject}}. Master the core concepts',
   session_end: '{{session_minutes}} mins of {{subject}} completed. Quality work logged',
   session_good: '{{study_hours_today}}h logged today. Solid academic progress',
-  session_great: 'You logged {{study_hours_today}}h today — exceptional dedication and effort',
+  session_great: 'You logged {{study_hours_today}}h today â€” exceptional dedication and effort',
 
   // Z-score
-  zscore_rising: 'Composite Z-score trending up to {{composite_z_score}} — maintain this trajectory',
-  zscore_strong: 'Composite Z-score at {{composite_z_score}} — performing well within university qualification range',
-  zscore_needs_work: 'Composite Z-score at {{composite_z_score}} — targeted remediation will raise this',
+  zscore_rising: 'Composite Z-score trending up to {{composite_z_score}} â€” maintain this trajectory',
+  zscore_strong: 'Composite Z-score at {{composite_z_score}} â€” performing well within university qualification range',
+  zscore_needs_work: 'Composite Z-score at {{composite_z_score}} â€” targeted remediation will raise this',
 
   // Empty states
   empty_logs: 'No sessions logged today yet. Record your first study block to update your analytics',
@@ -82,9 +82,9 @@ export const COPY = {
   verify_rejected: 'Verification incomplete. Contact your institution coordinator to resolve.',
 
   // Admin
-  admin_welcome: 'Administration Terminal — {{user_name}}',
+  admin_welcome: 'Administration Terminal â€” {{user_name}}',
   admin_new_request: 'Pending student verification review queued',
-  admin_bulk_done: 'Batch operation completed — {{total_members}} student records updated',
+  admin_bulk_done: 'Batch operation completed â€” {{total_members}} student records updated',
 } as const;
 
 /**

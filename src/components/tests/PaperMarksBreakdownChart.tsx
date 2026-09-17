@@ -318,7 +318,7 @@ export const PaperMarksBreakdownChart: React.FC<PaperMarksBreakdownChartProps> =
             >
               Select All
             </button>
-            <span className="text-[#8a726a]">•</span>
+            <span className="text-[#8a726a]">â€¢</span>
             <button
               type="button"
               onClick={clearAll}
@@ -406,29 +406,20 @@ export const PaperMarksBreakdownChart: React.FC<PaperMarksBreakdownChartProps> =
               viewBox={`0 0 ${svgWidth} ${svgHeight}`}
               preserveAspectRatio="none"
             >
-              {/* Custom SVG Glow Filters */}
+              {/* Clean Vector Definitions */}
               <defs>
-                <filter id="glow-terracotta" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter id="glow-coral" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
+                <linearGradient id="glow-terracotta" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#c85a32" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#c85a32" stopOpacity="0.0" />
+                </linearGradient>
+                <linearGradient id="glow-gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.0" />
+                </linearGradient>
+                <linearGradient id="glow-coral" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#ea580c" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#ea580c" stopOpacity="0.0" />
+                </linearGradient>
               </defs>
 
               {/* Horizontal Grid Lines (0%, 25%, 50%, 75%, 100%) */}
@@ -496,7 +487,7 @@ export const PaperMarksBreakdownChart: React.FC<PaperMarksBreakdownChartProps> =
                     fontFamily="sans-serif"
                     fontWeight={hoveredIndex === idx ? '700' : '600'}
                   >
-                    {pt.title.length > 15 ? pt.title.substring(0, 13) + '…' : pt.title}
+                    {pt.title.length > 15 ? pt.title.substring(0, 13) + 'â€¦' : pt.title}
                   </text>
                   <text
                     x={pt.x}
@@ -627,7 +618,7 @@ export const PaperMarksBreakdownChart: React.FC<PaperMarksBreakdownChartProps> =
                       fillOpacity={isHovered ? 0.35 : 0.15}
                     />
 
-                    {/* Invisible 넓은 터치 영역 for easy tapping on mobile */}
+                    {/* Invisible ë„“ì€ í„°ì¹˜ ì˜ì—­ for easy tapping on mobile */}
                     <rect
                       x={pt.x - 25}
                       y={padTop}
@@ -658,7 +649,7 @@ export const PaperMarksBreakdownChart: React.FC<PaperMarksBreakdownChartProps> =
                 </span>
               </div>
               <p className="text-xs text-[#6b5952]">
-                {paperCoords[hoveredIndex].examType} • {paperCoords[hoveredIndex].hasMcq ? 'Standard Part I MCQ + Part II Essay' : 'Structured Essay Only (No Multiple Choice)'}
+                {paperCoords[hoveredIndex].examType} â€¢ {paperCoords[hoveredIndex].hasMcq ? 'Standard Part I MCQ + Part II Essay' : 'Structured Essay Only (No Multiple Choice)'}
               </p>
             </div>
 

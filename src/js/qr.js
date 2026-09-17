@@ -1,5 +1,5 @@
 /**
- * StudySync — QR Code Generation & Payload Engine
+ * StudySync â€” QR Code Generation & Payload Engine
  * Standalone, pure JavaScript QR Code Generator (Model 2, Byte Mode, Error Correction L/M/Q/H).
  * Generates 2D boolean matrices, renders directly to HTML5 Canvas 2D, and encodes/decodes dual payloads.
  */

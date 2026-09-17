@@ -313,7 +313,7 @@ export function AppLockModal({
                   <Input
                     type="password"
                     maxLength={6}
-                    placeholder="••••"
+                    placeholder="â€¢â€¢â€¢â€¢"
                     value={newPin}
                     onChange={(e) => setNewPin(e.target.value.replace(/\D/g, ''))}
                     className="h-9 bg-[#FBF9F5] dark:bg-[#111614] border-[#E5DDD0] dark:border-white/[0.08] text-center text-sm rounded-lg text-[#132219] dark:text-[#F2EFE9]"
@@ -324,7 +324,7 @@ export function AppLockModal({
                   <Input
                     type="password"
                     maxLength={6}
-                    placeholder="••••"
+                    placeholder="â€¢â€¢â€¢â€¢"
                     value={confirmPin}
                     onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ''))}
                     className="h-9 bg-[#FBF9F5] dark:bg-[#111614] border-[#E5DDD0] dark:border-white/[0.08] text-center text-sm rounded-lg text-[#132219] dark:text-[#F2EFE9]"

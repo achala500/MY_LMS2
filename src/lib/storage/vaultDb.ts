@@ -1,5 +1,5 @@
 /**
- * vaultDb.ts — Academic Resource Vault
+ * vaultDb.ts â€” Academic Resource Vault
  * Hybrid IndexedDB (offline-first) + Google Apps Script cloud sync
  * for PDF past papers, revision notes, and study resources.
  */

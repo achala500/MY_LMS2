@@ -159,7 +159,7 @@ export function Header({
             </Link>
             <span className="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3ede9] text-[#2d2420] text-xs font-mono uppercase tracking-wider shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c85a32] animate-pulse" />
-              A/L 2026 • Colombo &amp; Districts
+              A/L 2026 â€¢ Colombo &amp; Districts
             </span>
           </div>
 
@@ -203,7 +203,7 @@ export function Header({
                   className="bg-transparent border-none outline-none text-xs text-[#1d1b19] placeholder:text-[#4a3b35] w-28 lg:w-36 focus:w-44 transition-all"
                 />
                 <kbd className="hidden lg:inline-flex items-center justify-center text-[10px] font-mono bg-[#ede7e3] px-1.5 py-0.5 rounded text-[#2d2420] ml-1.5">
-                  ⌘K
+                  âŒ˜K
                 </kbd>
               </div>
             </div>

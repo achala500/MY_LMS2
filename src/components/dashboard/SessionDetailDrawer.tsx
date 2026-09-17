@@ -194,7 +194,7 @@ export function SessionDetailDrawer({
                         {hasTime && (
                           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-mono bg-zinc-800 text-zinc-300 border border-zinc-700">
                             <Clock className="h-3 w-3 text-cyan-400" />
-                            {session.startTime} – {session.endTime}
+                            {session.startTime} â€“ {session.endTime}
                           </span>
                         )}
                         <span className="text-xs font-mono font-bold text-indigo-300 bg-indigo-950/50 px-2.5 py-0.5 rounded-full border border-indigo-800/50">
@@ -216,7 +216,7 @@ export function SessionDetailDrawer({
                         <span className="text-[11px] text-zinc-400">
                           Focus: <strong className="text-white font-mono">{session.focus || 8}/10</strong>
                         </span>
-                        <span className="text-zinc-600">•</span>
+                        <span className="text-zinc-600">â€¢</span>
                         <span className="text-[11px] text-zinc-400">
                           Productivity: <strong className="text-white font-mono">{session.productivity || 8}/10</strong>
                         </span>

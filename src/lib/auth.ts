@@ -1,5 +1,5 @@
 /**
- * StudySync — Firebase Authentication & Client Service
+ * StudySync â€” Firebase Authentication & Client Service
  * 
  * Provides official Google Sign-In via Firebase v10 compat SDK, direct email fallback,
  * local storage session persistence, and auth state observation.

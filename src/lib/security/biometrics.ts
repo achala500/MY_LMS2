@@ -1,5 +1,5 @@
 /**
- * StudySync — Biometric Security & App Lock Engine
+ * StudySync â€” Biometric Security & App Lock Engine
  * 
  * Supports:
  * - W3C WebAuthn Biometrics (Windows Hello, Touch ID, Face ID, Android Fingerprint)

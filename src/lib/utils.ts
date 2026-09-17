@@ -735,11 +735,11 @@ export function formatTelegramDigest(
   const avgGroupFocus = Number(analytics?.avgGroupFocus || analytics?.kpi?.avgGroupFocus || 8.0);
   
   const topList = Array.isArray(leaderboard) ? leaderboard.slice(0, 5) : [];
-  const medals = [' 1.', ' 2.', ' 3.', '4️⃣ 4.', '5️⃣ 5.'];
+  const medals = [' 1.', ' 2.', ' 3.', '4ï¸âƒ£ 4.', '5ï¸âƒ£ 5.'];
   
   let leaderboardText = '';
   if (topList.length === 0) {
-    leaderboardText = '• _No entries yet_';
+    leaderboardText = 'â€¢ _No entries yet_';
   } else {
     leaderboardText = topList.map((entry: any, idx: number) => {
       const medal = medals[idx] || `${idx + 1}.`;
@@ -748,7 +748,7 @@ export function formatTelegramDigest(
       const streak = entry.streak ?? entry.activeStreak ?? 0;
       const hours = Number(entry.totalHours || 0).toFixed(1);
       const school = entry.school || 'A/L Candidate';
-      return `${medal} *${name}* (\`${id}\`) —  *${streak} Days* (${hours}h) • ${school}`;
+      return `${medal} *${name}* (\`${id}\`) â€”  *${streak} Days* (${hours}h) â€¢ ${school}`;
     }).join('\n');
   }
 
@@ -761,15 +761,15 @@ export function formatTelegramDigest(
   return [
     ` *STUDYSYNC DAILY ACCOUNTABILITY DIGEST*`,
     ` *Date:* ${dayOfWeek}, ${formattedDate}`,
-    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
     ``,
     ` *COMMUNITY PULSE*`,
-    `•  *Active Today:* *${activeToday} / ${totalMembers} (${participationRate}%)*`,
-    `• ⏱️ *Total Study Hours:* *${totalTodayHours.toFixed(1)} hrs*`,
-    `•  *Average Study Time:* *${avgHoursPerStudent.toFixed(2)} hrs / student*`,
-    `•  *Biological Science:* *${bioHours.toFixed(1)} hrs* (${bioCount} students)`,
-    `•  *Physical Science:* *${mathHours.toFixed(1)} hrs* (${mathCount} students)`,
-    `•  *Group Focus Index:* *${avgGroupFocus.toFixed(1)} / 10*`,
+    `â€¢  *Active Today:* *${activeToday} / ${totalMembers} (${participationRate}%)*`,
+    `â€¢ â±ï¸ *Total Study Hours:* *${totalTodayHours.toFixed(1)} hrs*`,
+    `â€¢  *Average Study Time:* *${avgHoursPerStudent.toFixed(2)} hrs / student*`,
+    `â€¢  *Biological Science:* *${bioHours.toFixed(1)} hrs* (${bioCount} students)`,
+    `â€¢  *Physical Science:* *${mathHours.toFixed(1)} hrs* (${mathCount} students)`,
+    `â€¢  *Group Focus Index:* *${avgGroupFocus.toFixed(1)} / 10*`,
     ``,
     ` *STREAK HALL OF FAME (TOP 5)*`,
     leaderboardText,
@@ -778,7 +778,7 @@ export function formatTelegramDigest(
     mvpVolume ? ` *Highest Volume:* *${mvpVolume.name}* (*${Number(mvpVolume.hours || 0).toFixed(1)} hrs*)` : ` *Highest Volume:* _Pending submissions_`,
     mvpFocus ? ` *Deep Flow:* *${mvpFocus.name}* (*${Number(mvpFocus.focus || 0).toFixed(1)}/10 Focus*)` : ` *Deep Flow:* _Pending submissions_`,
     ``,
-    `━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+    `â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”`,
     ` *Streak Alert:* ${pendingCount} students have pending daily submissions.`,
     `Submit before 23:59 to keep your streak alive!`,
     ` *Log Study Hours:* https://studysync-al-2026.web.app/daily`

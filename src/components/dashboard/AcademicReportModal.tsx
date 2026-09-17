@@ -242,7 +242,7 @@ export function AcademicReportModal({
     } else if (streak >= 7) {
       consistencyRemarks = `Strong weekly cadence with a ${streak}-day active streak. Maintain this rhythm to build automated study habits.`;
     } else {
-      consistencyRemarks = `Cadence requires reinforcement. Encourage consistent daily study blocks (minimum 2.5–3 hours daily) to avoid last-minute revision fatigue.`;
+      consistencyRemarks = `Cadence requires reinforcement. Encourage consistent daily study blocks (minimum 2.5â€“3 hours daily) to avoid last-minute revision fatigue.`;
     }
 
     let pacingRemarks = '';
@@ -352,10 +352,10 @@ export function AcademicReportModal({
               </div>
               <h2 className="text-2xl font-extrabold text-foreground">{member.fullName}</h2>
               <p className="text-xs text-muted-foreground">
-                {member.school} • {member.stream} {member.optionalSubject ? `(${member.optionalSubject})` : ''}
+                {member.school} â€¢ {member.stream} {member.optionalSubject ? `(${member.optionalSubject})` : ''}
               </p>
               <p className="text-[11px] text-muted-foreground font-mono">
-                Study ID: <strong className="text-cyan-600 dark:text-cyan-400">{member.studyId}</strong> • Target: {member.examYear || '2026'} A/L Examination
+                Study ID: <strong className="text-cyan-600 dark:text-cyan-400">{member.studyId}</strong> â€¢ Target: {member.examYear || '2026'} A/L Examination
               </p>
             </div>
 
@@ -546,7 +546,7 @@ export function AcademicReportModal({
               rel="noopener noreferrer"
               className="text-indigo-600 dark:text-indigo-400 font-mono underline"
             >
-              Verify Record Online ↗
+              Verify Record Online â†—
             </a>
           </div>
         </div>

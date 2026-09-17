@@ -437,7 +437,7 @@ export default function DashboardPage() {
       <div className="max-w-[1360px] mx-auto px-6 pt-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs font-mono text-[#4a3b35]">
           <span className="w-2 h-2 rounded-full bg-[#456644] animate-pulse" />
-          <span>LEDGER SYNCED • A/L {examYear}</span>
+          <span>LEDGER SYNCED â€¢ A/L {examYear}</span>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -459,9 +459,9 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           2. MAIN CONTENT AREA
-         ───────────────────────────────────────────────────────────── */}
+         â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <main className="max-w-[1360px] mx-auto px-6 py-8">
         
         {/* Top Greeting Banner (Stitch Sanctuary Aesthetic) */}
@@ -516,9 +516,9 @@ export default function DashboardPage() {
           </div>
         </ScrollReveal>
 
-        {/* ─────────────────────────────────────────────────────────────
+        {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             3. KPI ROW: 3 QUIET EDITORIAL METRIC CARDS
-           ───────────────────────────────────────────────────────────── */}
+           â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           
           {/* Metric 1: Today's Hours */}
@@ -607,9 +607,9 @@ export default function DashboardPage() {
           </ScrollReveal>
         </div>
 
-        {/* ─────────────────────────────────────────────────────────────
+        {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             4. RESOURCE VAULT TAB (If active)
-           ───────────────────────────────────────────────────────────── */}
+           â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activeTab === 'vault' && (
           <ScrollReveal>
             <div className="rounded-2xl bg-[#ffffff] border border-[#e7e1de] p-6 sm:p-8 shadow-sm mb-8">
@@ -632,9 +632,9 @@ export default function DashboardPage() {
           </ScrollReveal>
         )}
 
-        {/* ─────────────────────────────────────────────────────────────
+        {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             5. MAIN DYNAMIC GRID: ASYMMETRIC 45% / 55% LAYOUT
-           ───────────────────────────────────────────────────────────── */}
+           â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activeTab === 'overview' && (
           <div className="space-y-8">
             {/* Multi-Period Interactive Study Volume & Subject Allocation Graph */}
@@ -671,7 +671,7 @@ export default function DashboardPage() {
                       {rhythmDays.map((item, idx) => (
                         <div key={idx} className="flex flex-col items-center flex-1 h-full justify-end group">
                           <span className="text-[10px] font-mono text-[#1d1b19] font-semibold mb-1 tabular-nums transition-colors">
-                            {item.hours > 0 ? `${item.hours.toFixed(1)}h` : '—'}
+                            {item.hours > 0 ? `${item.hours.toFixed(1)}h` : 'â€”'}
                           </span>
                           <div className="w-full max-w-[28px] h-32 bg-[#ede7e3] rounded-t-lg relative overflow-hidden flex items-end border border-[#dec0b7]/40 p-0.5">
                             <div
@@ -952,7 +952,7 @@ export default function DashboardPage() {
                     <div className="p-3 rounded-xl bg-white border border-[#e7e1de]">
                       <span className="text-[10px] font-mono uppercase text-[#4a3b35] block">Projected Z-Score</span>
                       <span className="text-2xl font-serif font-bold text-[#c85a32] block mt-0.5 tabular-nums">
-                        {projectedZ !== null ? (projectedZ >= 0 ? `+${projectedZ.toFixed(3)}` : projectedZ.toFixed(3)) : '—'}
+                        {projectedZ !== null ? (projectedZ >= 0 ? `+${projectedZ.toFixed(3)}` : projectedZ.toFixed(3)) : 'â€”'}
                       </span>
                       <span className="text-[11px] text-[#456644] font-medium truncate block">
                         {targetFacultyLabel}
@@ -993,13 +993,13 @@ export default function DashboardPage() {
         )}
       </main>
 
-      {/* ─────────────────────────────────────────────────────────────
+      {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
           6. MODALS & DRAWERS
-         ───────────────────────────────────────────────────────────── */}
+         â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       
       {/* Quick Session Log Modal */}
       {quickLogModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60  p-4">
           <div className="relative w-full max-w-md rounded-2xl border border-[#e7e1de] bg-white p-6 shadow-2xl animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between pb-3 border-b border-[#e7e1de] mb-4">
               <h3 className="text-lg font-serif text-[#1d1b19] font-medium">Quick Study Session</h3>

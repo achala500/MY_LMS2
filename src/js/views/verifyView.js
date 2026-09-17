@@ -1,5 +1,5 @@
 /**
- * StudySync — Verify View Component (Public Member Verification View)
+ * StudySync â€” Verify View Component (Public Member Verification View)
  * Publicly renders official cryptographic verification badge, student details,
  * and live anti-counterfeit UTC timestamp for scanned QR passes or direct URL lookups.
  */
@@ -91,13 +91,13 @@ export class VerifyView {
               <!-- Full Name -->
               <div class="p-3 rounded-xl bg-white/5 border border-white/5 sm:col-span-2">
                 <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider block mb-0.5">Member Full Name</span>
-                <span id="v-res-name" class="font-bold text-base text-white">—</span>
+                <span id="v-res-name" class="font-bold text-base text-white">â€”</span>
               </div>
 
               <!-- Study ID -->
               <div class="p-3 rounded-xl bg-white/5 border border-white/5">
                 <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider block mb-0.5">Unique Study ID</span>
-                <span id="v-res-id" class="font-mono font-bold text-sm text-cyan-300">—</span>
+                <span id="v-res-id" class="font-mono font-bold text-sm text-cyan-300">â€”</span>
               </div>
 
               <!-- Membership Status -->
@@ -112,19 +112,19 @@ export class VerifyView {
               <!-- School -->
               <div class="p-3 rounded-xl bg-white/5 border border-white/5 sm:col-span-2">
                 <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider block mb-0.5">School / College</span>
-                <span id="v-res-school" class="font-medium text-slate-200">—</span>
+                <span id="v-res-school" class="font-medium text-slate-200">â€”</span>
               </div>
 
               <!-- Stream & Optional Subject -->
               <div class="p-3 rounded-xl bg-white/5 border border-white/5 sm:col-span-2">
                 <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider block mb-0.5">A/L Subject Stream</span>
-                <span id="v-res-stream" class="font-semibold text-indigo-300">—</span>
+                <span id="v-res-stream" class="font-semibold text-indigo-300">â€”</span>
               </div>
 
               <!-- Registration Date -->
               <div class="p-3 rounded-xl bg-white/5 border border-white/5 sm:col-span-2">
                 <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider block mb-0.5">Registration & Issue Date</span>
-                <span id="v-res-date" class="text-slate-300 font-mono">—</span>
+                <span id="v-res-date" class="text-slate-300 font-mono">â€”</span>
               </div>
 
             </div>

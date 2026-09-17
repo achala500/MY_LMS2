@@ -302,7 +302,7 @@ export default function AdminPage() {
     for (let i = 6; i >= 0; i--) {
       const d = new Date(now);
       d.setDate(d.getDate() - i);
-      // Local date string (YYYY-MM-DD) — avoids UTC timezone shift
+      // Local date string (YYYY-MM-DD) â€” avoids UTC timezone shift
       const yyyy = d.getFullYear();
       const mm = String(d.getMonth() + 1).padStart(2, '0');
       const dd = String(d.getDate()).padStart(2, '0');
@@ -650,7 +650,7 @@ export default function AdminPage() {
 
   const handleVerifyStudent = async (studyId: string, status: 'Verified' | 'Active' | 'Suspended' | 'Pending') => {
     if (!effectiveAdminEmail) return;
-    // Optimistic immediate update — zero delay!
+    // Optimistic immediate update â€” zero delay!
     setMembersList(prev => prev.map(m => m.studyId === studyId ? { ...m, status, adminVerified: status === 'Verified' } : m));
     toast.success(`${studyId} status updated to ${status}.`);
 
@@ -667,7 +667,7 @@ export default function AdminPage() {
 
   const handleBanStudent = async (studyId: string) => {
     if (!effectiveAdminEmail) return;
-    // Optimistic immediate update — zero delay!
+    // Optimistic immediate update â€” zero delay!
     setMembersList(prev => prev.map(m => m.studyId === studyId ? { ...m, status: 'Suspended' } : m));
     toast.success(`${studyId} suspended and barred from daily submissions.`);
 
@@ -835,7 +835,7 @@ export default function AdminPage() {
       toast.info('No pending accounts to verify.');
       return;
     }
-    // Optimistic immediate update — zero delay!
+    // Optimistic immediate update â€” zero delay!
     setMembersList(prev => prev.map(m => (!isStudentVerified(m) && (m.status || '').toLowerCase() !== 'suspended' && (m.status || '').toLowerCase() !== 'banned') ? { ...m, status: 'Verified', adminVerified: true } : m));
     toast.success(`Batch verified & approved ${pending.length} student account(s)!`);
 
@@ -983,7 +983,7 @@ export default function AdminPage() {
  *Average Pace:* ${avgHoursPerLog.toFixed(1)} hrs/session
 
  *Top Study Leaders:*
-${leaderboard.slice(0, 3).map((item, idx) => `${idx + 1}. ${item.member.fullName || item.member.name} (${item.member.studyId}) — ${item.totalHours.toFixed(1)} hrs (${item.sessions} sessions)`).join('\n')}
+${leaderboard.slice(0, 3).map((item, idx) => `${idx + 1}. ${item.member.fullName || item.member.name} (${item.member.studyId}) â€” ${item.totalHours.toFixed(1)} hrs (${item.sessions} sessions)`).join('\n')}
 
 Keep pushing for your A/L goals! Log your session today:
  https://studysync-al-2026.web.app/daily`;
@@ -1321,8 +1321,8 @@ Keep pushing for your A/L goals! Log your session today:
                   <span className="w-1.5 h-1.5 rounded-full bg-[#9f3c16] animate-pulse" />
                   Admin Console &gt; Verification Desk
                 </span>
-                <span className="text-[#dec0b7]">•</span>
-                <span className="font-mono text-xs text-[#4a3b35]">Term II Evaluation Cohort • A/L 2026</span>
+                <span className="text-[#dec0b7]">â€¢</span>
+                <span className="font-mono text-xs text-[#4a3b35]">Term II Evaluation Cohort â€¢ A/L 2026</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#1d1b19] tracking-tight">
                 Student Homework &amp; Paper Verification
@@ -1372,7 +1372,7 @@ Keep pushing for your A/L goals! Log your session today:
               <div className="mt-4 flex items-baseline gap-3">
                 <span className="font-serif text-3xl font-bold text-[#1d1b19]">{membersList.length}</span>
                 <span className="font-mono text-xs text-[#456644] flex items-center gap-1">
-                  ↑ +{Math.max(1, Math.round(membersList.length * 0.12))} this week
+                  â†‘ +{Math.max(1, Math.round(membersList.length * 0.12))} this week
                 </span>
               </div>
               <div className="mt-3 flex items-center justify-between text-[#2d2420] font-mono text-[11px]">
@@ -1508,7 +1508,7 @@ Keep pushing for your A/L goals! Log your session today:
                             <span className="font-mono text-xs text-[#4a3b35]">ID #{student.studyId}</span>
                           </div>
                           <p className="font-sans text-xs text-[#2d2420] mt-1">
-                            {student.school || 'Colombo Examination Center'} • Logged:{' '}
+                            {student.school || 'Colombo Examination Center'} â€¢ Logged:{' '}
                             <strong className="text-[#1d1b19] font-mono">{formatHoursHuman(hoursTotal)}</strong>
                           </p>
                         </div>
@@ -1534,10 +1534,10 @@ Keep pushing for your A/L goals! Log your session today:
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#ffffff] p-4 rounded-lg border border-[#e7e1de]">
                           <div className="space-y-1.5 text-xs text-[#1d1b19] flex-1 min-w-0">
                             <p className="font-medium text-[#1d1b19] italic line-clamp-2">
-                              {log.notes || (log.subjects && log.subjects.length > 0 ? log.subjects.map((s: any) => `${s.name || s.subject}: ${s.topics || s.topic || (s.hours + ' hrs')}`).join(' • ') : 'Step-by-step problem sets and syllabus coverage completed.')}
+                              {log.notes || (log.subjects && log.subjects.length > 0 ? log.subjects.map((s: any) => `${s.name || s.subject}: ${s.topics || s.topic || (s.hours + ' hrs')}`).join(' â€¢ ') : 'Step-by-step problem sets and syllabus coverage completed.')}
                             </p>
                             <p className="text-[#4a3b35] text-[11px] font-mono">
-                              Stream: <strong className="text-[#1d1b19]">{student.stream || 'A/L'}</strong> • Candidate ID: <strong className="text-[#1d1b19]">{student.studyId}</strong>
+                              Stream: <strong className="text-[#1d1b19]">{student.stream || 'A/L'}</strong> â€¢ Candidate ID: <strong className="text-[#1d1b19]">{student.studyId}</strong>
                             </p>
                           </div>
 
@@ -1707,7 +1707,7 @@ Keep pushing for your A/L goals! Log your session today:
         <TabsContent value="analytics" className="space-y-6 pt-4">
           {/* KPI Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="text-xs text-[#2d2420]">Total Registered</CardDescription>
@@ -1721,12 +1721,12 @@ Keep pushing for your A/L goals! Log your session today:
               </CardHeader>
               <CardContent>
                 <p className="text-[11px] text-[#2d2420] font-mono">
-                  {bioCount} Bio ({Math.round((bioCount / (totalStudents || 1)) * 100)}%) • {mathsCount} Maths
+                  {bioCount} Bio ({Math.round((bioCount / (totalStudents || 1)) * 100)}%) â€¢ {mathsCount} Maths
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="text-xs text-[#2d2420]">Total Logged Hours</CardDescription>
@@ -1745,7 +1745,7 @@ Keep pushing for your A/L goals! Log your session today:
               </CardContent>
             </Card>
 
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="text-xs text-[#2d2420]">Avg Session Duration</CardDescription>
@@ -1764,7 +1764,7 @@ Keep pushing for your A/L goals! Log your session today:
               </CardContent>
             </Card>
 
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardDescription className="text-xs text-[#2d2420]">Active Student Ratio</CardDescription>
@@ -1785,7 +1785,7 @@ Keep pushing for your A/L goals! Log your session today:
           </div>
 
           {/* Real 7-Day Group Study Volume Chart (Real Hours from Sheets) */}
-          <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+          <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -1835,7 +1835,7 @@ Keep pushing for your A/L goals! Log your session today:
           {/* Secondary Analytics: Top Schools & Streak Leaderboard */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Top Schools */}
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-bold text-[#1d1b19] flex items-center gap-2">
                   <SchoolIcon className="h-4 w-4 text-[#9f3c16]" />
@@ -1866,7 +1866,7 @@ Keep pushing for your A/L goals! Log your session today:
             </Card>
 
             {/* Streak & Volume Leaderboard */}
-            <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+            <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-bold text-[#1d1b19] flex items-center gap-2">
                   <Award className="h-4 w-4 text-[#854f00]" />
@@ -1920,7 +1920,7 @@ Keep pushing for your A/L goals! Log your session today:
         {/* TAB: VERIFICATION INBOX & ACCESS CONTROL (AUTHORITATIVE GOVERNANCE) */}
         <TabsContent value="inbox" className="space-y-6 pt-4">
           {/* Top Hero Banner & Batch Controls */}
-          <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] overflow-hidden">
+          <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02]  shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] overflow-hidden">
             <CardHeader className="pb-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="space-y-1">
@@ -2090,7 +2090,7 @@ Keep pushing for your A/L goals! Log your session today:
           </Card>
 
           {/* Verification Table */}
-          <Card className="rounded-3xl border border-white/10 bg-[#fef8f4]/60 backdrop-blur-2xl shadow-xl overflow-hidden">
+          <Card className="rounded-3xl border border-white/10 bg-[#fef8f4]/60  shadow-xl overflow-hidden">
             <CardContent className="p-0">
               {filteredInboxMembers.length === 0 ? (
                 <div className="p-16 text-center space-y-3">
@@ -2136,7 +2136,7 @@ Keep pushing for your A/L goals! Log your session today:
                             <TableCell className="py-3 px-4 text-xs text-[#2d2420]">
                               <span className="block truncate max-w-[190px] text-[#1d1b19] font-mono text-[11px]">{m.email}</span>
                               <span className="text-[11px] text-[#9f3c16] font-mono">
-                                {m.telegramUsername || m.telegram || '—'}
+                                {m.telegramUsername || m.telegram || 'â€”'}
                               </span>
                             </TableCell>
 
@@ -2240,7 +2240,7 @@ Keep pushing for your A/L goals! Log your session today:
 
         {/* TAB 2: MEMBERS DIRECTORY (WITH EDIT & DELETE POWERS) */}
         <TabsContent value="members" className="space-y-4 pt-4">
-          <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+          <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
             <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
               <div>
                 <CardTitle className="text-base font-bold text-[#1d1b19] flex items-center gap-2">
@@ -2404,7 +2404,7 @@ Keep pushing for your A/L goals! Log your session today:
                             <TableCell className="text-xs text-[#2d2420]">
                               <span className="block truncate max-w-[180px]">{m.email}</span>
                               <span className="text-[11px] text-[#9f3c16] font-mono">
-                                {m.telegramUsername || m.telegram || '—'}
+                                {m.telegramUsername || m.telegram || 'â€”'}
                               </span>
                             </TableCell>
                             <TableCell className="text-xs text-[#1d1b19]">
@@ -2533,7 +2533,7 @@ Keep pushing for your A/L goals! Log your session today:
 
         {/* TAB 3: DAILY LOGS INSPECTOR (WITH DELETE POWERS) */}
         <TabsContent value="logs" className="space-y-4 pt-4">
-          <Card className="bg-[#ffffff] backdrop-blur-xl border-[#e7e1de] shadow-xl">
+          <Card className="bg-[#ffffff]  border-[#e7e1de] shadow-xl">
             <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4">
               <div>
                 <CardTitle className="text-base font-bold text-[#1d1b19] flex items-center gap-2">
@@ -2627,7 +2627,7 @@ Keep pushing for your A/L goals! Log your session today:
                               {tot.toFixed(1)}h
                             </TableCell>
                             <TableCell className="text-right font-mono text-xs text-[#854f00]">
-                              F:{subs[0]?.focus || log.focusScore || '—'} P:{subs[0]?.productivity || log.productivityScore || '—'}
+                              F:{subs[0]?.focus || log.focusScore || 'â€”'} P:{subs[0]?.productivity || log.productivityScore || 'â€”'}
                             </TableCell>
                             <TableCell>
                               {proof ? (
@@ -2640,7 +2640,7 @@ Keep pushing for your A/L goals! Log your session today:
                                   <ImageIcon className="h-3.5 w-3.5 mr-1" /> View
                                 </Button>
                               ) : (
-                                <span className="text-xs text-zinc-600">—</span>
+                                <span className="text-xs text-zinc-600">â€”</span>
                               )}
                             </TableCell>
                             <TableCell className="text-right whitespace-nowrap">
@@ -2676,7 +2676,7 @@ Keep pushing for your A/L goals! Log your session today:
         <TabsContent value="powers" className="space-y-6 pt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 1. Live Study Room Generator */}
-            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02]  shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-[#9f3c16]">
@@ -2806,7 +2806,7 @@ Keep pushing for your A/L goals! Log your session today:
             </Card>
 
             {/* 2. Add More Admins & Grant Admin Powers */}
-            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02]  shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-[#456644]">
@@ -2889,7 +2889,7 @@ Keep pushing for your A/L goals! Log your session today:
             </Card>
 
             {/* 3. A/L Exam Countdown Target Settings */}
-            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02]  shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-[#854f00]">
@@ -3028,7 +3028,7 @@ Keep pushing for your A/L goals! Log your session today:
             </Card>
 
             {/* 4. Student Account Verification Inbox */}
-            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+            <Card className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02]  shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-[#9f3c16]">
@@ -3075,7 +3075,7 @@ Keep pushing for your A/L goals! Log your session today:
                       >
                         <div>
                           <p className="text-xs font-semibold text-[#1d1b19]">{m.fullName || m.name}</p>
-                          <p className="text-[10px] font-mono text-[#2d2420]">{m.studyId} • {m.school}</p>
+                          <p className="text-[10px] font-mono text-[#2d2420]">{m.studyId} â€¢ {m.school}</p>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Button
@@ -3700,7 +3700,7 @@ Keep pushing for your A/L goals! Log your session today:
                     <div className="flex flex-wrap gap-2 text-xs">
                       {subs.map((s, si) => (
                         <span key={si} className="px-2 py-0.5 rounded bg-[#f3ede9] text-[#1d1b19] text-[11px]">
-                          {s.name || `Subj ${si + 1}`}: <strong className="text-[#1d1b19]">{Number(s.hours || 0).toFixed(1)}h</strong> (F:{s.focus || '—'})
+                          {s.name || `Subj ${si + 1}`}: <strong className="text-[#1d1b19]">{Number(s.hours || 0).toFixed(1)}h</strong> (F:{s.focus || 'â€”'})
                         </span>
                       ))}
                     </div>

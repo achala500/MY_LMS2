@@ -89,7 +89,7 @@ export function generateAiPrescriptions(
         stream: streamName,
         category: 'strategy',
         severity: 'focus',
-        title: 'Cognitive AI Diagnostic Active — Awaiting First Test Mark',
+        title: 'Cognitive AI Diagnostic Active â€” Awaiting First Test Mark',
         diagnosticReason:
           'Your AI Study Advisor is ready to calibrate. Log your first school term test, model paper, or revision quiz score to compute your empirical Sri Lankan Z-Score and identify subject bottlenecks.',
         diagnosis:

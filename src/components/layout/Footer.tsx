@@ -20,7 +20,7 @@ export function Footer() {
             <ShieldCheck className="h-3.5 w-3.5 text-[#456644]" />
             <span>Verify Student Pass</span>
           </Link>
-          <span>•</span>
+          <span>â€¢</span>
           <div className="flex items-center gap-1.5">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#456644] opacity-75" />
@@ -28,12 +28,12 @@ export function Footer() {
             </span>
             <span className="font-mono text-[11px] uppercase tracking-wider">Colombo Systems Active</span>
           </div>
-          <span>•</span>
+          <span>â€¢</span>
           <span className="font-mono text-[11px] text-[#4a3b35]">2026 Cohort</span>
         </div>
 
         <div className="text-[#4a3b35] font-mono text-[11px]">
-          © 2026 StudySync Sri Lanka. Mindful Academic Clarity.
+          Â© 2026 StudySync Sri Lanka. Mindful Academic Clarity.
         </div>
       </div>
     </footer>

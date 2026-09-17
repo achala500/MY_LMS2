@@ -1,5 +1,5 @@
 /**
- * StudySync — Landing View Component
+ * StudySync â€” Landing View Component
  * Apple-inspired hero showcase, Google Sign-In CTA, quick 1-click demo role switcher,
  * live Platform ID Card ID card preview canvas, and feature bento grid.
  */
@@ -37,7 +37,7 @@ export class LandingView {
             <!-- Category Badge -->
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-semibold tracking-wide">
               <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-              <span>G.C.E. Advanced Level Sri Lanka • Study Accountability System</span>
+              <span>G.C.E. Advanced Level Sri Lanka â€¢ Study Accountability System</span>
             </div>
 
             <!-- Main Headline with Gradient Text -->
@@ -125,7 +125,7 @@ export class LandingView {
               <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition duration-500"></div>
               
               <!-- Card container -->
-              <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-black/40 backdrop-blur-xl p-2 sm:p-3">
+              <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-black/40  p-2 sm:p-3">
                 <div class="flex items-center justify-between mb-2 px-1 text-[11px] text-slate-400">
                   <span class="font-mono flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>

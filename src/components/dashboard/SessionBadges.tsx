@@ -189,7 +189,7 @@ export function SessionBadges({
     <div className={cn('flex flex-wrap items-center gap-1.5', className)}>
       {visibleItems.map((item) => {
         const config = getSubjectBadgeConfig(item.subject);
-        const timeStr = item.startTime && item.endTime ? `${item.startTime}–${item.endTime}` : '';
+        const timeStr = item.startTime && item.endTime ? `${item.startTime}â€“${item.endTime}` : '';
         const titleText = `${config.fullName}: ${item.hours.toFixed(1)}h${
           item.focus ? ` (Focus: ${item.focus}/10)` : ''
         }${timeStr ? ` [${timeStr}]` : ''}${item.topic ? ` - ${item.topic}` : ''}`;

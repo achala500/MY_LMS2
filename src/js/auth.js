@@ -1,5 +1,5 @@
 /**
- * StudySync — Authentication Service
+ * StudySync â€” Authentication Service
  * Official Google Sign-In (Firebase Authentication) with 1:1 Google Account Binding.
  * Authenticates real user credentials and synchronizes member profiles with Google Sheets.
  */
@@ -37,7 +37,7 @@ class AuthServiceEngine {
         
         // Listen to live Firebase Auth state changes.
         // On page load this fires once: with the restored user (if any) or null.
-        // We handle it as a silent background restore — don't block page render.
+        // We handle it as a silent background restore â€” don't block page render.
         this.firebaseAuth.onAuthStateChanged(async (firebaseUser) => {
           if (firebaseUser && !AppState.getProp('user')) {
             // Silent session restore (page reload with existing Google session)

@@ -1,5 +1,5 @@
 /**
- * StudySync — Utilities Module
+ * StudySync â€” Utilities Module
  * Date helpers, streak math algorithm, personal analytics rollups, client-side Canvas image compression pipeline, and input sanitizers.
  */
 

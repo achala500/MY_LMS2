@@ -398,7 +398,7 @@ export const AdminQrScannerModal: React.FC<AdminQrScannerModalProps> = ({
                 </div>
               </div>
 
-              <div className="absolute bottom-3 px-3 py-1 rounded-full bg-black/70 text-white font-mono text-[11px] backdrop-blur-sm border border-white/20">
+              <div className="absolute bottom-3 px-3 py-1 rounded-full bg-black/70 text-white font-mono text-[11px]  border border-white/20">
                 Point camera at student QR code
               </div>
             </div>

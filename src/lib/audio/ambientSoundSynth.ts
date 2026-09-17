@@ -1,5 +1,5 @@
 /**
- * StudySync Focus Town — Procedural Ambient Sound Synthesizer
+ * StudySync Focus Town â€” Procedural Ambient Sound Synthesizer
  * Generates soothing focus soundscapes using the Web Audio API without external audio files.
  */
 

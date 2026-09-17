@@ -1,5 +1,5 @@
 /**
- * StudySync — Standalone Toast Notification Engine
+ * StudySync â€” Standalone Toast Notification Engine
  * High-performance, animated toast notifications. Zero browser alert dialogs.
  */
 

@@ -1023,7 +1023,7 @@ export default function FormStudioPage() {
       />
 
       {evalModalOpen && selectedResponse && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 ">
           <div className="bg-[#fef8f4] border border-[#dec0b7] rounded-2xl max-w-md w-full p-6 space-y-4 shadow-xl">
             <h3 className="font-serif text-lg font-semibold text-[#1d1b19]">
               Evaluate Submission: {selectedResponse.studentName}

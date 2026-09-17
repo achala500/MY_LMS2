@@ -1,5 +1,5 @@
 /**
- * StudySync — StudySync Platform ID Card Canvas 2D Renderer & 3x PNG Exporter
+ * StudySync â€” StudySync Platform ID Card Canvas 2D Renderer & 3x PNG Exporter
  * Renders luxury metallic dark gradient ID cards (1440x906px at 3x scale / 300DPI)
  * with gold EMV chip, Inter typography, status pill, and scannable QR code.
  */
@@ -74,7 +74,7 @@ class IdCardRenderer {
     // 7. Draw Member Information (Name, Study ID, School, Stream, Date)
     this._drawMemberDetails(ctx, W, H, scale, member);
 
-    // 8. Draw Scannable QR Code (async — uses reliable qrcode library)
+    // 8. Draw Scannable QR Code (async â€” uses reliable qrcode library)
     await this._drawEmbeddedQrCode(ctx, W, H, scale, member);
 
     // 9. Draw Bottom Microtext Security Ribbon
@@ -389,7 +389,7 @@ class IdCardRenderer {
     let nameDisplay = fullName;
     const maxNameW = W * 0.55;
     while (ctx.measureText(nameDisplay).width > maxNameW && nameDisplay.length > 5) {
-      nameDisplay = nameDisplay.substring(0, nameDisplay.length - 2) + '…';
+      nameDisplay = nameDisplay.substring(0, nameDisplay.length - 2) + 'â€¦';
     }
     ctx.fillText(nameDisplay, leftX, 134 * scale);
 
@@ -412,7 +412,7 @@ class IdCardRenderer {
     ctx.fillStyle = '#94A3B8';
     let schoolDisplay = school;
     while (ctx.measureText(schoolDisplay).width > maxNameW && schoolDisplay.length > 5) {
-      schoolDisplay = schoolDisplay.substring(0, schoolDisplay.length - 2) + '…';
+      schoolDisplay = schoolDisplay.substring(0, schoolDisplay.length - 2) + 'â€¦';
     }
     ctx.fillText(schoolDisplay, leftX, 204 * scale);
 
@@ -442,7 +442,7 @@ class IdCardRenderer {
     ctx.fill();
     ctx.shadowBlur = 0;
 
-    // 2. Build the verify URL — ONLY the short URL, nothing else
+    // 2. Build the verify URL â€” ONLY the short URL, nothing else
     const studyId = encodeURIComponent(member.studyId || 'SG-BIO-0001');
     const verifyUrl = `https://studysync-al-2026.web.app/verify.html?id=${studyId}`;
 
@@ -533,7 +533,7 @@ class IdCardRenderer {
     ctx.fillStyle = 'rgba(148, 163, 184, 0.7)';
     ctx.font = `500 ${7 * scale}px "JetBrains Mono", monospace`;
     ctx.textAlign = 'center';
-    ctx.fillText('OFFICIAL SRI LANKA G.C.E. ADVANCED LEVEL VERIFIED IDENTITY • REPRODUCTION PROHIBITED', W * 0.5, y + 15 * scale);
+    ctx.fillText('OFFICIAL SRI LANKA G.C.E. ADVANCED LEVEL VERIFIED IDENTITY â€¢ REPRODUCTION PROHIBITED', W * 0.5, y + 15 * scale);
 
     ctx.restore();
   }

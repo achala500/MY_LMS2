@@ -462,7 +462,7 @@ export function renderAvatarToCanvas(
     ctx.font = `${Math.round(n(13))}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('🔥', n(124), n(119));
+    ctx.fillText('ðŸ”¥', n(124), n(119));
   } else if (prop === 'tea') {
     // Ceylon Tea Cup
     ctx.fillStyle = '#ffffff';
@@ -473,18 +473,18 @@ export function renderAvatarToCanvas(
     ctx.font = `${Math.round(n(11))}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('☕', n(123), n(119));
+    ctx.fillText('â˜•', n(123), n(119));
   } else if (prop === 'star') {
     // Star
     ctx.font = `${Math.round(n(14))}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('⭐', n(124), n(118));
+    ctx.fillText('â­', n(124), n(118));
   } else if (prop === 'book') {
     ctx.font = `${Math.round(n(14))}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('📖', n(124), n(118));
+    ctx.fillText('ðŸ“–', n(124), n(118));
   }
 }
 

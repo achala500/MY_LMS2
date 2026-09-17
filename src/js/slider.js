@@ -1,5 +1,5 @@
 /**
- * StudySync — Custom Focus & Productivity Gradient Slider Component (1–10)
+ * StudySync â€” Custom Focus & Productivity Gradient Slider Component (1â€“10)
  * Pure pointer/touch drag interactions, dynamic color shifting, floating tooltips, zero default range inputs.
  */
 
@@ -84,8 +84,8 @@ export class CustomSlider {
       };
     } else {
       return {
-        status: 'Deep Flow State 🔥',
-        emoji: '🔥',
+        status: 'Deep Flow State ðŸ”¥',
+        emoji: 'ðŸ”¥',
         tone: 'purple',
         primaryColor: '#06b6d4',
         secondaryColor: '#8b5cf6',
@@ -238,7 +238,7 @@ export class CustomSlider {
     this.thumbDotEl.style.background = tier.primaryColor;
 
     // Update badges and labels
-    this.badgeEl.textContent = `${this.value} — ${tier.status}`;
+    this.badgeEl.textContent = `${this.value} â€” ${tier.status}`;
     this.badgeEl.style.borderColor = tier.badgeBorder;
     this.badgeEl.style.color = tier.textColor;
 

@@ -86,7 +86,7 @@ export default function DailyStudyLogPage() {
         else if (pending.selectedSubject === s2) s2H = pending.activeBlockHours;
         else s3H = pending.activeBlockHours;
 
-        const fNotes = sanitizeInput(pending.topic ? `${pending.topic} — ${pending.notes}` : pending.notes);
+        const fNotes = sanitizeInput(pending.topic ? `${pending.topic} â€” ${pending.notes}` : pending.notes);
         const optimistic: DailyLogEntry = {
           id: 'log-' + Date.now(),
           studyId: member?.studyId || user.email,
@@ -386,7 +386,7 @@ export default function DailyStudyLogPage() {
     else if (selectedSubject === sub2Name) sub2H = activeBlockHours;
     else sub3H = activeBlockHours;
 
-    const formattedNotes = sanitizeInput(topic ? `${topic} — ${notes}` : notes);
+    const formattedNotes = sanitizeInput(topic ? `${topic} â€” ${notes}` : notes);
 
     const optimisticEntry: DailyLogEntry = {
       id: 'log-' + Date.now(),
@@ -515,7 +515,7 @@ export default function DailyStudyLogPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#9f3c16] animate-ping" />
                   ACTIVE STUDY BLOCK
                 </span>
-                <span className="text-[#dec0b7]">•</span>
+                <span className="text-[#dec0b7]">â€¢</span>
                 <span className="font-sans text-[11px] font-semibold text-[#2d2420] tracking-wide">
                   Today&apos;s Focus Session
                 </span>
@@ -840,7 +840,7 @@ export default function DailyStudyLogPage() {
                               <CheckCircle2 className="w-4 h-4 text-[#456644] shrink-0" />
                             </div>
                             <span className="font-mono text-[11px] text-[#4a3b35] block truncate mt-0.5">
-                              {proofFileSize} • Ready to be linked to your ledger
+                              {proofFileSize} â€¢ Ready to be linked to your ledger
                             </span>
                             <span className="font-mono text-[10px] text-[#456644] tracking-wider block mt-0.5 uppercase">
                               VERIFIED FOR SUBMISSION
@@ -976,10 +976,10 @@ export default function DailyStudyLogPage() {
                 </div>
                 <div>
                   <p className="font-serif text-base text-[#1d1b19] italic">
-                    “Repetition is not the absence of thought; it is the patient etching of intuition.”
+                    â€œRepetition is not the absence of thought; it is the patient etching of intuition.â€
                   </p>
                   <span className="block mt-1 font-mono text-[10px] text-[#2d2420] uppercase tracking-widest">
-                    StudySync Merit Guide • A/L 2026
+                    StudySync Merit Guide â€¢ A/L 2026
                   </span>
                 </div>
               </div>
@@ -1159,7 +1159,7 @@ export default function DailyStudyLogPage() {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <span className="font-mono text-[10px] uppercase tracking-widest text-[#4a3b35]">
-                      StudySync Ledger • A/L 2026
+                      StudySync Ledger â€¢ A/L 2026
                     </span>
                     <h3 className="font-serif text-lg font-semibold text-[#1d1b19]">Earlier sessions today</h3>
                   </div>
@@ -1188,7 +1188,7 @@ export default function DailyStudyLogPage() {
                             <span className="font-sans font-semibold text-xs text-[#1d1b19]">
                               {log.sub1Hours ? sub1Name : log.sub2Hours ? sub2Name : sub3Name}
                             </span>
-                            <span className="text-[#dec0b7]">•</span>
+                            <span className="text-[#dec0b7]">â€¢</span>
                             <span className="font-mono text-[11px] text-[#2d2420]">{log.date}</span>
                           </div>
                           <span className="font-mono text-xs text-[#9f3c16] font-semibold shrink-0">
@@ -1235,7 +1235,7 @@ export default function DailyStudyLogPage() {
                     Connected to Secure Cloud Ledger
                   </p>
                   <p className="font-mono text-[11px] text-[#2d2420] truncate mt-0.5">
-                    {user?.email || 'Authenticated Student'} • 100% private &amp; encrypted
+                    {user?.email || 'Authenticated Student'} â€¢ 100% private &amp; encrypted
                   </p>
                 </div>
                 <Lock className="w-4 h-4 text-[#4a3b35]" />

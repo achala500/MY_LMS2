@@ -53,7 +53,7 @@ export default function SubjectsPage() {
 <div className="flex items-center gap-space-sm flex-wrap">
 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ede7e3] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider uppercase shadow-sm">
 <span className="w-1.5 h-1.5 rounded-full bg-[#c85a32] animate-pulse"></span>
-        NIE CURRICULUM ARCHIVE • A/L 2026
+        NIE CURRICULUM ARCHIVE â€¢ A/L 2026
       </span>
 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3ede9] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">
 <span className="material-symbols-outlined text-sm leading-none text-[#6b5952]">location_on</span>
@@ -82,7 +82,7 @@ export default function SubjectsPage() {
 <div className="relative z-10 max-w-4xl">
 <div className="flex items-center gap-2 mb-3">
 <span className="px-2.5 py-0.5 rounded-full bg-[#f3ede9] font-sans text-[11px] font-mono tracking-wider uppercase tracking-widest text-[#c85a32]">Syllabus Matrix</span>
-<span className="text-[#6b5952]">•</span>
+<span className="text-[#6b5952]">â€¢</span>
 <span className="font-sans text-[11px] font-mono tracking-wider text-[#3d3430]">National Institute of Education (NIE) 2026 Grid</span>
 </div>
 <h1 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-[#1d1b19] mb-3">
@@ -186,11 +186,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 01: Real Numbers, Induction &amp; Polynomials</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Factor Theorem • Mathematical Induction proofs • Rational roots</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Factor Theorem â€¢ Mathematical Induction proofs â€¢ Rational roots</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered • 100%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered â€¢ 100%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -200,11 +200,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 02: Quadratic Equations &amp; Complex Numbers</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">De Moivre's Theorem • Argand Geometry • Discriminant proofs</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">De Moivre's Theorem â€¢ Argand Geometry â€¢ Discriminant proofs</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered • 100%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered â€¢ 100%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -217,11 +217,11 @@ export default function SubjectsPage() {
 <p className="font-sans text-sm font-semibold text-[#1d1b19] text-[#c85a32] truncate">Unit 03: Integration by Parts &amp; Definite Integrals</p>
 <span className="px-1.5 py-0.2 rounded bg-[#c85a32]/10 text-[#c85a32] font-sans text-[10px] uppercase">Active</span>
 </div>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430] truncate">Currently Studying • 18 past structured questions solved • Recurrence laws</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430] truncate">Currently Studying â€¢ 18 past structured questions solved â€¢ Recurrence laws</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ffdbcf] text-white-container font-sans text-[11px] font-mono tracking-wider">85% • In Depth</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ffdbcf] text-white-container font-sans text-[11px] font-mono tracking-wider">85% â€¢ In Depth</span>
 <span className="material-symbols-outlined text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -231,11 +231,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#6b5952] text-lg mt-0.5 shrink-0">timelapse</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 04: Differential Equations &amp; Trajectories</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Integrating Factor method • First-order linear forms • Geometric rates</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Integrating Factor method â€¢ First-order linear forms â€¢ Geometric rates</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ede7e3] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">Up Next • 40%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ede7e3] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">Up Next â€¢ 40%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -245,11 +245,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 05: Statics: Coplanar Forces &amp; Friction</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Jointed rods • Limiting equilibrium • Triangular theorem of forces</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Jointed rods â€¢ Limiting equilibrium â€¢ Triangular theorem of forces</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Completed • 90%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Completed â€¢ 90%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -259,11 +259,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#6b5952] text-lg mt-0.5 shrink-0">pending</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 06: Dynamics: Relative Velocity &amp; Circular Motion</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Interception paths • Conical pendulum • Vertical circles • Energy methods</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Interception paths â€¢ Conical pendulum â€¢ Vertical circles â€¢ Energy methods</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">In Progress • 65%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">In Progress â€¢ 65%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -306,11 +306,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 01: Measurement &amp; Vernier / Micrometer Errors</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Dimensional analysis • Zero errors • Error propagation in products</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Dimensional analysis â€¢ Zero errors â€¢ Error propagation in products</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered • 100%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered â€¢ 100%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -320,11 +320,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 02: Mechanics &amp; Moment of Inertia</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Rotational kinetic energy • Rolling without slipping • Collisions</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Rotational kinetic energy â€¢ Rolling without slipping â€¢ Collisions</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Completed • 95%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Completed â€¢ 95%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -334,11 +334,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 03: Thermal Physics &amp; Heat Capacities</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Indicator diagrams • First Law of Thermodynamics • Thermal conductivity</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Indicator diagrams â€¢ First Law of Thermodynamics â€¢ Thermal conductivity</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered • 100%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered â€¢ 100%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -348,11 +348,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#854f00] text-lg mt-0.5 shrink-0">waves</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 04: Waves &amp; Optics: Resonance Tube &amp; Sonometer</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Stationary wave nodes • Doppler effect derivations • Refraction at spherical surfaces</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Stationary wave nodes â€¢ Doppler effect derivations â€¢ Refraction at spherical surfaces</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">In Progress • 60%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">In Progress â€¢ 60%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -362,11 +362,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#6b5952] text-lg mt-0.5 shrink-0">bolt</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 05: Electric Fields &amp; Coulomb's Law</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Capacitor network charges • Electric dipole moment • Equipotential surfaces</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Capacitor network charges â€¢ Electric dipole moment â€¢ Equipotential surfaces</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ede7e3] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">Up Next • 30%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ede7e3] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">Up Next â€¢ 30%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -376,7 +376,7 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#6b5952] text-lg mt-0.5 shrink-0">memory</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 06: Electronics &amp; Op-Amps</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Negative feedback loops • Virtual ground concept • Comparator applications</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Negative feedback loops â€¢ Virtual ground concept â€¢ Comparator applications</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
@@ -420,11 +420,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#2e522d] text-lg mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 01: Atomic Structure &amp; Periodic Trends</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Electronegativity • Successive ionization energies • Lattice enthalpies</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Electronegativity â€¢ Successive ionization energies â€¢ Lattice enthalpies</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered • 100%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-on-secondary-container font-sans text-[11px] font-mono tracking-wider">Mastered â€¢ 100%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -434,11 +434,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#854f00] text-lg mt-0.5 shrink-0">tune</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 02: Chemical Equilibrium &amp; Solubility Products</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Ksp calculations • Le Chatelier shifts • Common-ion suppression</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Ksp calculations â€¢ Le Chatelier shifts â€¢ Common-ion suppression</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">Active • 75%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ffdcbc] text-on-tertiary-fixed font-sans text-[11px] font-mono tracking-wider">Active â€¢ 75%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -448,11 +448,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-error text-lg mt-0.5 shrink-0">warning</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 03: d-Block Elements &amp; Color Precipitates</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Transition metal complexes • Oxidation states • Qualitative color tests</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Transition metal complexes â€¢ Oxidation states â€¢ Qualitative color tests</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-sans text-[11px] font-mono tracking-wider">Review Needed • 50%</span>
+<span className="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-sans text-[11px] font-mono tracking-wider">Review Needed â€¢ 50%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -462,11 +462,11 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#c85a32] text-lg mt-0.5 shrink-0">science</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 04: Organic Reaction Mechanisms &amp; Synthesis</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Electrophilic addition • Benzene nitration mechanism • Nucleophilic substitutions</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Electrophilic addition â€¢ Benzene nitration mechanism â€¢ Nucleophilic substitutions</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
-<span className="px-2 py-0.5 rounded-full bg-[#ffdbcf] text-white-container font-sans text-[11px] font-mono tracking-wider">In Progress • 65%</span>
+<span className="px-2 py-0.5 rounded-full bg-[#ffdbcf] text-white-container font-sans text-[11px] font-mono tracking-wider">In Progress â€¢ 65%</span>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-base">chevron_right</span>
 </div>
 </div>
@@ -476,7 +476,7 @@ export default function SubjectsPage() {
 <span className="material-symbols-outlined text-[#6b5952] text-lg mt-0.5 shrink-0">factory</span>
 <div className="min-w-0">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors truncate">Unit 05: Environmental &amp; Industrial Chemistry</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Solvay process • Ozone depletion • Green chemistry principles</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] truncate">Solvay process â€¢ Ozone depletion â€¢ Green chemistry principles</p>
 </div>
 </div>
 <div className="flex items-center gap-2 shrink-0">
@@ -524,7 +524,7 @@ export default function SubjectsPage() {
 </div>
 <div>
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#c85a32] transition-colors">Handwritten Proof Notebook</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952]">14 pages • 2.4 MB PDF scanned</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952]">14 pages â€¢ 2.4 MB PDF scanned</p>
 </div>
 </div>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#c85a32] text-sm">visibility</span>
@@ -537,7 +537,7 @@ export default function SubjectsPage() {
 </div>
 <div>
 <p className="font-sans text-sm font-semibold text-[#1d1b19] group-hover:text-[#2e522d] transition-colors">Formula Speed-Drill Deck</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952]">12 active cards • 92% retention</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952]">12 active cards â€¢ 92% retention</p>
 </div>
 </div>
 <span className="material-symbols-outlined text-[#6b5952] group-hover:text-[#2e522d] text-sm">play_arrow</span>
@@ -576,11 +576,11 @@ export default function SubjectsPage() {
 <div className="absolute inset-0 bg-gradient-to-t from-on-surface/60 via-transparent to-transparent"></div>
 <div className="absolute bottom-2.5 left-3 right-3 text-surface">
 <p className="font-sans text-sm font-semibold text-[#1d1b19] text-surface drop-shadow-sm">Physical Revision Binder</p>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-surface-container-low drop-shadow-sm">Shelf 2 • Combined Maths Pure Notes • Black Folder</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-surface-container-low drop-shadow-sm">Shelf 2 â€¢ Combined Maths Pure Notes â€¢ Black Folder</p>
 </div>
 </div>
 <p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430] leading-relaxed">
-          “Do not attempt to solve every problem at once. One single derivation derived cleanly from first principles is worth ten rushed exercises.”
+          â€œDo not attempt to solve every problem at once. One single derivation derived cleanly from first principles is worth ten rushed exercises.â€
         </p>
 </div>
 
@@ -600,7 +600,7 @@ export default function SubjectsPage() {
 </div>
 </div>
 
-<div className="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="derivations-modal">
+<div className="fixed inset-0 z-50 bg-on-surface/40  hidden items-center justify-center p-4" id="derivations-modal">
 <div className="bg-[#ffffff] rounded-2xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
 <div className="flex items-center justify-between pb-4 border-b-0">
 <div className="flex items-center gap-2">
@@ -620,7 +620,7 @@ export default function SubjectsPage() {
 <span className="text-[#2e522d] font-semibold font-sans text-[11px] font-mono tracking-wider">Tested 2021</span>
 </div>
 <div className="p-3 bg-[#f8f2ef] rounded-xl flex items-center justify-between">
-<span className="">2. Moment of Inertia of a Uniform Solid Cylinder (I = ½ MR²)</span>
+<span className="">2. Moment of Inertia of a Uniform Solid Cylinder (I = Â½ MRÂ²)</span>
 <span className="text-[#2e522d] font-semibold font-sans text-[11px] font-mono tracking-wider">Tested 2019</span>
 </div>
 <div className="p-3 bg-[#f8f2ef] rounded-xl flex items-center justify-between">
@@ -628,11 +628,11 @@ export default function SubjectsPage() {
 <span className="text-[#854f00] font-semibold font-sans text-[11px] font-mono tracking-wider">Unexamined 3 Yrs</span>
 </div>
 <div className="p-3 bg-[#f8f2ef] rounded-xl flex items-center justify-between">
-<span className="">4. Pressure Exerted by Ideal Gas Molecules (P = ⅓ ρ c²)</span>
+<span className="">4. Pressure Exerted by Ideal Gas Molecules (P = â…“ Ï cÂ²)</span>
 <span className="text-[#2e522d] font-semibold font-sans text-[11px] font-mono tracking-wider">Core Proof</span>
 </div>
 <div className="p-3 bg-[#f8f2ef] rounded-xl flex items-center justify-between">
-<span className="">5. Electric Potential due to Point Charge (V = Q / 4πε&amp;sub0r)</span>
+<span className="">5. Electric Potential due to Point Charge (V = Q / 4Ï€Îµ&amp;sub0r)</span>
 <span className="text-[#c85a32] font-semibold font-sans text-[11px] font-mono tracking-wider">High Priority</span>
 </div>
 </div>

@@ -1,5 +1,5 @@
 /**
- * StudySync Focus Town — Real-Time Collaborative Room & Presence Engine
+ * StudySync Focus Town â€” Real-Time Collaborative Room & Presence Engine
  * Free Firebase Hostable with BroadcastChannel Cross-Tab Synchronization and Realistic Peer Simulation.
  */
 

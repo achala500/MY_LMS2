@@ -1,5 +1,5 @@
 /**
- * StudySync — Sri Lankan Schools Dataset & Autocomplete Engine
+ * StudySync â€” Sri Lankan Schools Dataset & Autocomplete Engine
  * Comprehensive dataset of 306 National, Provincial, and Popular Schools across all 9 Provinces and 25 Districts.
  */
 

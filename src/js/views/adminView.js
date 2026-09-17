@@ -1,5 +1,5 @@
 /**
- * StudySync — Protected Admin Dashboard View Component
+ * StudySync â€” Protected Admin Dashboard View Component
  * 
  * Features:
  * - Email Whitelist Security Check (ADMIN_EMAILS) with styled 403 Forbidden Screen for unauthorized users.
@@ -169,7 +169,7 @@ export class AdminView {
                 <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-400"></i>
                 <span>SUPER ADMIN CONSOLE</span>
               </span>
-              <span class="text-xs text-slate-400">•</span>
+              <span class="text-xs text-slate-400">â€¢</span>
               <span class="text-xs text-indigo-300 font-mono">${sanitizeString(user.email)}</span>
             </div>
             <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -575,11 +575,11 @@ export class AdminView {
     let rankBadge = `<span class="font-mono text-slate-400 font-bold">${rank}</span>`;
 
     if (rank === 1) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-sm shadow-md shadow-amber-500/20" title="1st Place (Gold)">🥇</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold text-sm shadow-md shadow-amber-500/20" title="1st Place (Gold)">ðŸ¥‡</span>`;
     } else if (rank === 2) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300/20 border border-slate-300/40 text-slate-200 font-bold text-sm" title="2nd Place (Silver)">🥈</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300/20 border border-slate-300/40 text-slate-200 font-bold text-sm" title="2nd Place (Silver)">ðŸ¥ˆ</span>`;
     } else if (rank === 3) {
-      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700/20 border border-amber-700/40 text-amber-500 font-bold text-sm" title="3rd Place (Bronze)">🥉</span>`;
+      rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700/20 border border-amber-700/40 text-amber-500 font-bold text-sm" title="3rd Place (Bronze)">ðŸ¥‰</span>`;
     }
 
     const isBio = (item.stream || '').includes('Bio');
@@ -803,7 +803,7 @@ export class AdminView {
 
                 <!-- Telegram -->
                 <td class="py-3.5 px-4 whitespace-nowrap font-mono text-cyan-300">
-                  ${sanitizeString(m.telegram || '—')}
+                  ${sanitizeString(m.telegram || 'â€”')}
                 </td>
 
                 <!-- Registered -->
@@ -1108,7 +1108,7 @@ export class AdminView {
               const rawDate = log.dateOfStudy || log.date || log.Date || log.timestamp;
               const formattedDate = formatDate(rawDate, 'medium');
               const totalHours = Number(log.totalHours || 0).toFixed(1);
-              const notes = log.notes || '—';
+              const notes = log.notes || 'â€”';
               const proofUrl = log.proofPhotoUrl || log.proofUrl || log.Proof || '';
 
               // Extract subjects
@@ -1298,7 +1298,7 @@ export class AdminView {
             </div>
             <div>
               <h3 class="text-sm font-bold text-white">Admin Proof Inspector</h3>
-              <p class="text-[11px] text-slate-400"><span class="font-mono text-cyan-300">${sanitizeString(studyId)}</span> • ${sanitizeString(date)} • ${sanitizeString(hours)} Hours Logged</p>
+              <p class="text-[11px] text-slate-400"><span class="font-mono text-cyan-300">${sanitizeString(studyId)}</span> â€¢ ${sanitizeString(date)} â€¢ ${sanitizeString(hours)} Hours Logged</p>
             </div>
           </div>
 
@@ -1315,7 +1315,7 @@ export class AdminView {
         </div>
 
         <!-- Student Notes -->
-        ${notes && notes !== '—' ? `
+        ${notes && notes !== 'â€”' ? `
           <div class="p-3 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 italic">
             <span class="text-slate-400 not-italic font-semibold block text-[10px] uppercase mb-0.5">Submitted Notes / Reflections:</span>
             "${sanitizeString(notes)}"

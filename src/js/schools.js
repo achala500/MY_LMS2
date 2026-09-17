@@ -1,5 +1,5 @@
 /**
- * StudySync — Sri Lankan Schools Dataset & Autocomplete Engine
+ * StudySync â€” Sri Lankan Schools Dataset & Autocomplete Engine
  * Comprehensive dataset of 270+ National, Provincial, and Popular Schools across all 9 Provinces and 25 Districts.
  */
 
@@ -475,7 +475,7 @@ export function initSchoolAutocomplete(inputEl, dropdownContainer, onSelect) {
       item.innerHTML = `
         <div class="flex flex-col gap-0.5">
           <span class="font-medium text-slate-100">${highlightMatch(school.name, query)}</span>
-          <span class="text-[10px] text-slate-400">${school.province} Province • ${school.type}</span>
+          <span class="text-[10px] text-slate-400">${school.province} Province â€¢ ${school.type}</span>
         </div>
         <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-slate-300 shrink-0">${school.district}</span>
       `;

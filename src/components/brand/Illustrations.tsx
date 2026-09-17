@@ -1673,7 +1673,7 @@ export function EarlyBirdBadge({
    4. BACKWARD COMPATIBILITY EXPORTS (Upgraded to Kinfolk Tokens)
    ========================================================================== */
 
-/** Abstract book/knowledge icon — layered pages with a warm accent */
+/** Abstract book/knowledge icon â€” layered pages with a warm accent */
 export function IllustrationStudy({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -1689,7 +1689,7 @@ export function IllustrationStudy({ className = '', size = 120 }: { className?: 
   );
 }
 
-/** Abstract clock/countdown — concentric rings with a sweeping hand */
+/** Abstract clock/countdown â€” concentric rings with a sweeping hand */
 export function IllustrationCountdown({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -1708,7 +1708,7 @@ export function IllustrationCountdown({ className = '', size = 120 }: { classNam
   );
 }
 
-/** Abstract shield/security — layered shield with a checkmark */
+/** Abstract shield/security â€” layered shield with a checkmark */
 export function IllustrationSecurity({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -1721,7 +1721,7 @@ export function IllustrationSecurity({ className = '', size = 120 }: { className
   );
 }
 
-/** Abstract ID card — minimalist card with chip and lines */
+/** Abstract ID card â€” minimalist card with chip and lines */
 export function IllustrationIdCard({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -1743,7 +1743,7 @@ export function IllustrationIdCard({ className = '', size = 120 }: { className?:
   );
 }
 
-/** Abstract chart/analytics — rising bars with trend line */
+/** Abstract chart/analytics â€” rising bars with trend line */
 export function IllustrationAnalytics({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -1762,7 +1762,7 @@ export function IllustrationAnalytics({ className = '', size = 120 }: { classNam
   );
 }
 
-/** Abstract flame/streak — stylized fire icon */
+/** Abstract flame/streak â€” stylized fire icon */
 export function IllustrationStreak({ className = '', size = 120 }: { className?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>

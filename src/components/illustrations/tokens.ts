@@ -1,6 +1,6 @@
 /**
  * Monoline Vector Illustration Palette & Styling Tokens
- * StudySync LMS Platform — Authoritative Visual System
+ * StudySync LMS Platform â€” Authoritative Visual System
  */
 
 import type { SVGProps } from 'react';

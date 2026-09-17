@@ -1,6 +1,6 @@
 /**
  * Unified Barrel Export for Monoline Vector Component Library
- * StudySync LMS Platform — Milestone 1
+ * StudySync LMS Platform â€” Milestone 1
  */
 
 export * from './tokens';

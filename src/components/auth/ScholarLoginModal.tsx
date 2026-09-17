@@ -257,7 +257,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
             <div>
               <div className="flex items-center justify-between mb-1">
                 <label className="font-mono font-bold text-xs text-[#19202e] uppercase tracking-wider">
-                  Security PIN (4–6 Digits)
+                  Security PIN (4â€“6 Digits)
                 </label>
                 <button
                   type="button"
@@ -273,7 +273,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
                 inputMode="numeric"
                 autoComplete="current-password"
                 maxLength={8}
-                placeholder="••••"
+                placeholder="â€¢â€¢â€¢â€¢"
                 value={candidatePin}
                 onChange={(e) => setCandidatePin(e.target.value)}
                 className="w-full h-11 px-4 rounded-xl border-2 border-[#19202e] bg-white text-sm text-[#19202e] font-mono tracking-widest placeholder:text-slate-400 focus:border-[#c85a32] focus:outline-none transition-all"
@@ -450,7 +450,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
                 </p>
                 <div className="space-y-2">
                   {[
-                    { id: 'dawn', title: 'Brahma Muhurta (Early Dawn Focus)', desc: '05:00 AM – 08:00 AM uninterrupted pure problem solving.', tag: 'High Retention' },
+                    { id: 'dawn', title: 'Brahma Muhurta (Early Dawn Focus)', desc: '05:00 AM â€“ 08:00 AM uninterrupted pure problem solving.', tag: 'High Retention' },
                     { id: 'pomodoro', title: 'Deep Pomodoro (25m / 5m)', desc: 'Standard rhythmic cycles with short reflective pauses.', tag: 'Balanced' },
                     { id: 'exam', title: '3-Hour Past Paper Flow', desc: 'Strict time simulation under examination pressure.', tag: 'Exam Ready' },
                   ].map((cd) => {
@@ -580,7 +580,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
                           className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8a726a] hover:text-[#19202e] text-xs font-bold"
                           title="Clear school"
                         >
-                          ✕
+                          âœ•
                         </button>
                       )}
                     </div>
@@ -589,7 +589,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
                     <datalist id="scholar-registration-schools-datalist">
                       {SRI_LANKAN_SCHOOLS.map((s) => (
                         <option key={s.id || s.name} value={s.name}>
-                          {s.district} District • {s.type}
+                          {s.district} District â€¢ {s.type}
                         </option>
                       ))}
                     </datalist>
@@ -641,7 +641,7 @@ export function ScholarLoginModal({ isOpen, onClose, onSuccess }: ScholarLoginMo
                                 {s.name}
                               </span>
                               <span className="text-[10px] text-[#8a726a] block">
-                                {s.province} Province • {s.type}
+                                {s.province} Province â€¢ {s.type}
                               </span>
                             </div>
                             <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#f3ede9] text-[#2d2420] shrink-0 border border-[#dec0b7]">

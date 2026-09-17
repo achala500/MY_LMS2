@@ -1,5 +1,5 @@
 /**
- * StudySync — Registration View Component
+ * StudySync â€” Registration View Component
  * One-time stream-aware registration flow with locked Google email (1:1 mapping),
  * searchable school autocomplete, stream selection, and dynamic optional subject selector.
  */
@@ -169,7 +169,7 @@ export class RegisterView {
               </div>
               
               <!-- Autocomplete Dropdown Popup -->
-              <div id="school-dropdown" class="autocomplete-dropdown hidden absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl glass-card border border-white/15 shadow-2xl bg-[#0B0F19]/95 backdrop-blur-xl"></div>
+              <div id="school-dropdown" class="autocomplete-dropdown hidden absolute top-full left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl glass-card border border-white/15 shadow-2xl bg-[#0B0F19]/95 "></div>
             </div>
 
             <!-- 5. A/L Stream Selection (Visual Cards) -->

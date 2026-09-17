@@ -103,14 +103,14 @@ export const ZScoreForecastIllustration: React.FC<MonolineIllustrationProps> = (
         <line x1="330" y1="195" x2="330" y2="230" stroke={contour} strokeWidth="0.8" strokeDasharray="2 2" />
 
         {/* Labels below baseline */}
-        <text x="90" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">-2σ</text>
-        <text x="150" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">-1σ</text>
-        <text x="210" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">μ (0)</text>
-        <text x="270" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">+1σ</text>
-        <text x="330" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">+2σ</text>
+        <text x="90" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">-2Ïƒ</text>
+        <text x="150" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">-1Ïƒ</text>
+        <text x="210" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">Î¼ (0)</text>
+        <text x="270" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">+1Ïƒ</text>
+        <text x="330" y="244" textAnchor="middle" fill={contour} fontFamily="JetBrains Mono, monospace" fontSize="8">+2Ïƒ</text>
       </g>
 
-      {/* --- SHADED HIGH-ACHIEVEMENT PERCENTILE REGION (Cutoff >= +1.5σ) --- */}
+      {/* --- SHADED HIGH-ACHIEVEMENT PERCENTILE REGION (Cutoff >= +1.5Ïƒ) --- */}
       <path
         d="M 285 155 C 310 185, 335 210, 370 226 L 370 230 L 285 230 Z"
         fill="url(#zscore-top-cutoff-gradient)"

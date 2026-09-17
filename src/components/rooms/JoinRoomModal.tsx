@@ -139,7 +139,7 @@ export const JoinRoomModal: React.FC<JoinRoomModalProps> = ({
             <div className="flex items-center justify-between mb-2">
               <label className="font-mono font-bold text-xs text-[#19202e] uppercase tracking-wider flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#c85a32]" />
-                1. Select Desk (01–12)
+                1. Select Desk (01â€“12)
               </label>
               <div className="flex items-center gap-3 text-[11px] text-[#4a3b35]">
                 <span className="flex items-center gap-1">

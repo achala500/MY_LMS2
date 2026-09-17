@@ -1,5 +1,5 @@
 /**
- * StudySync — Member Domain Models & Types
+ * StudySync â€” Member Domain Models & Types
  */
 
 export type StreamType = 'Biological Science' | 'Physical Science';

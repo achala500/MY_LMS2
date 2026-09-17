@@ -2,10 +2,10 @@
  * StudySync Advanced Data Engineering & Statistical Analytics Engine
  * 
  * Mathematical Foundations:
- * 1. Sri Lankan A/L Z-Score Standardization with Empirical Bayes Shrinkage (κ=2.0)
+ * 1. Sri Lankan A/L Z-Score Standardization with Empirical Bayes Shrinkage (Îº=2.0)
  * 2. Hastings Rational Polynomial Standard Normal CDF & Islandwide Percentile Approximation
  * 3. Dynamic Z-Score Velocity (V_Z) & Dual EMA Momentum (EMA_3 - EMA_5)
- * 4. University Cutoff Sensitivity (∂Z/∂X_j = 1 / (3*σ_j)) & Gap Analysis
+ * 4. University Cutoff Sensitivity (âˆ‚Z/âˆ‚X_j = 1 / (3*Ïƒ_j)) & Gap Analysis
  * 5. Multi-Factor Cognitive Fatigue Index (F_cog)
  * 6. Information-Theoretic Shannon Entropy Subject Equilibrium (E_norm)
  * 7. Study Hour ROI & Marginal Efficiency Function
@@ -98,8 +98,8 @@ export const UNIVERSITY_CUTOFF_TIERS: UniversityCutoffTier[] = [
 
 /**
  * Calculates empirical Bayes smoothed subject score and standardized Z-score:
- * θ̂ = (n / (n + κ)) * X̄ + (κ / (n + κ)) * μ₀
- * where κ = 2.0 acts as prior shrinkage strength.
+ * Î¸Ì‚ = (n / (n + Îº)) * XÌ„ + (Îº / (n + Îº)) * Î¼â‚€
+ * where Îº = 2.0 acts as prior shrinkage strength.
  * Confidence metric: C(n) = 1 - exp(-0.55 * n).
  */
 export function calculateSubjectZScore(
@@ -163,7 +163,7 @@ export function calculateSubjectZScoreDetail(
     ? (testCount / (testCount + kappa)) * rawScore + (kappa / (testCount + kappa)) * norm.mean
     : norm.mean;
   
-  // Partial derivative ∂Z/∂X_j = 1 / (3 * σ_j)
+  // Partial derivative âˆ‚Z/âˆ‚X_j = 1 / (3 * Ïƒ_j)
   const sensitivity = Number((1 / (3 * norm.stdDev)).toFixed(6));
   const marksNeededPer01Z = Number((3 * norm.stdDev * 0.1).toFixed(2));
   const percentile = calculatePercentileFromZ(base.zScore);
@@ -185,7 +185,7 @@ export function calculateSubjectZScoreDetail(
 
 /**
  * Hastings Rational Polynomial approximation for Standard Normal Cumulative Distribution Function
- * Max absolute error |ε(z)| < 7.5 × 10^-8 across the entire domain.
+ * Max absolute error |Îµ(z)| < 7.5 Ã— 10^-8 across the entire domain.
  */
 export function calculatePercentileFromZ(z: number): number {
   if (z === 0) return 50.0;
@@ -425,8 +425,8 @@ export function calculateDynamicVelocity(
 
 /**
  * Analyzes target cutoff gap and computes exact raw marks required per subject:
- * dZ/dX_j = 1 / (3 * σ_j)
- * ΔX_j = ΔZ * (3 * σ_j)
+ * dZ/dX_j = 1 / (3 * Ïƒ_j)
+ * Î”X_j = Î”Z * (3 * Ïƒ_j)
  */
 export function calculateTargetGapAnalysis(
   compositeZ: number,
@@ -444,13 +444,13 @@ export function calculateTargetGapAnalysis(
 
   streamSubjects.forEach((sub) => {
     const norm = NATIONAL_SUBJECT_STATS[sub] || { mean: 45.0, stdDev: 17.0, weight: 1.0 };
-    // Single subject alone closing the entire gap: ΔX_j = ΔZ * 3 * σ_j
+    // Single subject alone closing the entire gap: Î”X_j = Î”Z * 3 * Ïƒ_j
     const marksNeeded = Number((gap * 3 * norm.stdDev).toFixed(1));
     subjectRequiredMarks[sub] = isTargetMet ? 0 : marksNeeded;
     sumInvSigma += 1 / norm.stdDev;
   });
 
-  // Uniform marks needed across all 3 subjects: ΔX_uniform = (3 * ΔZ) / sum(1/σ_j)
+  // Uniform marks needed across all 3 subjects: Î”X_uniform = (3 * Î”Z) / sum(1/Ïƒ_j)
   const uniformMarksNeeded = isTargetMet
     ? 0
     : Number(((3 * gap) / (sumInvSigma || 1)).toFixed(1));
@@ -472,7 +472,7 @@ export function calculateTargetGapAnalysis(
 
 /**
  * Computes multi-factor Cognitive Fatigue Index:
- * F_cog = 0.35 * (10 - F̄_7) + 0.35 * (10 - P̄_7) + 0.20 * max(0, H̄_7/42 - 1) * 10 + 0.10 * min(10, S_streak/14)
+ * F_cog = 0.35 * (10 - FÌ„_7) + 0.35 * (10 - PÌ„_7) + 0.20 * max(0, HÌ„_7/42 - 1) * 10 + 0.10 * min(10, S_streak/14)
  */
 export function calculateCognitiveFatigueIndex(
   logs: DailyLogEntry[],
@@ -558,7 +558,7 @@ export function calculateCognitiveFatigueIndex(
 
 /**
  * Computes Shannon Entropy Study Equilibrium Index (0 to 100%)
- * Maximum entropy for 3 equal subjects is ln(3) ≈ 1.0986
+ * Maximum entropy for 3 equal subjects is ln(3) â‰ˆ 1.0986
  */
 export function calculateSubjectEntropyEquilibrium(
   hours: number[],

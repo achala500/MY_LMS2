@@ -1,5 +1,5 @@
 /**
- * StudySync — Authentication & Admin State Types
+ * StudySync â€” Authentication & Admin State Types
  */
 
 import { AuthUser, MemberData, StreamType, GenderType, MemberStatus } from './member';

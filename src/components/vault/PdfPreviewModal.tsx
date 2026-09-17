@@ -34,7 +34,7 @@ export function PdfPreviewModal({ file, isOpen, onClose }: PdfPreviewModalProps)
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/70 ">
       <div className="absolute inset-0" onClick={onClose} aria-hidden />
       <div className="relative z-10 mx-auto my-4 flex w-full max-w-4xl flex-col rounded-2xl border border-border bg-card shadow-2xl overflow-hidden">
         <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-3 bg-[#fef8f4] dark:bg-[#0F1114]">

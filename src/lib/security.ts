@@ -7,7 +7,7 @@
  * 3. Polyglot & Malware Payload Detection (Detects embedded scripts/executables)
  * 4. Context-Aware Anti-XSS Encoding, Safe URL Allowlisting, and Spreadsheet Formula Injection Escaping (sanitizeCsvFormula)
  * 5. Multi-Tab Synchronized Sliding-Window Rate Limiting with LocalStorage & BroadcastChannel Persistence
- * 6. Cryptographic Idempotency Envelope with 128-Bit Random Nonces and ±300s Timestamp Drift Checks
+ * 6. Cryptographic Idempotency Envelope with 128-Bit Random Nonces and Â±300s Timestamp Drift Checks
  */
 
 import { safeStorage } from './storage/safeStorage';
@@ -618,7 +618,7 @@ export function createIdempotencyEnvelope<T>(
 }
 
 /**
- * Validates request timestamp against ±300s (5-minute) drift window
+ * Validates request timestamp against Â±300s (5-minute) drift window
  */
 export function verifyTimestampDrift(
   timestampIso: string,

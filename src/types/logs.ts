@@ -1,5 +1,5 @@
 /**
- * StudySync — Daily Study Logs & Analytics Types
+ * StudySync â€” Daily Study Logs & Analytics Types
  */
 
 /**

@@ -1,5 +1,5 @@
 /**
- * StudySync — Reactive AppState Store with LocalStorage Persistence
+ * StudySync â€” Reactive AppState Store with LocalStorage Persistence
  * Manages global application state with pub/sub architecture.
  */
 

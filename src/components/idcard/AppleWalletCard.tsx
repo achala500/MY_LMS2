@@ -105,7 +105,7 @@ export function AppleWalletCard({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleMouseLeave}
         style={tiltStyle}
-        className="w-full max-w-[480px] rounded-3xl p-1 bg-gradient-to-tr from-zinc-800/90 via-indigo-500/20 to-zinc-700/80 shadow-2xl backdrop-blur-2xl cursor-pointer will-change-transform relative group select-none"
+        className="w-full max-w-[480px] rounded-3xl p-1 bg-gradient-to-tr from-zinc-800/90 via-indigo-500/20 to-zinc-700/80 shadow-2xl  cursor-pointer will-change-transform relative group select-none"
       >
         <div className="relative rounded-[22px] overflow-hidden bg-[#07090E]">
           <canvas

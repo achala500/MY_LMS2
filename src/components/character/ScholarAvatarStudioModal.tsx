@@ -179,12 +179,12 @@ export const ScholarAvatarStudioModal: React.FC<ScholarAvatarStudioModalProps> =
               </label>
               <div className="grid grid-cols-3 gap-1.5">
                 {[
-                  { id: 'focus', label: '🎯 Focus' },
-                  { id: 'smile', label: '😊 Smile' },
-                  { id: 'determined', label: '💪 Determined' },
-                  { id: 'wink', label: '😉 Wink' },
-                  { id: 'calm', label: '😌 Calm Zen' },
-                  { id: 'studious', label: '🧐 Studious' },
+                  { id: 'focus', label: 'ðŸŽ¯ Focus' },
+                  { id: 'smile', label: 'ðŸ˜Š Smile' },
+                  { id: 'determined', label: 'ðŸ’ª Determined' },
+                  { id: 'wink', label: 'ðŸ˜‰ Wink' },
+                  { id: 'calm', label: 'ðŸ˜Œ Calm Zen' },
+                  { id: 'studious', label: 'ðŸ§ Studious' },
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -348,10 +348,10 @@ export const ScholarAvatarStudioModal: React.FC<ScholarAvatarStudioModalProps> =
               </label>
               <div className="grid grid-cols-4 gap-1.5">
                 {[
-                  { id: 'headphones', label: '🎧 ANC Cups' },
-                  { id: 'pencil', label: '✏️ Pencil' },
-                  { id: 'mortarboard', label: '🎓 Cap' },
-                  { id: 'beanie', label: '🧢 Beanie' },
+                  { id: 'headphones', label: 'ðŸŽ§ ANC Cups' },
+                  { id: 'pencil', label: 'âœï¸ Pencil' },
+                  { id: 'mortarboard', label: 'ðŸŽ“ Cap' },
+                  { id: 'beanie', label: 'ðŸ§¢ Beanie' },
                   { id: 'none', label: 'None' },
                 ].map((item) => (
                   <button
@@ -376,10 +376,10 @@ export const ScholarAvatarStudioModal: React.FC<ScholarAvatarStudioModalProps> =
               </label>
               <div className="grid grid-cols-4 gap-1.5">
                 {[
-                  { id: 'flame', label: '🔥 Flame Streak' },
-                  { id: 'tea', label: '☕ Ceylon Tea' },
-                  { id: 'star', label: '⭐ Top Ranker' },
-                  { id: 'book', label: '📖 Past Paper' },
+                  { id: 'flame', label: 'ðŸ”¥ Flame Streak' },
+                  { id: 'tea', label: 'â˜• Ceylon Tea' },
+                  { id: 'star', label: 'â­ Top Ranker' },
+                  { id: 'book', label: 'ðŸ“– Past Paper' },
                 ].map((item) => (
                   <button
                     key={item.id}

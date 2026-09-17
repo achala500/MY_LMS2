@@ -1,5 +1,5 @@
 /**
- * StudySync — Unified Typed ApiClient Engine
+ * StudySync â€” Unified Typed ApiClient Engine
  * 
  * Provides 100% genuine Google Apps Script Web App communication for all authoritative endpoints.
  * Enforces strict HTTP POST `Content-Type: text/plain;charset=utf-8` payload pattern to bypass

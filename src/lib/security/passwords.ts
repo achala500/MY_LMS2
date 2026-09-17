@@ -1,5 +1,5 @@
 /**
- * StudySync — Cryptographic Password Authentication & Admin Privilege Engine
+ * StudySync â€” Cryptographic Password Authentication & Admin Privilege Engine
  * 
  * Provides:
  * 1. Salted SHA-256 password hashing for accounts & emergency credentials.

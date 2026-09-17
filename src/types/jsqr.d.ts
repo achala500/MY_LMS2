@@ -1,4 +1,4 @@
-﻿declare module 'jsqr' {
+declare module 'jsqr' {
   interface QRCode {
     binaryData: number[];
     data: string;

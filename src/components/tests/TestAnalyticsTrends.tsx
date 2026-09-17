@@ -41,7 +41,7 @@ export const TestAnalyticsTrends: React.FC<TestAnalyticsTrendsProps> = ({
             </span>
             <p className="text-[11px] text-[#697D72] dark:text-[#8E9A90] font-mono mt-0.5">
               {hasAnyTests
-                ? `Projected Range: ${forecast.zScoreRange.min} – ${forecast.zScoreRange.max}`
+                ? `Projected Range: ${forecast.zScoreRange.min} â€“ ${forecast.zScoreRange.max}`
                 : 'Awaiting first test score submission'}
             </p>
           </div>
@@ -80,12 +80,12 @@ export const TestAnalyticsTrends: React.FC<TestAnalyticsTrendsProps> = ({
 
                   <div className="flex items-baseline justify-between font-mono">
                     <span className="text-2xl font-semibold text-[#132219] dark:text-[#F2EFE9]">
-                      {hasTest ? `${sub.rawScore.toFixed(1)}%` : '—'}
+                      {hasTest ? `${sub.rawScore.toFixed(1)}%` : 'â€”'}
                     </span>
                     <span className="text-xs text-[#C85A32] font-semibold">
                       {hasTest
                         ? `Z: ${sub.zScore > 0 ? '+' : ''}${sub.zScore.toFixed(2)}`
-                        : 'Z: —'}
+                        : 'Z: â€”'}
                     </span>
                   </div>
 
@@ -97,7 +97,7 @@ export const TestAnalyticsTrends: React.FC<TestAnalyticsTrendsProps> = ({
                       />
                     </div>
                     <div className="flex justify-between text-[10px] text-[#697D72] dark:text-[#8E9A90] font-mono">
-                      <span>National μ: {sub.mean}</span>
+                      <span>National Î¼: {sub.mean}</span>
                       <span>Confidence: {hasTest ? `${sub.confidencePct}%` : '0%'}</span>
                     </div>
                   </div>
@@ -126,7 +126,7 @@ export const TestAnalyticsTrends: React.FC<TestAnalyticsTrendsProps> = ({
                       <span className="text-[#132219] dark:text-[#F2EFE9] font-medium">{ema.subject}</span>
                       <div className="flex items-center gap-3 font-mono">
                         <span className="text-[#697D72] dark:text-[#8E9A90]">
-                          EMA: <strong className="text-[#132219] dark:text-[#F2EFE9]">{hasEma ? `${ema.currentEma3}%` : '—'}</strong>
+                          EMA: <strong className="text-[#132219] dark:text-[#F2EFE9]">{hasEma ? `${ema.currentEma3}%` : 'â€”'}</strong>
                         </span>
                         {hasEma && (
                           <span className={`text-[11px] font-semibold ${

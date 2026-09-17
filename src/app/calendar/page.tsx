@@ -47,8 +47,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'MON',
     title: 'Pure Mathematics: Differentiation & Curve Sketching',
     subject: 'Combined Maths',
-    unit: 'Unit 06 • Pure Calculus',
-    timeSlot: '08:00 – 11:00 AM',
+    unit: 'Unit 06 â€¢ Pure Calculus',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Completed 15 past paper problems on stationary points and asymptotes.',
@@ -58,8 +58,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'MON',
     title: 'Physics Core: Oscillations & Simple Harmonic Motion',
     subject: 'Physics',
-    unit: 'Mechanics • SHM & Waves',
-    timeSlot: '02:00 – 04:30 PM',
+    unit: 'Mechanics â€¢ SHM & Waves',
+    timeSlot: '02:00 â€“ 04:30 PM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Energy conservation in SHM springs and torsional pendulums.',
@@ -69,8 +69,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'TUE',
     title: 'Inorganic Chemistry: Transition Elements & Coordination',
     subject: 'Chemistry',
-    unit: 'Inorganic • d-Block Series',
-    timeSlot: '08:30 – 11:00 AM',
+    unit: 'Inorganic â€¢ d-Block Series',
+    timeSlot: '08:30 â€“ 11:00 AM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Complex ion color precipitates and ligand exchange equations.',
@@ -81,7 +81,7 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     title: 'Combined Maths: Vector Equations of Lines & Planes',
     subject: 'Combined Maths',
     unit: 'Vectors & 3D Geometry',
-    timeSlot: '01:30 – 04:30 PM',
+    timeSlot: '01:30 â€“ 04:30 PM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Scalar and vector triple products with 2022 past exam proofs.',
@@ -91,8 +91,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'WED',
     title: 'Physics: Electric Fields & Gauss Applications',
     subject: 'Physics',
-    unit: 'Fields • Electrostatics',
-    timeSlot: '08:00 – 11:00 AM',
+    unit: 'Fields â€¢ Electrostatics',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Spherical and cylindrical charge symmetry potential gradients.',
@@ -102,8 +102,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'WED',
     title: 'Physical Chemistry: Chemical Kinetics & Rate Laws',
     subject: 'Chemistry',
-    unit: 'Physical Chemistry • Kinetics',
-    timeSlot: '02:00 – 04:00 PM',
+    unit: 'Physical Chemistry â€¢ Kinetics',
+    timeSlot: '02:00 â€“ 04:00 PM',
     durationHours: 2.0,
     status: 'completed',
     notes: 'Arrhenius activation energy determination and half-life derivations.',
@@ -113,8 +113,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Pure Mathematics: Integration by Parts & Definite Integrals',
     subject: 'Combined Maths',
-    unit: 'Combined Maths • Unit 07',
-    timeSlot: '08:00 – 11:00 AM',
+    unit: 'Combined Maths â€¢ Unit 07',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Completed 18 past structured questions (2018-2024). Worked through trigonometric substitution nuances.',
@@ -124,8 +124,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Physics Core: Rotational Dynamics & Moment of Inertia',
     subject: 'Physics',
-    unit: 'Physics Advanced • Mechanics',
-    timeSlot: '01:00 – 03:30 PM',
+    unit: 'Physics Advanced â€¢ Mechanics',
+    timeSlot: '01:00 â€“ 03:30 PM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Rigid body angular momentum derivations and 2021 Part II past paper questions.',
@@ -135,8 +135,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Chemical Equilibrium & Inorganic Reaction Schemes',
     subject: 'Chemistry',
-    unit: 'Chemistry • Physical & Inorganic',
-    timeSlot: '05:00 – 07:00 PM',
+    unit: 'Chemistry â€¢ Physical & Inorganic',
+    timeSlot: '05:00 â€“ 07:00 PM',
     durationHours: 2.0,
     status: 'in_progress',
     notes: 'Targeting Le Chatelier shifts, solubility products calculation practice, and d-block precipitate cards.',
@@ -146,8 +146,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Formula Ledger & Active Recall Synthesis',
     subject: 'Combined Maths',
-    unit: 'Handwritten Notebook • Review',
-    timeSlot: '08:30 – 09:30 PM',
+    unit: 'Handwritten Notebook â€¢ Review',
+    timeSlot: '08:30 â€“ 09:30 PM',
     durationHours: 1.0,
     status: 'planned',
     notes: 'Quick error log review from morning Pure Maths. Zero screens 30 mins before sleep.',
@@ -157,8 +157,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'FRI',
     title: 'Organic Chemistry: Aldehydes, Ketones & Nucleophilic Addition',
     subject: 'Chemistry',
-    unit: 'Organic Chemistry • Carbonyls',
-    timeSlot: '08:00 – 11:00 AM',
+    unit: 'Organic Chemistry â€¢ Carbonyls',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'planned',
     notes: 'Reaction pathways for Grignard reagents and aldol condensation.',
@@ -169,7 +169,7 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     title: 'Physics: Magnetic Fields & Ampere Applications',
     subject: 'Physics',
     unit: 'Electromagnetism',
-    timeSlot: '02:00 – 04:30 PM',
+    timeSlot: '02:00 â€“ 04:30 PM',
     durationHours: 2.5,
     status: 'planned',
     notes: 'Toroid and solenoid magnetic fluxes with structured derivations.',
@@ -179,8 +179,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'SAT',
     title: 'Combined Maths: Statics & Rigid Body Equilibrium Drill',
     subject: 'Combined Maths',
-    unit: 'Applied Maths • Statics',
-    timeSlot: '08:00 – 11:30 AM',
+    unit: 'Applied Maths â€¢ Statics',
+    timeSlot: '08:00 â€“ 11:30 AM',
     durationHours: 3.5,
     status: 'planned',
     notes: 'Friction, jointed rods, and virtual work principles past exam series.',
@@ -190,8 +190,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'SAT',
     title: 'Physics Structured Essay Timed Simulation (Paper II)',
     subject: 'Physics',
-    unit: 'Past Exam Sprint • Mechanics & Waves',
-    timeSlot: '01:30 – 04:30 PM',
+    unit: 'Past Exam Sprint â€¢ Mechanics & Waves',
+    timeSlot: '01:30 â€“ 04:30 PM',
     durationHours: 3.0,
     status: 'planned',
     notes: 'Strict exam conditions with non-programmable calculator and official answer scripts.',
@@ -201,8 +201,8 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     day: 'SUN',
     title: 'Islandwide Full Mock Simulation (Maths & Chemistry)',
     subject: 'Combined Maths',
-    unit: 'Full Mock Sprint • National Benchmarking',
-    timeSlot: '08:00 – 12:00 PM',
+    unit: 'Full Mock Sprint â€¢ National Benchmarking',
+    timeSlot: '08:00 â€“ 12:00 PM',
     durationHours: 4.0,
     status: 'planned',
     notes: 'Full combined mock sitting to simulate national exam pressure and stamina.',
@@ -213,7 +213,7 @@ const DEFAULT_BLOCKS: StudyBlock[] = [
     title: 'Weekly Error Log Synthesis & Rest Protocol',
     subject: 'Chemistry',
     unit: 'Error Ledger & Recovery',
-    timeSlot: '04:00 – 06:00 PM',
+    timeSlot: '04:00 â€“ 06:00 PM',
     durationHours: 2.0,
     status: 'planned',
     notes: 'Review red-flagged questions from mock paper. Plan coming week schedule.',
@@ -226,8 +226,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'MON',
     title: 'Biology Core: Plant Tissues, Transport & Transpiration',
     subject: 'Biology',
-    unit: 'Unit 03 • Plant Form and Function',
-    timeSlot: '08:00 – 11:00 AM',
+    unit: 'Unit 03 â€¢ Plant Form and Function',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Covered xylem vessel structures, stomatal mechanisms, and past structured questions.',
@@ -237,8 +237,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'MON',
     title: 'Chemistry: Equilibrium & Ionic Equilibria Calculations',
     subject: 'Chemistry',
-    unit: 'Physical Chemistry • Equilibrium',
-    timeSlot: '02:00 – 04:30 PM',
+    unit: 'Physical Chemistry â€¢ Equilibrium',
+    timeSlot: '02:00 â€“ 04:30 PM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Buffer solutions, solubility product (Ksp) calculations and common ion effect.',
@@ -249,7 +249,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Inorganic Chemistry: Transition Metal Precipitates',
     subject: 'Chemistry',
     unit: 'Inorganic Chemistry',
-    timeSlot: '08:30 – 11:00 AM',
+    timeSlot: '08:30 â€“ 11:00 AM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Systematic qualitative anion and cation analysis identification table.',
@@ -259,8 +259,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'TUE',
     title: 'Biology: Human Circulatory & Cardiac Cycle Physiology',
     subject: 'Biology',
-    unit: 'Unit 05 • Animal Form & Physiology',
-    timeSlot: '01:30 – 04:30 PM',
+    unit: 'Unit 05 â€¢ Animal Form & Physiology',
+    timeSlot: '01:30 â€“ 04:30 PM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Cardiac conductive system, ECG tracing, and pressure changes in the left ventricle.',
@@ -271,7 +271,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Physics Core: Geometrical Optics & Microscope Instruments',
     subject: 'Physics',
     unit: 'Geometrical Optics & Waves',
-    timeSlot: '08:00 – 11:00 AM',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Compound microscope ray diagrams and angular magnification derivations.',
@@ -281,8 +281,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'WED',
     title: 'Biology Resource Book Review: Molecular Biology & Genetics',
     subject: 'Biology',
-    unit: 'Unit 04 • Genetics & Molecular Biology',
-    timeSlot: '02:00 – 04:00 PM',
+    unit: 'Unit 04 â€¢ Genetics & Molecular Biology',
+    timeSlot: '02:00 â€“ 04:00 PM',
     durationHours: 2.0,
     status: 'completed',
     notes: 'DNA replication, transcription, and translation keywords check against NIE resource book.',
@@ -293,7 +293,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Organic Chemistry: Mechanisms & Reaction Roadmaps',
     subject: 'Chemistry',
     unit: 'Organic Chemistry',
-    timeSlot: '08:00 – 11:00 AM',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'completed',
     notes: 'Electrophilic addition to alkenes and nucleophilic substitution mechanisms.',
@@ -303,8 +303,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Physics: Electric Fields, Capacitance & Energy Storage',
     subject: 'Physics',
-    unit: 'Fields • Electrostatics',
-    timeSlot: '01:00 – 03:30 PM',
+    unit: 'Fields â€¢ Electrostatics',
+    timeSlot: '01:00 â€“ 03:30 PM',
     durationHours: 2.5,
     status: 'completed',
     notes: 'Parallel plate capacitor dielectric breakdown and charge distribution.',
@@ -314,8 +314,8 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     day: 'THU',
     title: 'Biology: Photosynthesis Light & Dark Reactions Drill',
     subject: 'Biology',
-    unit: 'Unit 02 • Chemical & Cellular Basis of Life',
-    timeSlot: '05:00 – 07:00 PM',
+    unit: 'Unit 02 â€¢ Chemical & Cellular Basis of Life',
+    timeSlot: '05:00 â€“ 07:00 PM',
     durationHours: 2.0,
     status: 'in_progress',
     notes: 'Calvin cycle carbon fixation stoichiometry and C4/CAM pathway comparison.',
@@ -326,7 +326,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Chemistry: Thermochemistry & Born-Haber Cycles',
     subject: 'Chemistry',
     unit: 'Physical Chemistry',
-    timeSlot: '08:00 – 11:00 AM',
+    timeSlot: '08:00 â€“ 11:00 AM',
     durationHours: 3.0,
     status: 'planned',
     notes: 'Lattice energy, hydration enthalpy and Hess cycle calculations.',
@@ -337,7 +337,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Biology Structured Essay Simulation (Past Papers)',
     subject: 'Biology',
     unit: 'Structured Essay Drill',
-    timeSlot: '08:00 – 11:30 AM',
+    timeSlot: '08:00 â€“ 11:30 AM',
     durationHours: 3.5,
     status: 'planned',
     notes: 'Writing timed structured answers strictly according to official marking points.',
@@ -348,7 +348,7 @@ const DEFAULT_BIO_BLOCKS: StudyBlock[] = [
     title: 'Full Bio Stream Mock Exam Sitting (Biology & Chemistry)',
     subject: 'Biology',
     unit: 'National Mock Simulation',
-    timeSlot: '08:00 – 12:00 PM',
+    timeSlot: '08:00 â€“ 12:00 PM',
     durationHours: 4.0,
     status: 'planned',
     notes: 'Timed MCQ + Structured + Essay paper sitting under full exam conditions.',
@@ -413,7 +413,7 @@ export default function CalendarPage() {
   const [formSubject, setFormSubject] = useState(initialSubject);
   const [formTitle, setFormTitle] = useState('');
   const [formUnit, setFormUnit] = useState('');
-  const [formTimeSlot, setFormTimeSlot] = useState('08:00 – 10:30 AM');
+  const [formTimeSlot, setFormTimeSlot] = useState('08:00 â€“ 10:30 AM');
   const [formDuration, setFormDuration] = useState('2.5');
   const [formNotes, setFormNotes] = useState('');
 
@@ -563,7 +563,7 @@ export default function CalendarPage() {
       day: formDay,
       title: formTitle.trim(),
       subject: formSubject,
-      unit: formUnit.trim() || formSubject + ' • Deep Focus',
+      unit: formUnit.trim() || formSubject + ' â€¢ Deep Focus',
       timeSlot: formTimeSlot,
       durationHours: duration,
       status: 'planned',
@@ -672,11 +672,11 @@ export default function CalendarPage() {
               <span className="font-sans text-[11px] font-mono tracking-wider uppercase tracking-widest text-[#c85a32] font-bold">
                 Weekly Rhythm &amp; Focus Flow
               </span>
-              <span className="text-[#6b5952] font-sans">•</span>
+              <span className="text-[#6b5952] font-sans">â€¢</span>
               <span className="font-sans text-[11px] font-mono tracking-wider text-[#2d2420] font-medium">
                 {streamName}
               </span>
-              <span className="text-[#6b5952] font-sans">•</span>
+              <span className="text-[#6b5952] font-sans">â€¢</span>
               <span className="font-sans text-[11px] font-mono tracking-wider text-[#2d2420] font-medium">
                 {schoolName}
               </span>
@@ -742,7 +742,7 @@ export default function CalendarPage() {
                     2026 Examination Sprint Cycle
                   </span>
                   <span className="block font-sans text-[11px] font-mono tracking-wider text-[#2d2420]">
-                    Term Intensive Mock Revision • Active Schedule
+                    Term Intensive Mock Revision â€¢ Active Schedule
                   </span>
                 </div>
               </div>
@@ -957,7 +957,7 @@ export default function CalendarPage() {
                               <BookOpen className="w-3.5 h-3.5 text-[#c85a32]" />
                               {block.unit}
                             </span>
-                            <span>•</span>
+                            <span>â€¢</span>
                             <span className="font-semibold text-[#1d1b19]">{block.subject}</span>
                           </div>
                         </div>
@@ -990,10 +990,10 @@ export default function CalendarPage() {
                 </div>
                 <div>
                   <p className="font-serif text-xl sm:text-2xl text-[#1d1b19] italic leading-snug">
-                    “Consistency eats talent for breakfast. 4 honest hours every day beat a 14-hour panic all-nighter.”
+                    â€œConsistency eats talent for breakfast. 4 honest hours every day beat a 14-hour panic all-nighter.â€
                   </p>
                   <span className="font-sans text-[11px] font-mono tracking-wider text-[#2d2420] uppercase mt-1.5 block font-medium">
-                    {scholarName} • StudySync Scholar
+                    {scholarName} â€¢ StudySync Scholar
                   </span>
                 </div>
               </div>
@@ -1127,7 +1127,7 @@ export default function CalendarPage() {
                   <span>Sync with Google &amp; Apple Calendar</span>
                 </button>
                 <span className="block text-center font-sans text-[11px] text-[#2d2420] mt-2">
-                  Two-way .ics export • Sri Lanka Standard Time (UTC+05:30)
+                  Two-way .ics export â€¢ Sri Lanka Standard Time (UTC+05:30)
                 </span>
               </div>
             </div>
@@ -1141,7 +1141,7 @@ export default function CalendarPage() {
                 {scholarName}
               </span>
               <span className="font-sans text-[11px] font-mono tracking-wider text-[#2d2420] uppercase mt-0.5">
-                {streamName.split(' ')[0]} Sciences • {schoolName}
+                {streamName.split(' ')[0]} Sciences â€¢ {schoolName}
               </span>
               <div className="mt-3.5 pt-3 border-t border-[#dec0b7]/80 w-full flex items-center justify-around text-xs text-[#2d2420]">
                 <div>
@@ -1168,7 +1168,7 @@ export default function CalendarPage() {
 
       {/* Plan Focus Block Interactive Modal */}
       {isPlanModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/40  flex items-center justify-center p-4">
           <div className="bg-[#ffffff] max-w-md w-full rounded-2xl p-6 border border-[#dec0b7] shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between pb-2 border-b border-[#dec0b7]/60">
               <h3 className="font-serif text-xl font-medium text-[#1d1b19]">
@@ -1244,7 +1244,7 @@ export default function CalendarPage() {
                     type="text"
                     value={formTimeSlot}
                     onChange={(e) => setFormTimeSlot(e.target.value)}
-                    placeholder="08:00 – 10:30 AM"
+                    placeholder="08:00 â€“ 10:30 AM"
                     className="w-full px-3 py-2 rounded-xl bg-[#f8f2ef] text-[#1d1b19] border border-[#dec0b7] outline-none focus:ring-1 focus:ring-[#c85a32]"
                   />
                 </div>
@@ -1302,7 +1302,7 @@ export default function CalendarPage() {
 
       {/* Goal Customization Modal */}
       {isGoalModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/40  flex items-center justify-center p-4">
           <div className="bg-[#ffffff] max-w-sm w-full rounded-2xl p-6 border border-[#dec0b7] shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between pb-2 border-b border-[#dec0b7]/60">
               <h3 className="font-serif text-lg font-medium text-[#1d1b19]">

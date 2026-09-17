@@ -1,5 +1,5 @@
 /**
- * StudySync — Student Personal Dashboard View Component
+ * StudySync â€” Student Personal Dashboard View Component
  * 
  * Features:
  * - Read-only student profile card with verified email binding and glowing status badge.
@@ -124,7 +124,7 @@ export class DashboardView {
               </span>
             </div>
             <p class="text-xs sm:text-sm text-slate-300">
-              StudySync Student Command Center • <span class="font-mono text-cyan-300 font-semibold">${sanitizeString(member.studyId)}</span>
+              StudySync Student Command Center â€¢ <span class="font-mono text-cyan-300 font-semibold">${sanitizeString(member.studyId)}</span>
             </p>
           </div>
 
@@ -476,7 +476,7 @@ export class DashboardView {
       <div class="glass-panel p-5 rounded-3xl border border-amber-500/30 bg-amber-950/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div class="flex items-center gap-3.5">
           <div class="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-lg shadow-lg shadow-amber-500/20">
-            ⏳
+            â³
           </div>
           <div>
             <div class="flex items-center gap-2">
@@ -555,7 +555,7 @@ export class DashboardView {
     const formattedDate = formatDate(rawDate, 'medium');
     const isTodayRow = isToday(rawDate);
     const totalHours = Number(log.totalHours || 0).toFixed(1);
-    const notes = log.notes || '—';
+    const notes = log.notes || 'â€”';
     const proofPhotoUrl = log.proofPhotoUrl || log.proofUrl || log.Proof || '';
 
     // Extract subjects array
@@ -838,7 +838,7 @@ export class DashboardView {
             </div>
             <div>
               <h3 class="text-sm font-bold text-white">Study Proof Verification</h3>
-              <p class="text-[11px] text-slate-400">${sanitizeString(date)} • ${sanitizeString(hours)} Hours Logged</p>
+              <p class="text-[11px] text-slate-400">${sanitizeString(date)} â€¢ ${sanitizeString(hours)} Hours Logged</p>
             </div>
           </div>
 
@@ -855,7 +855,7 @@ export class DashboardView {
         </div>
 
         <!-- Reflection / Notes Snippet -->
-        ${notes && notes !== '—' ? `
+        ${notes && notes !== 'â€”' ? `
           <div class="p-3 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 italic">
             <span class="text-slate-400 not-italic font-semibold block text-[10px] uppercase mb-0.5">Student Reflection:</span>
             "${sanitizeString(notes)}"

@@ -127,10 +127,10 @@ export const TestMarksTable: React.FC<TestMarksTableProps> = ({
                       </span>
                     </TableCell>
                     <TableCell className="text-right font-mono text-xs text-[#2d2420]">
-                      {t.rank ? `#${t.rank}` : '—'}
+                      {t.rank ? `#${t.rank}` : 'â€”'}
                     </TableCell>
                     <TableCell className="text-xs text-[#2d2420] max-w-[200px] truncate">
-                      {t.notes || '—'}
+                      {t.notes || 'â€”'}
                     </TableCell>
                     {onDeleteTest && (
                       <TableCell className="text-right">

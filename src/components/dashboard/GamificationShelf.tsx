@@ -48,7 +48,7 @@ export function GamificationShelf({
   const state = getGamificationState(streak, totalHours, balanceScore, logs);
 
   return (
-    <Card className="bg-card/60 backdrop-blur-xl border-border shadow-xl overflow-hidden relative">
+    <Card className="bg-card/60  border-border shadow-xl overflow-hidden relative">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-indigo-500 to-emerald-500" />
 
       <CardHeader className="pb-4">

@@ -1,15 +1,15 @@
 "use client";
 
 /**
- * MotionWrappers.tsx — 60fps GPU-Accelerated Scroll Animation Components
- * Pure CSS + IntersectionObserver — no framer-motion dependency.
+ * MotionWrappers.tsx â€” 60fps GPU-Accelerated Scroll Animation Components
+ * Pure CSS + IntersectionObserver â€” no framer-motion dependency.
  * Compatible with Next.js static export.
  */
 
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-// ── ScrollReveal — Fade + slide-up on scroll entry ───────────────────────────
+// â”€â”€ ScrollReveal â€” Fade + slide-up on scroll entry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
@@ -60,7 +60,7 @@ export function ScrollReveal({
   );
 }
 
-// ── StaggerContainer — Staggered child reveals ───────────────────────────────
+// â”€â”€ StaggerContainer â€” Staggered child reveals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface StaggerContainerProps {
   children: React.ReactNode;
   className?: string;
@@ -108,7 +108,7 @@ export function StaggerContainer({
   );
 }
 
-// ── FadeIn — Simple opacity fade on mount ────────────────────────────────────
+// â”€â”€ FadeIn â€” Simple opacity fade on mount â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface FadeInProps {
   children: React.ReactNode;
   className?: string;
@@ -133,7 +133,7 @@ export function FadeIn({ children, className, delay = 0, duration = 400 }: FadeI
   );
 }
 
-// ── ScaleIn — Scale + fade entrance ─────────────────────────────────────────
+// â”€â”€ ScaleIn â€” Scale + fade entrance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface ScaleInProps {
   children: React.ReactNode;
   className?: string;
@@ -172,7 +172,7 @@ export function ScaleIn({ children, className, delay = 0 }: ScaleInProps) {
   );
 }
 
-// ── CountUp — Animated number counter on scroll ──────────────────────────────
+// â”€â”€ CountUp â€” Animated number counter on scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface CountUpProps {
   value: number;
   duration?: number;

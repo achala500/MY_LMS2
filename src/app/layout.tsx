@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "StudySync � The Atelier | Sri Lanka A/L Learning Space",
+  title: "StudySync ï¿½ The Atelier | Sri Lanka A/L Learning Space",
   description:
     "An editorial, distraction-free learning space for Sri Lanka G.C.E. Advanced Level (A/L) students, instructors, and examiners.",
   icons: {

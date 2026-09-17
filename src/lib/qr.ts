@@ -1,7 +1,7 @@
 import QRCode from 'qrcode';
 
 /**
- * StudySync — QR Code Generation & Payload Engine
+ * StudySync â€” QR Code Generation & Payload Engine
  * Powered by standard ISO/IEC 18004 QRCode engine for 100% camera scannability,
  * with pure TypeScript Galois Field matrix fallback.
  */

@@ -420,7 +420,7 @@ export function FormBuilderModal({
                         </span>
                       </div>
                       <p className="text-xs text-zinc-400">
-                        Target: {f.targetAudience === 'all' ? 'All Students' : f.targetAudience} • {f.fields.length} questions
+                        Target: {f.targetAudience === 'all' ? 'All Students' : f.targetAudience} â€¢ {f.fields.length} questions
                       </p>
                     </div>
 

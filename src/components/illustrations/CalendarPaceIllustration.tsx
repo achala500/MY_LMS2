@@ -146,7 +146,7 @@ export const CalendarPaceIllustration: React.FC<MonolineIllustrationProps> = ({
           fontSize="11"
           fontWeight="700"
         >
-          SEPTEMBER · WEEK 37
+          SEPTEMBER Â· WEEK 37
         </text>
         {/* Weekly hours pill */}
         <rect x="180" y="14" width="65" height="16" rx="8" fill={spotOrange} fillOpacity="0.2" stroke={spotOrange} strokeWidth="1" />

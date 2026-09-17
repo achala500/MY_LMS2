@@ -1,5 +1,5 @@
 /**
- * StudySync — Main Application Bootstrap & Client-Side Hash Router
+ * StudySync â€” Main Application Bootstrap & Client-Side Hash Router
  * Wires AppState, Toast system, header navigation, and view mounting for all routes:
  * #landing, #register, #dashboard, #daily, #history, #admin, #verify/:id
  */

@@ -1,5 +1,5 @@
 /**
- * StudySync — Stream-Aware Daily Study Form View Component
+ * StudySync â€” Stream-Aware Daily Study Form View Component
  * 
  * Features:
  * - Dynamic stream resolution (3 subjects strictly: Bio: Bio, Chem, Phys/Agri | Maths: Maths, Phys, Chem/ICT)
@@ -52,13 +52,13 @@ export function resolveStreamSubjects(stream, optionalSubject) {
  */
 export function getSubjectIcon(subjectName) {
   switch (subjectName) {
-    case 'Biology': return '🧬';
-    case 'Chemistry': return '⚗️';
-    case 'Physics': return '⚛️';
-    case 'Agriculture': return '🌱';
-    case 'Combined Maths': return '📐';
-    case 'ICT': return '💻';
-    default: return '📚';
+    case 'Biology': return 'ðŸ§¬';
+    case 'Chemistry': return 'âš—ï¸';
+    case 'Physics': return 'âš›ï¸';
+    case 'Agriculture': return 'ðŸŒ±';
+    case 'Combined Maths': return 'ðŸ“';
+    case 'ICT': return 'ðŸ’»';
+    default: return 'ðŸ“š';
   }
 }
 
@@ -228,7 +228,7 @@ export class DailyFormView {
           <div class="glass-card p-4 sm:p-5 rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-purple-950/30 to-slate-900/50 flex items-center justify-between shadow-xl">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl shadow-inner">
-                ⏱️
+                â±ï¸
               </div>
               <div>
                 <span class="text-[10px] font-mono text-indigo-300 uppercase tracking-wider font-semibold">Total Day Study Time</span>
@@ -241,7 +241,7 @@ export class DailyFormView {
 
             <div class="hidden sm:flex items-center gap-2">
               <span class="text-xs text-slate-400">Stream Subjects:</span>
-              <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-300">${this.subjects.join(' • ')}</span>
+              <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-300">${this.subjects.join(' â€¢ ')}</span>
             </div>
           </div>
 
@@ -315,7 +315,7 @@ export class DailyFormView {
                 </div>
                 <div>
                   <p class="text-xs sm:text-sm font-semibold text-white">Click or drag & drop handwritten notes or past paper proof</p>
-                  <p class="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, WebP • Canvas compressed automatically before upload</p>
+                  <p class="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, WebP â€¢ Canvas compressed automatically before upload</p>
                 </div>
               </div>
 
@@ -329,7 +329,7 @@ export class DailyFormView {
                   <span id="photo-preview-name" class="text-xs font-semibold text-white truncate">proof.jpg</span>
                   <div class="flex flex-wrap items-center gap-2 text-[11px] font-mono text-slate-400">
                     <span id="photo-preview-orig-size">Orig: 2.4 MB</span>
-                    <span>→</span>
+                    <span>â†’</span>
                     <span id="photo-preview-comp-size" class="text-emerald-300 font-bold">Comp: 280 KB</span>
                     <span class="px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-300">Passed Limit</span>
                   </div>
@@ -645,7 +645,7 @@ export class DailyFormView {
           </div>
           <div>
             <p class="text-xs sm:text-sm font-semibold text-white">Click or drag & drop handwritten notes or past paper proof</p>
-            <p class="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, WebP • Canvas compressed automatically before upload</p>
+            <p class="text-[11px] text-slate-400 mt-0.5">JPEG, PNG, WebP â€¢ Canvas compressed automatically before upload</p>
           </div>
         `;
         Toast.info('Photo proof removed');
@@ -825,7 +825,7 @@ export class DailyFormView {
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Daily Log Completed & Verified</span>
             </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Study Summary • ${sanitizeString(logDate)}</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Study Summary â€¢ ${sanitizeString(logDate)}</h1>
             <p class="text-xs sm:text-sm text-slate-300 mt-1">One-submission-per-day enforcement active. Your log for this date is securely saved.</p>
           </div>
 
@@ -967,13 +967,13 @@ export class DailyFormView {
                   <a href="${proofUrl}" target="_blank" rel="noopener noreferrer" class="group relative w-32 h-32 rounded-xl overflow-hidden border border-white/20 shadow-lg">
                     <img src="${proofUrl}" alt="Study Proof" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-semibold transition-opacity">
-                      View Full Size ↗
+                      View Full Size â†—
                     </div>
                   </a>
                   <div class="flex flex-col gap-1 text-xs text-slate-400">
                     <span class="text-white font-medium">Uploaded Photo Proof</span>
                     <span class="text-[11px] font-mono">Stored securely in Drive</span>
-                    <a href="${proofUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 underline text-xs mt-1">Open Image Link ↗</a>
+                    <a href="${proofUrl}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 underline text-xs mt-1">Open Image Link â†—</a>
                   </div>
                 </div>
               </div>

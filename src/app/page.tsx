@@ -7,9 +7,13 @@ import { useAuth } from '@/context/AuthContext';
 import { localDb } from '@/lib/storage/localDb';
 import { getExamCountdown } from '@/lib/calendar';
 import { ScholarLoginModal } from '@/components/auth/ScholarLoginModal';
-import { LandingHeroIllustration } from '@/components/illustrations';
+import {
+  LandingHeroIllustration,
+  AcademicRhythmIllustration,
+  ZScoreForecastIllustration,
+  AdminVerificationDeskIllustration,
+} from '@/components/illustrations';
 import { HomeInteractiveSuite } from '@/components/home/HomeInteractiveSuite';
-import { CanvasZScoreBellCurve } from '@/components/tests/CanvasZScoreBellCurve';
 
 export default function HomePage() {
   const router = useRouter();
@@ -60,11 +64,11 @@ export default function HomePage() {
 <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#dec0b7]/40">
 <div className="flex items-center gap-3">
 <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#f3ede9] text-[#3d3430] font-sans text-[11px] font-mono tracking-wider uppercase tracking-widest">
-          • Sri Lankan A/L Academic Companion • 2026 Examination
+          â€¢ Sri Lankan A/L Academic Companion â€¢ 2026 Examination
         </span>
 <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#456644]"></span>
 <span className="hidden sm:inline-block font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430]">
-          Colombo • Kandy • Galle • Jaffna • Kurunegala
+          Colombo â€¢ Kandy â€¢ Galle â€¢ Jaffna â€¢ Kurunegala
         </span>
 </div>
 <div className="flex items-center gap-6">
@@ -73,7 +77,7 @@ export default function HomePage() {
 <span>{candidateCount.toLocaleString()} Active Candidates</span>
 </div>
 <button className="font-sans text-xs font-semibold text-[#c85a32] hover:text-[#9f3c16] transition-colors" onClick={() => setScholarModalOpen(true)}>
-          Candidate Portal →
+          Candidate Portal â†’
         </button>
 </div>
 </div>
@@ -90,7 +94,7 @@ export default function HomePage() {
             A quiet, steady companion for your A/L journey.
           </h1>
 <p className="font-sans text-base text-[#3d3430] leading-relaxed max-w-xl">
-            Track your daily study hours with handwritten proof, forecast your district Z-Score, and maintain steady balance across Combined Maths, Physics, and Chemistry — without stress or burnout.
+            Track your daily study hours with handwritten proof, forecast your district Z-Score, and maintain steady balance across Combined Maths, Physics, and Chemistry â€” without stress or burnout.
           </p>
 </div>
 
@@ -119,7 +123,7 @@ export default function HomePage() {
 <span className="material-symbols-outlined text-[#2e522d] text-[16px]">verified</span>
 <span>Accredited 2026 Curriculum</span>
 </div>
-<span>•</span>
+<span>â€¢</span>
 <div className="flex items-center gap-1.5">
 <span className="material-symbols-outlined text-[#2e522d] text-[16px]">lock</span>
 <span>Zero ad trackers or rank exposure</span>
@@ -130,7 +134,7 @@ export default function HomePage() {
 <div className="lg:col-span-6 flex justify-center">
 <div className="w-full max-w-[540px] bg-[#f8f2ef] rounded-3xl p-3.5 sm:p-6 lg:p-8 shadow-sm relative overflow-hidden">
 <div className="flex items-center justify-between mb-4">
-<span className="font-sans text-[11px] font-mono tracking-wider uppercase text-[#6b5952]">Study Table • 06:15 AM</span>
+<span className="font-sans text-[11px] font-mono tracking-wider uppercase text-[#6b5952]">Study Table â€¢ 06:15 AM</span>
 <span className="inline-flex items-center gap-1 font-sans text-[11px] font-mono tracking-wider text-[#2e522d] bg-[#c6edc1]/60 px-2.5 py-0.5 rounded-full">
 <span className="w-1.5 h-1.5 rounded-full bg-[#456644]"></span>
               Colombo Morning Rhythm
@@ -261,46 +265,15 @@ export default function HomePage() {
 </div>
 
 <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center">
-<div className="w-full max-w-[560px] bg-[#f8f2ef] p-8 rounded-3xl shadow-sm relative">
-<div className="flex items-center justify-between mb-4">
+<div className="w-full max-w-[560px] bg-[#f8f2ef] p-6 sm:p-8 rounded-3xl shadow-sm relative flex flex-col items-center">
+<div className="w-full flex items-center justify-between mb-4">
 <span className="font-sans text-[11px] font-mono tracking-wider uppercase text-[#6b5952]">Derivation Capture Interface</span>
 <span className="font-sans text-[11px] font-mono tracking-wider text-[#c85a32]">Paper Proof #841</span>
 </div>
-<div className="w-full bg-white rounded-2xl border-2 border-[#1d1b19] p-6 shadow-[4px_4px_0px_#1d1b19] space-y-4">
-  <div className="flex items-center justify-between pb-3 border-b border-[#dec0b7]/40">
-    <div className="flex items-center gap-2">
-      <span className="w-2.5 h-2.5 rounded-full bg-[#c85a32]" />
-      <span className="font-serif font-bold text-sm text-[#1d1b19]">Combined Maths • De Moivre's Theorem</span>
-    </div>
-    <span className="font-mono text-[10px] text-[#456644] font-bold bg-[#c6edc1]/60 px-2.5 py-0.5 rounded-full">
-      ✓ Audit Verified
-    </span>
-  </div>
-
-  <div className="bg-[#fcfaf8] rounded-xl p-4 border border-[#e7e1de] font-mono text-xs text-[#1d1b19] space-y-2 relative overflow-hidden">
-    <div className="absolute top-0 bottom-0 left-6 w-[1.5px] bg-[#dec0b7]" />
-    <p className="pl-5 text-[#c85a32] font-serif italic text-sm">Problem 04: Harmonic Series &amp; Integration</p>
-    <p className="pl-5 text-[#1d1b19]">sin(3θ) = 3sin(θ) - 4sin³(θ)</p>
-    <p className="pl-5 text-[#3d3430]">Let cos(θ) + i·sin(θ) = e^(iθ)</p>
-    <p className="pl-5 text-[#1d1b19] font-semibold">(cos θ + i·sin θ)³ = cos(3θ) + i·sin(3θ)</p>
-    <p className="pl-5 text-[#456644] text-[11px]">∴ Equating imaginary coefficients yields identity. Q.E.D.</p>
-  </div>
-
-  <div className="p-3 rounded-xl bg-[#f8f2ef] border border-[#dec0b7]/60 flex items-center justify-between">
-    <div>
-      <span className="font-mono text-[10px] uppercase font-bold text-[#c85a32] tracking-wider block">
-        Verified Study Ledger
-      </span>
-      <span className="font-serif font-bold text-xs text-[#1d1b19]">
-        2h 45m Focused Derivation
-      </span>
-    </div>
-    <span className="font-mono text-[10px] text-[#456644] font-semibold">
-      Hash #LK26-CM401
-    </span>
-  </div>
+<div className="w-full flex justify-center p-4 bg-white rounded-2xl border border-[#dec0b7]/60 shadow-sm">
+  <AcademicRhythmIllustration className="w-full h-auto max-h-[340px]" />
 </div>
-<div className="mt-4 flex items-center justify-between text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">
+<div className="mt-4 w-full flex items-center justify-between text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">
 <span>Stored on candidate's private Google Drive</span>
 <span className="text-[#2e522d] font-semibold">100% Privacy Preserved</span>
 </div>
@@ -311,17 +284,17 @@ export default function HomePage() {
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
 <div className="lg:col-span-7 flex justify-center">
-<div className="w-full max-w-[580px] bg-[#f8f2ef] p-8 rounded-3xl shadow-sm">
-<div className="flex items-center justify-between mb-4">
+<div className="w-full max-w-[580px] bg-[#f8f2ef] p-6 sm:p-8 rounded-3xl shadow-sm flex flex-col items-center">
+<div className="w-full flex items-center justify-between mb-4">
 <span className="font-sans text-[11px] font-mono tracking-wider uppercase text-[#6b5952]">Statistical Gaussian Distribution</span>
 <span className="font-sans text-[11px] font-mono tracking-wider text-[#2e522d] bg-[#c6edc1]/70 px-2.5 py-0.5 rounded-full">
               Colombo District Normalization
             </span>
 </div>
-<div className="relative w-full overflow-hidden rounded-2xl bg-white border border-[#dec0b7]/60 p-4">
-  <CanvasZScoreBellCurve zScore={1.84} cutoffZ={1.98} district="Colombo" stream="Physical Science" />
+<div className="relative w-full overflow-hidden rounded-2xl bg-white border border-[#dec0b7]/60 p-4 flex justify-center">
+  <ZScoreForecastIllustration className="w-full h-auto max-h-[340px]" />
 </div>
-<div className="mt-4 pt-3 border-t border-[#dec0b7]/40 flex flex-wrap items-center justify-between gap-2 text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">
+<div className="mt-4 pt-3 border-t border-[#dec0b7]/40 w-full flex flex-wrap items-center justify-between gap-2 text-[#3d3430] font-sans text-[11px] font-mono tracking-wider">
 <span className="flex items-center gap-1.5">
 <span className="w-2 h-2 rounded-full bg-[#456644]"></span>
               Engineering cutoff zone
@@ -392,7 +365,7 @@ export default function HomePage() {
 <span className="material-symbols-outlined text-[#854f00] text-[20px] mt-0.5">offline_pin</span>
 <div>
 <h4 className="font-sans text-sm font-semibold text-[#1d1b19]">Works offline on mobile</h4>
-<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430]">Cached locally on your browser with cryptographic validation—no active internet required at the hall entrance.</p>
+<p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430]">Cached locally on your browser with cryptographic validationâ€”no active internet required at the hall entrance.</p>
 </div>
 </div>
 </div>
@@ -405,69 +378,22 @@ export default function HomePage() {
 </div>
 
 <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center">
-<div className="w-full max-w-[520px] bg-[#f8f2ef] p-8 rounded-3xl shadow-sm flex flex-col items-center">
+<div className="w-full max-w-[520px] bg-[#f8f2ef] p-6 sm:p-8 rounded-3xl shadow-sm flex flex-col items-center">
 <div className="w-full flex items-center justify-between mb-4">
 <span className="font-sans text-[11px] font-mono tracking-wider uppercase text-[#6b5952]">Pass Preview</span>
 <span className="font-sans text-[11px] font-mono tracking-wider text-[#3d3430]">NFC &amp; QR Enabled</span>
 </div>
 
-<div className="w-full max-w-[420px] bg-white rounded-2xl border-2 border-[#1d1b19] p-6 shadow-[4px_4px_0px_#1d1b19] space-y-4">
-  <div className="flex items-center justify-between pb-3 border-b border-[#dec0b7]/50">
-    <div>
-      <span className="font-mono text-[9px] uppercase font-bold text-[#c85a32] tracking-widest block">
-        STUDYSYNC • CANDIDATE PASS
-      </span>
-      <span className="font-serif text-xs text-[#57423b] italic">
-        G.C.E. Advanced Level 2026
-      </span>
-    </div>
-    <span className="px-2 py-0.5 rounded-full bg-[#c6edc1] text-[#022106] font-mono text-[10px] font-bold">
-      NFC ACTIVE
-    </span>
-  </div>
-
-  <div className="grid grid-cols-2 gap-3 text-xs">
-    <div>
-      <span className="font-mono text-[9px] uppercase text-[#6b5952] block">Candidate Name</span>
-      <span className="font-serif font-bold text-sm text-[#1d1b19] block">Kaveesh Wickramasinghe</span>
-    </div>
-    <div>
-      <span className="font-mono text-[9px] uppercase text-[#6b5952] block">Index / Stream</span>
-      <span className="font-mono font-bold text-xs text-[#1d1b19] block">CM-2026-COL-4921</span>
-      <span className="text-[10px] text-[#57423b]">Physical Science</span>
-    </div>
-    <div>
-      <span className="font-mono text-[9px] uppercase text-[#6b5952] block">District</span>
-      <span className="font-semibold text-xs text-[#456644] block">Colombo (01)</span>
-    </div>
-    <div>
-      <span className="font-mono text-[9px] uppercase text-[#6b5952] block">Study Progress</span>
-      <span className="font-mono font-bold text-xs text-[#c85a32] block">68.4% Complete</span>
-    </div>
-  </div>
-
-  <div className="pt-3 border-t border-[#dec0b7]/40 flex items-center justify-between">
-    <div className="flex items-center gap-2">
-      <div className="w-10 h-10 rounded-lg border-2 border-[#1d1b19] p-1 bg-[#fcfaf8] flex items-center justify-center font-mono text-[9px] font-bold text-[#1d1b19]">
-        [QR]
-      </div>
-      <div className="text-[10px] font-mono text-[#57423b]">
-        <span>Scannable Hall Entry</span>
-        <span className="block text-[#456644] font-semibold">Offline Cryptographic Pass</span>
-      </div>
-    </div>
-    <span className="font-mono text-[10px] text-[#854f00] font-bold bg-[#ffdcbc]/60 px-2 py-1 rounded-md">
-      VERIFIED PASS
-    </span>
-  </div>
+<div className="w-full flex justify-center p-4 bg-white rounded-2xl border border-[#dec0b7]/60 shadow-sm">
+  <AdminVerificationDeskIllustration className="w-full h-auto max-h-[340px]" />
 </div>
 <p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430] text-center mt-4">
-            Official recognition with 120+ verified tuition and practical laboratory centers.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  Official recognition with 120+ verified tuition and practical laboratory centers.
+</p>
+</div>
+</div>
+</div>
+</section>
 
         {/* Snap Paper Notes & Resource Vault Suite */}
         <section className="max-w-[1440px] mx-auto px-6 lg:px-12 py-8 w-full">
@@ -490,7 +416,7 @@ export default function HomePage() {
 </div>
 <h3 className="font-sans text-base sm:text-lg font-semibold text-[#1d1b19]">Zero Public Ranks</h3>
 <p className="font-sans text-xs text-[#2d2420] leading-normal text-[#3d3430]">
-            No public leaderboards. You compete exclusively against yesterday’s version of yourself, not an anonymous stranger.
+            No public leaderboards. You compete exclusively against yesterdayâ€™s version of yourself, not an anonymous stranger.
           </p>
 </div>
 <div className="space-y-2">
@@ -531,7 +457,7 @@ export default function HomePage() {
 <span className={`material-symbols-outlined text-[#6b5952] transition-transform duration-200 ${openFaq === 1 ? 'rotate-180 text-[#c85a32]' : ''}`}>expand_more</span>
 </div>
 <div className={`mt-3 text-[#2d2420] font-sans text-sm leading-relaxed pt-2 border-t border-[#dec0b7]/30 ${openFaq === 1 ? 'block' : 'hidden'}`}>
-          Each candidate's raw mark in Combined Maths, Physics, and Chemistry is transformed by subtracting the islandwide subject mean and dividing by the standard deviation: Z = (X - X̄) / SD. The three resulting individual Z-Scores are then averaged to produce your final Composite Z-Score. StudySync accurately models this distribution based on previous Department of Examinations datasets.
+          Each candidate's raw mark in Combined Maths, Physics, and Chemistry is transformed by subtracting the islandwide subject mean and dividing by the standard deviation: Z = (X - XÌ„) / SD. The three resulting individual Z-Scores are then averaged to produce your final Composite Z-Score. StudySync accurately models this distribution based on previous Department of Examinations datasets.
         </div>
 </div>
 
@@ -582,7 +508,7 @@ export default function HomePage() {
         </button>
 </div>
 <p className="font-sans text-xs text-[#2d2420] leading-normal text-[#6b5952] pt-2">
-        No payment details needed • Immediate setup in under 60 seconds
+        No payment details needed â€¢ Immediate setup in under 60 seconds
       </p>
 </div>
 </section>

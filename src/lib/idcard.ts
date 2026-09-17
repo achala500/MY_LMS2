@@ -1,5 +1,5 @@
 /**
- * StudySync — StudySync Platform ID Card Canvas 2D Renderer & 3x PNG Exporter
+ * StudySync â€” StudySync Platform ID Card Canvas 2D Renderer & 3x PNG Exporter
  * Renders luxury metallic dark gradient ID cards (1440x906px at 3x scale / 300DPI)
  * with gold EMV chip, Inter typography, status pill, and scannable QR code.
  */
@@ -469,7 +469,7 @@ export class IdCardRenderer {
       ctx.measureText(nameDisplay).width > maxNameW &&
       nameDisplay.length > 5
     ) {
-      nameDisplay = nameDisplay.substring(0, nameDisplay.length - 2) + '…';
+      nameDisplay = nameDisplay.substring(0, nameDisplay.length - 2) + 'â€¦';
     }
     ctx.fillText(nameDisplay, leftX, 134 * scale);
 
@@ -495,13 +495,13 @@ export class IdCardRenderer {
       schoolDisplay.length > 5
     ) {
       schoolDisplay =
-        schoolDisplay.substring(0, schoolDisplay.length - 2) + '…';
+        schoolDisplay.substring(0, schoolDisplay.length - 2) + 'â€¦';
     }
     ctx.fillText(schoolDisplay, leftX, 204 * scale);
 
     ctx.font = `500 ${8.5 * scale}px "JetBrains Mono", SFMono-Regular, monospace`;
     ctx.fillStyle = '#64748B';
-    const examYearDisplay = member.examYear ? ` • A/L ${member.examYear}` : ' • A/L 2026';
+    const examYearDisplay = member.examYear ? ` â€¢ A/L ${member.examYear}` : ' â€¢ A/L 2026';
     ctx.fillText(`ISSUED: ${regDate.toUpperCase()}${examYearDisplay}`, leftX, 226 * scale);
 
     ctx.restore();
@@ -616,7 +616,7 @@ export class IdCardRenderer {
     ctx.font = `500 ${7 * scale}px "JetBrains Mono", monospace`;
     ctx.textAlign = 'center';
     ctx.fillText(
-      'OFFICIAL SRI LANKA G.C.E. ADVANCED LEVEL VERIFIED IDENTITY • REPRODUCTION PROHIBITED',
+      'OFFICIAL SRI LANKA G.C.E. ADVANCED LEVEL VERIFIED IDENTITY â€¢ REPRODUCTION PROHIBITED',
       W * 0.5,
       y + 15 * scale
     );

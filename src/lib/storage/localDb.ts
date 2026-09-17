@@ -1,5 +1,5 @@
 /**
- * StudySync — Automated Client-Side Relational Database Engine
+ * StudySync â€” Automated Client-Side Relational Database Engine
  * 
  * Provides an automated, resilient, and instantaneous local database layer
  * backed by localStorage and persistent state. Ensures zero latency (< 1ms),
