@@ -1,0 +1,4 @@
+## 2026-03-31 - Universal Web Crypto API Environment Check
+**Vulnerability:** In environment-blind security functions (`hashString`, `generateSalt`, `generateHighEntropyPassword`), checking `typeof window === 'undefined'` or `window.crypto` caused Node.js / SSR execution to fall back to insecure `Math.random()` and a weak 32-bit polynomial rolling hash instead of SHA-256 Web Crypto.
+**Learning:** Modern Node.js (v18+) and Edge runtimes natively support `globalThis.crypto.subtle` and `globalThis.crypto.getRandomValues`. Relying on `window` existence check causes server-side operations to degrade to weak non-cryptographic fallbacks.
+**Prevention:** Always check `globalThis.crypto` before `window.crypto` when accessing Web Crypto API primitives to ensure uniform cryptographic strength across browser and Node/SSR environments.

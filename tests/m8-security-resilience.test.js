@@ -36,6 +36,18 @@ import {
   formatCsvCell,
   generateCsvString
 } from './test-harness.js';
+import ts from 'typescript';
+import fs from 'fs';
+
+async function importAppTsModule(filePath) {
+  let code = fs.readFileSync(filePath, 'utf8');
+  code = code.replace(/import\s+.*?;/g, ''); // strip imports
+  const compiled = ts.transpileModule(code, {
+    compilerOptions: { target: ts.ScriptTarget.ESNext, module: ts.ModuleKind.ESNext }
+  }).outputText;
+  const dataUri = 'data:text/javascript;base64,' + Buffer.from(compiled).toString('base64');
+  return await import(dataUri);
+}
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
 
@@ -555,6 +567,39 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(reg.statusCode, 200);
       assert.strictEqual(reg.body.data.fullName, "'=cmd|/C calc");
       assert.strictEqual(reg.body.data.school, "'@Royal College, Colombo");
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 10. Universal Web Crypto API Environment Parity
+  // --------------------------------------------------------------------------
+  describe('10. Universal Web Crypto API Environment Parity', () => {
+    test('src/lib/security/biometrics.ts: hashString uses SHA-256 Web Crypto in Node.js (without window)', async () => {
+      const bioMod = await importAppTsModule('./src/lib/security/biometrics.ts');
+      const hash1 = await bioMod.hashString('Password@2026');
+      const hash2 = await bioMod.hashString('Password@2026');
+      assert.strictEqual(typeof hash1, 'string');
+      assert.strictEqual(hash1.length, 64);
+      assert.match(hash1, /^[0-9a-f]{64}$/);
+      assert.strictEqual(hash1, hash2);
+    });
+
+    test('src/lib/security/passwords.ts: generateSalt generates cryptographically secure hex salt in Node.js (without window)', async () => {
+      const passMod = await importAppTsModule('./src/lib/security/passwords.ts');
+      const salt1 = passMod.generateSalt(16);
+      const salt2 = passMod.generateSalt(16);
+      assert.strictEqual(typeof salt1, 'string');
+      assert.strictEqual(salt1.length, 16);
+      assert.notStrictEqual(salt1, salt2);
+    });
+
+    test('src/lib/security.ts: generateHighEntropyPassword generates strong random password in Node.js (without window)', async () => {
+      const secMod = await importAppTsModule('./src/lib/security.ts');
+      const pass1 = secMod.generateHighEntropyPassword(16);
+      const pass2 = secMod.generateHighEntropyPassword(16);
+      assert.strictEqual(typeof pass1, 'string');
+      assert.strictEqual(pass1.length, 16);
+      assert.notStrictEqual(pass1, pass2);
     });
   });
 });
