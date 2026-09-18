@@ -8,12 +8,12 @@
  * 4. Fullstack Admin Privilege Granting & Delegation with immediate role upgrade.
  */
 
-import { localDb } from '../storage/localDb';
-import { safeStorage } from '../storage/safeStorage';
+import { localDb } from '../storage/localDb.js';
+import { safeStorage } from '../storage/safeStorage.js';
 import type { MemberData } from '@/types/member';
-import { ADMIN_WHITELIST } from '../constants';
-import { api } from '../api';
-import { hashString } from './biometrics';
+import { ADMIN_WHITELIST } from '../constants.js';
+import { api } from '../api.js';
+import { hashString } from './biometrics.js';
 
 // Default demo password for initial out-of-the-box admin & student accounts
 export const DEFAULT_INITIAL_PASSWORD = 'Password@2026';

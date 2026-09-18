@@ -10,7 +10,7 @@
  * 6. Cryptographic Idempotency Envelope with 128-Bit Random Nonces and Â±300s Timestamp Drift Checks
  */
 
-import { safeStorage } from './storage/safeStorage';
+import { safeStorage } from './storage/safeStorage.js';
 
 // ============================================================================
 // 1. FILE VALIDATION & MAGIC BYTE SIGNATURES
