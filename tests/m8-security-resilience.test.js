@@ -36,6 +36,9 @@ import {
   formatCsvCell,
   generateCsvString
 } from './test-harness.js';
+import { hashString } from '../src/lib/security/biometrics.ts';
+import { generateSalt } from '../src/lib/security/passwords.ts';
+import { generateHighEntropyPassword } from '../src/lib/security.ts';
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
 
@@ -555,6 +558,36 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(reg.statusCode, 200);
       assert.strictEqual(reg.body.data.fullName, "'=cmd|/C calc");
       assert.strictEqual(reg.body.data.school, "'@Royal College, Colombo");
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 10. Universal Web Crypto API Environment Parity
+  // --------------------------------------------------------------------------
+  describe('10. Universal Web Crypto API Environment Parity', () => {
+    test('hashString uses SHA-256 Web Crypto in Node.js (without window) returning 64 hex characters', async () => {
+      const hash1 = await hashString('Password@2026');
+      const hash2 = await hashString('Password@2026');
+      assert.strictEqual(typeof hash1, 'string');
+      assert.strictEqual(hash1.length, 64);
+      assert.match(hash1, /^[0-9a-f]{64}$/);
+      assert.strictEqual(hash1, hash2);
+    });
+
+    test('generateSalt generates cryptographically secure hex salt in Node.js (without window)', () => {
+      const salt1 = generateSalt(16);
+      const salt2 = generateSalt(16);
+      assert.strictEqual(typeof salt1, 'string');
+      assert.strictEqual(salt1.length, 16);
+      assert.notStrictEqual(salt1, salt2);
+    });
+
+    test('generateHighEntropyPassword generates strong random password in Node.js (without window)', () => {
+      const pass1 = generateHighEntropyPassword(16);
+      const pass2 = generateHighEntropyPassword(16);
+      assert.strictEqual(typeof pass1, 'string');
+      assert.strictEqual(pass1.length, 16);
+      assert.notStrictEqual(pass1, pass2);
     });
   });
 });
