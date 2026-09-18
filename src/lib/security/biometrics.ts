@@ -7,7 +7,7 @@
  * - Session Auto-Lock & Secure Verification
  */
 
-import { safeStorage, safeSessionStorage } from '../storage/safeStorage.js';
+import { safeStorage, safeSessionStorage } from '../storage/safeStorage';
 
 export interface SecurityConfig {
   biometricsEnabled: boolean;
