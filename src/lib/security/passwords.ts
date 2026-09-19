@@ -8,12 +8,12 @@
  * 4. Fullstack Admin Privilege Granting & Delegation with immediate role upgrade.
  */
 
-import { localDb } from '../storage/localDb';
-import { safeStorage } from '../storage/safeStorage';
-import type { MemberData } from '@/types/member';
-import { ADMIN_WHITELIST } from '../constants';
-import { api } from '../api';
-import { hashString } from './biometrics';
+import { localDb } from '../storage/localDb.ts';
+import { safeStorage } from '../storage/safeStorage.ts';
+import type { MemberData } from '../../types/member.ts';
+import { ADMIN_WHITELIST } from '../constants.ts';
+import { api } from '../api.ts';
+import { hashString } from './biometrics.ts';
 
 // Default demo password for initial out-of-the-box admin & student accounts
 export const DEFAULT_INITIAL_PASSWORD = 'Password@2026';
@@ -41,12 +41,32 @@ export async function hashPassword(password: string, existingSalt?: string): Pro
 }
 
 /**
- * Verify a plain password against stored hash & salt
+ * Constant-time string comparison to defend against side-channel timing attacks
+ */
+export function timingSafeEqual(a: string, b: string): boolean {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+
+  const lenA = a.length;
+  const lenB = b.length;
+  let result = lenA ^ lenB;
+
+  const maxLen = Math.max(lenA, lenB);
+  for (let i = 0; i < maxLen; i++) {
+    const charA = i < lenA ? a.charCodeAt(i) : 0;
+    const charB = i < lenB ? b.charCodeAt(i) : 0;
+    result |= charA ^ charB;
+  }
+
+  return result === 0;
+}
+
+/**
+ * Verify a plain password against stored hash & salt using constant-time comparison
  */
 export async function verifyPassword(password: string, storedHash: string, storedSalt: string): Promise<boolean> {
   if (!password || !storedHash) return false;
   const { hash } = await hashPassword(password, storedSalt);
-  return hash === storedHash;
+  return timingSafeEqual(hash, storedHash);
 }
 
 /**
