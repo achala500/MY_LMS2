@@ -36,6 +36,7 @@ import {
   formatCsvCell,
   generateCsvString
 } from './test-harness.js';
+import { timingSafeEqual } from './test-harness.js';
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
 
@@ -390,6 +391,19 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(future.valid, false);
       assert.strictEqual(future.code, 'ERR_TIMESTAMP_FUTURE');
     });
+  });
+
+  // --------------------------------------------------------------------------
+  // 7b. Constant-Time Timing Safe Password Comparison
+  // --------------------------------------------------------------------------
+  describe('7b. Constant-Time Timing Safe Password Comparison', () => {
+    test('timingSafeEqual correctly compares matching and non-matching strings', () => {
+      assert.strictEqual(timingSafeEqual('abcdef123456', 'abcdef123456'), true);
+      assert.strictEqual(timingSafeEqual('abcdef123456', 'abcdef123457'), false);
+      assert.strictEqual(timingSafeEqual('abcdef123456', 'abcdef1234567'), false);
+      assert.strictEqual(timingSafeEqual('', ''), true);
+    });
+
   });
 
   // --------------------------------------------------------------------------
