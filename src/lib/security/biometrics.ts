@@ -25,18 +25,25 @@ const SESSION_LOCK_KEY = 'studysync_session_locked';
  * SHA-256 Hash helper using Web Crypto API
  */
 export async function hashString(str: string): Promise<string> {
-  if (typeof window === 'undefined' || !window.crypto || !window.crypto.subtle) {
+  const subtle =
+    typeof globalThis !== 'undefined' && globalThis.crypto?.subtle
+      ? globalThis.crypto.subtle
+      : typeof window !== 'undefined'
+      ? window.crypto?.subtle
+      : undefined;
+
+  if (!subtle) {
     // Basic fallback hash for non-standard environments
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
-      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash = (hash << 5) - hash + str.charCodeAt(i);
       hash |= 0;
     }
     return String(Math.abs(hash));
   }
   const encoder = new TextEncoder();
   const data = encoder.encode(str);
-  const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+  const hashBuffer = await subtle.digest('SHA-256', data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 }
