@@ -947,7 +947,7 @@ export function getDisplayableImageUrl(url?: string | null): string {
 
   // Data URLs or direct image extensions pass directly
   if (trimmed.startsWith('data:image/') || trimmed.startsWith('blob:')) {
-    return trimmed;
+    return sanitizeUrl(trimmed);
   }
 
   const driveId = getDriveFileId(trimmed);
@@ -956,7 +956,7 @@ export function getDisplayableImageUrl(url?: string | null): string {
     return `https://lh3.googleusercontent.com/d/${driveId}=w1200`;
   }
 
-  return trimmed;
+  return sanitizeUrl(trimmed);
 }
 
 // ==========================================

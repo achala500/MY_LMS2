@@ -1358,17 +1358,28 @@ export function sanitizeInput(input, maxLength = 1000) {
 export function sanitizeUrl(url) {
   if (!url || typeof url !== 'string') return '';
   const trimmed = url.trim();
-  try {
-    const parsed = new URL(trimmed, 'https://studysync-al-2026.web.app');
-    const protocol = parsed.protocol.toLowerCase();
-    if (protocol === 'http:' || protocol === 'https:' || protocol === 'mailto:' || protocol === 'tel:') {
+  const cleanUrl = trimmed.replace(/[\u0000-\u001F\u007F-\u009F\s]/g, '');
+  const protocolMatch = cleanUrl.match(/^([a-zA-Z0-9+.-]+):/);
+  if (!protocolMatch) {
+    return (trimmed.startsWith('/') || trimmed.startsWith('#')) ? trimmed : 'https://' + trimmed;
+  }
+  const scheme = protocolMatch[1].toLowerCase();
+  if (['http', 'https', 'mailto', 'tel'].includes(scheme)) {
+    return trimmed;
+  }
+  if (scheme === 'blob') {
+    return trimmed;
+  }
+  if (scheme === 'data') {
+    if (
+      /^data:image\/(png|jpeg|jpg|webp|gif);base64,/i.test(trimmed) ||
+      /^data:application\/pdf;base64,/i.test(trimmed)
+    ) {
       return trimmed;
     }
     return '#';
-  } catch (e) {
-    if (trimmed.startsWith('/') || trimmed.startsWith('#')) return trimmed;
-    return '#';
   }
+  return '#';
 }
 
 export function sanitizeCsvFormula(val) {

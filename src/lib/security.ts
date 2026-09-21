@@ -489,19 +489,33 @@ export function sanitizeEmail(email: string): string {
 
 /**
  * Safe URI Scheme Allowlisting:
- * Allows: http, https, mailto, tel, relative paths
- * Blocks: javascript:, data:, vbscript:, blob:, file:
+ * Allows: http, https, mailto, tel, relative paths, safe image/pdf data URLs, blob URLs
+ * Blocks: javascript:, data:text/html, vbscript:, file:
  */
 export function sanitizeUrl(url: string): string {
   if (!url || typeof url !== 'string') return '';
   const trimmed = url.trim();
-  const protocolMatch = trimmed.match(/^([a-zA-Z0-9+.-]+):/);
+  // Strip control characters and whitespace when extracting protocol to detect obfuscated schemes (e.g. java\tscript:)
+  const cleanUrl = trimmed.replace(/[\u0000-\u001F\u007F-\u009F\s]/g, '');
+  const protocolMatch = cleanUrl.match(/^([a-zA-Z0-9+.-]+):/);
   if (!protocolMatch) {
-    return trimmed.startsWith('/') ? trimmed : 'https://' + trimmed;
+    return (trimmed.startsWith('/') || trimmed.startsWith('#')) ? trimmed : 'https://' + trimmed;
   }
   const scheme = protocolMatch[1].toLowerCase();
   if (['http', 'https', 'mailto', 'tel'].includes(scheme)) {
     return trimmed;
+  }
+  if (scheme === 'blob') {
+    return trimmed;
+  }
+  if (scheme === 'data') {
+    if (
+      /^data:image\/(png|jpeg|jpg|webp|gif);base64,/i.test(trimmed) ||
+      /^data:application\/pdf;base64,/i.test(trimmed)
+    ) {
+      return trimmed;
+    }
+    return '#blocked-insecure-scheme';
   }
   return '#blocked-insecure-scheme';
 }

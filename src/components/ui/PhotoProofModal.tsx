@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { getDriveFileId } from '@/lib/utils';
+import { getDriveFileId, sanitizeUrl } from '@/lib/utils';
 import {
   Image as ImageIcon,
   ExternalLink,
@@ -65,7 +65,8 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
     ];
   }, [proofUrl, driveId]);
 
-  const currentSrc = streamUrls[streamIndex] || proofUrl || '';
+  const safeProofUrl = proofUrl ? sanitizeUrl(proofUrl) : '';
+  const currentSrc = streamUrls[streamIndex] || safeProofUrl || '';
 
   useEffect(() => {
     if (open) {
@@ -184,13 +185,13 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
               </div>
               {proofUrl && (
                 <div className="flex items-center justify-center gap-2">
-                  <a href={proofUrl} target="_blank" rel="noopener noreferrer">
+                  <a href={safeProofUrl} target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="bg-[#c85a32] hover:bg-[#b04b25] text-white rounded-xl text-xs flex items-center gap-1.5 font-semibold cursor-pointer">
                       <ExternalLink className="h-3.5 w-3.5" />
                       <span>Open File Directly</span>
                     </Button>
                   </a>
-                  <a href={proofUrl} download={proofUrl.startsWith('data:') ? 'study-proof' : undefined}>
+                  <a href={safeProofUrl} download={proofUrl.startsWith('data:') ? 'study-proof' : undefined}>
                     <Button variant="outline" size="sm" className="border-[#dec0b7] text-[#1d1b19] rounded-xl text-xs flex items-center gap-1.5 cursor-pointer">
                       <Download className="h-3.5 w-3.5" />
                       <span>Download</span>
@@ -225,7 +226,7 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
           {proofUrl && (
             <div className="flex items-center gap-3">
               <a
-                href={proofUrl}
+                href={safeProofUrl}
                 download={proofUrl.startsWith('data:') ? `study-proof-${studyId || 'candidate'}` : undefined}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -235,7 +236,7 @@ export const PhotoProofModal: React.FC<PhotoProofModalProps> = ({
                 <Download className="h-3 w-3" />
               </a>
               <a
-                href={proofUrl}
+                href={safeProofUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#9f3c16] hover:text-[#c85a32] flex items-center gap-1 font-semibold transition-colors cursor-pointer"
