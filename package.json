@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Sri Lankan A/L Daily Study Tracking & Member Management Web Application",
   "type": "module",
-  "main": "src/js/app.js",
   "scripts": {
     "dev": "next dev",
     "dev:mock": "node server/mock-server.js",
