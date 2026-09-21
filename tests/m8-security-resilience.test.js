@@ -416,6 +416,20 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(sanitizeUrl('vbscript:msgbox(1)'), '#');
     });
 
+    test('sanitizeUrl neutralizes obfuscated control-character protocol bypasses', () => {
+      assert.strictEqual(sanitizeUrl('java\tscript:alert(1)'), '#');
+      assert.strictEqual(sanitizeUrl('java\nscript:alert(1)'), '#');
+      assert.strictEqual(sanitizeUrl('javascript :alert(1)'), '#');
+      assert.strictEqual(sanitizeUrl('java\x00script:alert(1)'), '#');
+    });
+
+    test('sanitizeUrl permits safe data: images and blob: URLs', () => {
+      const safeDataImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRg...';
+      assert.strictEqual(sanitizeUrl(safeDataImg), safeDataImg);
+      const safeBlob = 'blob:https://studysync-al-2026.web.app/uuid-1234';
+      assert.strictEqual(sanitizeUrl(safeBlob), safeBlob);
+    });
+
     test('sanitizeCsvFormula prepends single quote to leading =, +, -, @, \\t, \\r characters (CWE-1236)', () => {
       assert.strictEqual(sanitizeCsvFormula("=cmd|' /C calc'!A0"), "'=cmd|' /C calc'!A0");
       assert.strictEqual(sanitizeCsvFormula("+1234"), "'+1234");
