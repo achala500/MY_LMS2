@@ -518,15 +518,27 @@ export function filterSchools(query: string, maxResults: number = 10): string[] 
     .slice(0, maxResults);
 }
 
+function escapeHtml(str: string): string {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
 /**
  * Highlight matched search query in school name string
  */
 export function highlightMatch(text: string, query: string): string {
-  if (!query || !text) return text;
+  if (!query || !text) return escapeHtml(text || '');
+  const escapedText = escapeHtml(text);
   const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  if (!q) return text;
-  const regex = new RegExp(`(${q})`, 'gi');
-  return text.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
+  if (!q) return escapedText;
+  const escapedQ = escapeHtml(query.trim()).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQ})`, 'gi');
+  return escapedText.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
 }
 
 /**
