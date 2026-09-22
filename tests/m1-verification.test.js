@@ -120,6 +120,14 @@ describe('Milestone M1 Verification', () => {
       const highlighted = highlightMatch('Royal College, Colombo', 'Royal');
       assert.ok(highlighted.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">Royal</mark>'));
     });
+
+    it('should safely escape XSS script tags in highlightMatch', () => {
+      const maliciousText = '<script>alert("xss")</script> Royal College';
+      const highlighted = highlightMatch(maliciousText, 'Royal');
+      assert.ok(!highlighted.includes('<script>'), 'Must escape script tags in text');
+      assert.ok(highlighted.includes('&lt;script&gt;'), 'Must convert < to &lt;');
+      assert.ok(highlighted.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">Royal</mark>'));
+    });
   });
 
   // ==========================================
