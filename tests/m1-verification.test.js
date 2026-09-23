@@ -120,6 +120,18 @@ describe('Milestone M1 Verification', () => {
       const highlighted = highlightMatch('Royal College, Colombo', 'Royal');
       assert.ok(highlighted.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">Royal</mark>'));
     });
+
+    it('should sanitize HTML special characters in highlightMatch to prevent DOM XSS', () => {
+      const xssInput = '<script>alert("xss")</script> College & "Co"';
+      const result = highlightMatch(xssInput, 'College');
+      assert.ok(!result.includes('<script>'), 'Raw script tags must be escaped');
+      assert.ok(result.includes('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'), 'HTML tags must be escaped');
+      assert.ok(result.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">College</mark>'), 'Match must be highlighted');
+
+      const xssQuery = '<img src=x onerror=alert(1)>';
+      const result2 = highlightMatch('Royal College', xssQuery);
+      assert.ok(!result2.includes('<img'), 'Query HTML tags must be escaped');
+    });
   });
 
   // ==========================================

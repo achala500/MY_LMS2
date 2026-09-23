@@ -406,17 +406,35 @@ export function searchSchools(query, limit = 10) {
 }
 
 /**
- * Highlight matched search query in school name string
+ * Helper to escape HTML characters to prevent DOM XSS injections
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHtml(str) {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+/**
+ * Highlight matched search query in school name string safely
  * @param {string} text 
  * @param {string} query 
- * @returns {string} HTML string with <mark> tags
+ * @returns {string} HTML string with <mark> tags and escaped text
  */
 export function highlightMatch(text, query) {
-  if (!query || !text) return text;
-  const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  if (!q) return text;
-  const regex = new RegExp(`(${q})`, 'gi');
-  return text.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
+  if (!text) return '';
+  const safeText = escapeHtml(text);
+  if (!query || typeof query !== 'string') return safeText;
+  const trimmed = query.trim();
+  if (!trimmed) return safeText;
+  const escapedQuery = escapeHtml(trimmed).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQuery})`, 'gi');
+  return safeText.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
 }
 
 /**
@@ -456,7 +474,7 @@ export function initSchoolAutocomplete(inputEl, dropdownContainer, onSelect) {
       customItem.className = 'px-4 py-3 text-xs text-slate-300 hover:bg-white/10 cursor-pointer flex items-center gap-2 border-b border-white/5';
       customItem.innerHTML = `
         <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
-        <span>Use custom: <strong class="text-white">"${query}"</strong></span>
+        <span>Use custom: <strong class="text-white">"${escapeHtml(query)}"</strong></span>
       `;
       customItem.addEventListener('click', () => {
         selectSchool(query);
@@ -492,7 +510,7 @@ export function initSchoolAutocomplete(inputEl, dropdownContainer, onSelect) {
     if (!exactMatch) {
       const customItem = document.createElement('div');
       customItem.className = 'px-3.5 py-2 text-[11px] text-slate-400 hover:bg-white/10 cursor-pointer flex items-center gap-1.5 bg-black/20';
-      customItem.innerHTML = `<span>Can't find it? Use: <span class="text-indigo-300 font-medium">"${query}"</span></span>`;
+      customItem.innerHTML = `<span>Can't find it? Use: <span class="text-indigo-300 font-medium">"${escapeHtml(query)}"</span></span>`;
       customItem.addEventListener('click', () => selectSchool(query));
       dropdownContainer.appendChild(customItem);
     }

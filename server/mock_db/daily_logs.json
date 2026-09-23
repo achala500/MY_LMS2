@@ -60,7 +60,7 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T10:06:50.367Z",
+    "timestamp": "2026-09-23T07:45:17.191Z",
     "studyId": "SG-BIO-0002",
     "email": "aravinda.bio@example.com",
     "dateOfStudy": "2026-08-26",
@@ -96,10 +96,10 @@
     "totalHours": 7,
     "notes": "Completed Cell Division and Reaction Kinetics.",
     "telegram": "@aravinda_bio",
-    "proofPhotoUrl": "http://127.0.0.1:51933/uploads/SG-BIO-0002/2026-08-26/SG-BIO-0002_2026-08-26_bio_notes_aug26.jpg"
+    "proofPhotoUrl": "http://127.0.0.1:33279/uploads/SG-BIO-0002/2026-08-26/SG-BIO-0002_2026-08-26_bio_notes_aug26.jpg"
   },
   {
-    "timestamp": "2026-09-17T10:06:50.441Z",
+    "timestamp": "2026-09-23T07:45:17.261Z",
     "studyId": "SG-MATH-0003",
     "email": "streak.master@example.com",
     "dateOfStudy": "2026-08-24",
@@ -138,7 +138,7 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T10:06:50.451Z",
+    "timestamp": "2026-09-23T07:45:17.265Z",
     "studyId": "SG-MATH-0003",
     "email": "streak.master@example.com",
     "dateOfStudy": "2026-08-25",
@@ -177,9 +177,9 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T10:06:55.070Z",
+    "timestamp": "2026-09-23T07:45:19.825Z",
     "studyId": "SG-BIO-0004",
-    "email": "m4_test_1789639614931@gmail.com",
+    "email": "m4_test_1790149519740@gmail.com",
     "dateOfStudy": "2026-08-26",
     "sessions": [],
     "subjects": [
@@ -216,10 +216,10 @@
     "proofPhotoUrl": ""
   },
   {
-    "timestamp": "2026-09-17T10:07:01.677Z",
+    "timestamp": "2026-09-23T07:45:22.832Z",
     "studyId": "SG-MATH-0004",
-    "email": "chamara_1789639621431@gmail.com",
-    "dateOfStudy": "2026-09-17",
+    "email": "chamara_1790149522714@gmail.com",
+    "dateOfStudy": "2026-09-23",
     "subjects": [
       {
         "name": "Combined Maths",
@@ -242,7 +242,7 @@
     ],
     "totalHours": 6.5,
     "notes": "2024 Past paper practice",
-    "telegram": "@chamara_1789639621431",
+    "telegram": "@chamara_1790149522714",
     "proofPhotoUrl": ""
   }
 ]

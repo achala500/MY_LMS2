@@ -519,14 +519,30 @@ export function filterSchools(query: string, maxResults: number = 10): string[] 
 }
 
 /**
- * Highlight matched search query in school name string
+ * Helper to escape HTML characters to prevent DOM XSS injections
+ */
+function escapeHtml(str: string): string {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+/**
+ * Highlight matched search query in school name string safely
  */
 export function highlightMatch(text: string, query: string): string {
-  if (!query || !text) return text;
-  const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  if (!q) return text;
-  const regex = new RegExp(`(${q})`, 'gi');
-  return text.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
+  if (!text) return '';
+  const safeText = escapeHtml(text);
+  if (!query || typeof query !== 'string') return safeText;
+  const trimmed = query.trim();
+  if (!trimmed) return safeText;
+  const escapedQuery = escapeHtml(trimmed).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQuery})`, 'gi');
+  return safeText.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
 }
 
 /**
