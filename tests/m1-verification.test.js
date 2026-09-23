@@ -125,7 +125,7 @@ describe('Milestone M1 Verification', () => {
       const xssInput = '<script>alert("xss")</script> College & "Co"';
       const result = highlightMatch(xssInput, 'College');
       assert.ok(!result.includes('<script>'), 'Raw script tags must be escaped');
-      assert.ok(result.includes('&lt;script&gt;alert(&quot;xss&quot;)&lt;&#x27;script&gt;'), 'HTML tags must be escaped');
+      assert.ok(result.includes('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'), 'HTML tags must be escaped');
       assert.ok(result.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">College</mark>'), 'Match must be highlighted');
 
       const xssQuery = '<img src=x onerror=alert(1)>';
