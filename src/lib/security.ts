@@ -540,9 +540,10 @@ export interface IdempotencyEnvelope<T> {
  */
 export function generateSecurityNonce(length: number = 32): string {
   const byteCount = Math.ceil(length / 2);
-  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
     const array = new Uint8Array(byteCount);
-    crypto.getRandomValues(array);
+    cryptoObj.getRandomValues(array);
     return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
       .join('')
       .substring(0, length);
@@ -904,8 +905,9 @@ export function evaluatePasswordSecurity(password: string, role: 'student' | 'ad
 export function generateHighEntropyPassword(length: number = 14): string {
   const charset = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*()-_=+';
   const array = new Uint8Array(length);
-  if (typeof window !== 'undefined' && window.crypto) {
-    window.crypto.getRandomValues(array);
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    cryptoObj.getRandomValues(array);
   } else {
     for (let i = 0; i < length; i++) array[i] = Math.floor(Math.random() * 256);
   }
