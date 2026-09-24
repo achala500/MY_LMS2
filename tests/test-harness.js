@@ -1285,11 +1285,60 @@ export class SynchronizedSlidingRateLimiter {
 }
 
 export function generateSecurityNonce() {
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    const array = new Uint8Array(16);
+    cryptoObj.getRandomValues(array);
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, '0')).join('');
+  }
   let hex = '';
   for (let i = 0; i < 32; i++) {
     hex += Math.floor(Math.random() * 16).toString(16);
   }
   return hex;
+}
+
+export async function hashString(str) {
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (!cryptoObj || !cryptoObj.subtle) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return String(Math.abs(hash));
+  }
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await cryptoObj.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+export function generateSalt(length = 16) {
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    const arr = new Uint8Array(length);
+    cryptoObj.getRandomValues(arr);
+    return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
+  }
+  return Math.random().toString(36).substring(2, 18);
+}
+
+export function generateHighEntropyPassword(length = 14) {
+  const charset = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*()-_=+';
+  const array = new Uint8Array(length);
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    cryptoObj.getRandomValues(array);
+  } else {
+    for (let i = 0; i < length; i++) array[i] = Math.floor(Math.random() * 256);
+  }
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += charset[array[i] % charset.length];
+  }
+  return result;
 }
 
 export function generateIdempotencyKey(payload, nonce = generateSecurityNonce()) {

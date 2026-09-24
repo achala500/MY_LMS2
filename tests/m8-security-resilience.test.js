@@ -34,7 +34,10 @@ import {
   sanitizeUrl,
   sanitizeCsvFormula,
   formatCsvCell,
-  generateCsvString
+  generateCsvString,
+  hashString,
+  generateSalt,
+  generateHighEntropyPassword
 } from './test-harness.js';
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
@@ -389,6 +392,37 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       const future = verifyTimestampDrift(futureTime, 300);
       assert.strictEqual(future.valid, false);
       assert.strictEqual(future.code, 'ERR_TIMESTAMP_FUTURE');
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 7b. Web Crypto Node.js Environment CSPRNG & SHA-256 Hashing Verification
+  // --------------------------------------------------------------------------
+  describe('7b. Web Crypto CSPRNG & SHA-256 Hashing in Non-Browser Environments', () => {
+    test('hashString returns 64-character SHA-256 hex string in Node.js runtime', async () => {
+      const hash = await hashString('test-secret-payload-123');
+      assert.strictEqual(typeof hash, 'string');
+      assert.strictEqual(hash.length, 64); // Full 256-bit SHA-256 hex string
+      assert.match(hash, /^[0-9a-f]{64}$/);
+
+      // Known SHA-256 test vector for "hello"
+      const knownHash = await hashString('hello');
+      assert.strictEqual(knownHash, '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824');
+    });
+
+    test('generateSalt returns cryptographically secure random salt in Node.js runtime', () => {
+      const salt1 = generateSalt(16);
+      const salt2 = generateSalt(16);
+      assert.strictEqual(salt1.length, 16);
+      assert.notStrictEqual(salt1, salt2);
+      assert.match(salt1, /^[0-9a-f]{16}$/);
+    });
+
+
+    test('generateHighEntropyPassword generates strong random password in Node.js runtime', () => {
+      const pwd = generateHighEntropyPassword(16);
+      assert.strictEqual(pwd.length, 16);
+      assert.match(pwd, /[a-zA-Z0-9!@#$%^&*()-_=+]{16}/);
     });
   });
 
