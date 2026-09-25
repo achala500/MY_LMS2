@@ -22,12 +22,7 @@ export const DEFAULT_INITIAL_PASSWORD = 'Password@2026';
  * Generate a cryptographically random salt string
  */
 export function generateSalt(length: number = 16): string {
-  const cryptoObj =
-    typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues
-      ? globalThis.crypto
-      : typeof window !== 'undefined' && window.crypto?.getRandomValues
-      ? window.crypto
-      : undefined;
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : undefined;
 
   if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
     const arr = new Uint8Array(length);
