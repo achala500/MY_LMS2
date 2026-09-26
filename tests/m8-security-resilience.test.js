@@ -36,6 +36,7 @@ import {
   formatCsvCell,
   generateCsvString
 } from './test-harness.js';
+import { timingSafeEqual, verifyPassword, hashPassword } from '../src/lib/security/passwords.ts';
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
 
@@ -433,6 +434,33 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
 
       const csv = generateCsvString(['Name', 'Formula'], [['Kasun', '=1+1']]);
       assert.ok(csv.includes("Kasun,'=1+1"));
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 8b. Constant-Time Password Verification & Timing Attack Prevention
+  // --------------------------------------------------------------------------
+  describe('8b. Constant-Time String Comparison & Password Verification', () => {
+    test('timingSafeEqual returns true for identical strings and false for differing strings', () => {
+      assert.strictEqual(timingSafeEqual('a1b2c3d4e5f6', 'a1b2c3d4e5f6'), true);
+      assert.strictEqual(timingSafeEqual('a1b2c3d4e5f6', 'a1b2c3d4e5f7'), false);
+      assert.strictEqual(timingSafeEqual('short', 'longer_string'), false);
+      assert.strictEqual(timingSafeEqual('', ''), true);
+      assert.strictEqual(timingSafeEqual('a', ''), false);
+    });
+
+    test('verifyPassword verifies correct password and rejects invalid password using timingSafeEqual', async () => {
+      const password = 'SecretPassword123!';
+      const { hash, salt } = await hashPassword(password);
+
+      const isValid = await verifyPassword(password, hash, salt);
+      assert.strictEqual(isValid, true);
+
+      const isInvalid = await verifyPassword('WrongPassword123!', hash, salt);
+      assert.strictEqual(isInvalid, false);
+
+      const isEmptyInvalid = await verifyPassword('', hash, salt);
+      assert.strictEqual(isEmptyInvalid, false);
     });
   });
 
