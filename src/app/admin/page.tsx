@@ -27,7 +27,7 @@ import { localDb } from '@/lib/storage/localDb';
 import { safeStorage, safeSessionStorage } from '@/lib/storage/safeStorage';
 import { AdminQrScannerModal } from '@/components/admin/AdminQrScannerModal';
 import { getExamCountdown, saveStoredExamDates, getStoredExamDates, DEFAULT_EXAM_DATES } from '@/lib/calendar';
-import { ADMIN_EMAILS, SPREADSHEET_ID, EXAM_YEARS } from '@/lib/constants';
+import { ADMIN_EMAILS, SPREADSHEET_ID, EXAM_YEARS, ADMIN_VAULT_PASSKEY } from '@/lib/constants';
 import {
   grantAdminPrivileges,
   revokeAdminPrivileges,
@@ -1054,12 +1054,9 @@ Keep pushing for your A/L goals! Log your session today:
     }
     setDecryptingVault(true);
     setTimeout(() => {
-      if (
-        input === 'STUDYSYNC-ADMIN-2026' ||
-        input.toLowerCase() === 'admin2026' ||
-        input === 'alwisachalaanurada' ||
-        input === 'Achala@2026'
-      ) {
+      const validPasskeys = [ADMIN_VAULT_PASSKEY, process.env.NEXT_PUBLIC_ADMIN_PASSPHRASE, process.env.NEXT_PUBLIC_ADMIN_PASSKEY].filter(Boolean);
+
+      if (validPasskeys.length > 0 && validPasskeys.includes(input)) {
         setIsVaultUnlocked(true);
         safeSessionStorage.setItem('studysync_admin_vault_unlocked', 'true');
         toast.success('Admin authorization confirmed. Vault decrypted.');
