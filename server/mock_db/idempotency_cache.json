@@ -9468,5 +9468,63 @@
     "error": null,
     "statusCode": 200,
     "cachedAt": "2026-09-17T10:07:02.287Z"
+  },
+  "idemp_stress_759a4414bd9bb0837551d71c40bcc875": {
+    "data": {
+      "registered": true,
+      "member": {
+        "studyId": "SG-BIO-0001",
+        "fullName": "Kasun Perera",
+        "email": "kasun.p@gmail.com",
+        "gender": "Male",
+        "telegram": "@kasun_p",
+        "telegramUsername": "@kasun_p",
+        "school": "Royal College, Colombo 07",
+        "stream": "Biological Science",
+        "optionalSubject": "Physics",
+        "registrationDate": "2026-08-20T08:00:00.000Z",
+        "status": "Active",
+        "examYear": "2026"
+      },
+      "todayLog": null,
+      "stats": {
+        "currentStreak": 0,
+        "maxStreak": 2,
+        "totalHours": 12.5,
+        "subjectHours": {
+          "Biology": 5.5,
+          "Chemistry": 3.5,
+          "Physics": 3.5
+        },
+        "avgFocus": 8.2,
+        "avgProductivity": 8.3,
+        "totalLogs": 2
+      }
+    },
+    "success": true,
+    "error": null,
+    "statusCode": 200,
+    "cachedAt": "2026-09-27T09:25:40.745Z"
+  },
+  "idempotent_dc280be98bc0088eb582cfc4b1ddd1fa": {
+    "data": {
+      "alreadyRegistered": false,
+      "studyId": "SG-BIO-0005",
+      "fullName": "Idempotency User",
+      "email": "idempotent.1790501150037@example.com",
+      "gender": "Male",
+      "telegram": "@idempotent_user",
+      "telegramUsername": "@idempotent_user",
+      "school": "Ananda College, Colombo",
+      "stream": "Biological Science",
+      "optionalSubject": "Physics",
+      "registrationDate": "2026-09-27T09:25:50.041Z",
+      "status": "Active",
+      "examYear": "2026"
+    },
+    "success": true,
+    "error": null,
+    "statusCode": 200,
+    "cachedAt": "2026-09-27T09:25:50.043Z"
   }
 }
