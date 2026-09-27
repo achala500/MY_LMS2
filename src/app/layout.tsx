@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MouseReactiveEffect } from "@/components/effects/MouseReactiveEffect";
 import { GlobalErrorBoundary } from "@/components/common/GlobalErrorBoundary";
+import { FIREBASE_CONFIG } from "@/lib/constants";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -90,14 +91,7 @@ export default function RootLayout({
         />
         <Script id="firebase-init" strategy="afterInteractive">
           {`
-            const firebaseConfig = {
-              apiKey: "${process.env.NEXT_PUBLIC_FIREBASE_API_KEY || ''}",
-              authDomain: "${process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'studysync-al-2026.firebaseapp.com'}",
-              projectId: "${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'studysync-al-2026'}",
-              storageBucket: "${process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'studysync-al-2026.firebasestorage.app'}",
-              messagingSenderId: "${process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '99176264496'}",
-              appId: "${process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:99176264496:web:1a6a69567c0f7619a98ef5'}"
-            };
+            const firebaseConfig = ${JSON.stringify(FIREBASE_CONFIG)};
             if (typeof window !== 'undefined' && typeof window.firebase !== 'undefined' && window.firebase.initializeApp) {
               if (!window.firebase.apps || !window.firebase.apps.length) {
                 window.firebase.initializeApp(firebaseConfig);

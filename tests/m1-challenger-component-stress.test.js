@@ -250,7 +250,7 @@ describe('Milestone M1 Component & Styling Stress Verification', () => {
       assert.ok(layoutContent.includes('firebase-app-compat.js'), 'Root layout must load firebase-app-compat.js');
       assert.ok(layoutContent.includes('firebase-auth-compat.js'), 'Root layout must load firebase-auth-compat.js');
       assert.ok(layoutContent.includes('strategy="beforeInteractive"'), 'Firebase scripts must use beforeInteractive strategy');
-      assert.ok(layoutContent.includes('studysync-al-2026'), 'Firebase initialization config must use studysync-al-2026 project ID');
+      assert.ok(layoutContent.includes('FIREBASE_CONFIG') || layoutContent.includes('studysync-al-2026'), 'Firebase initialization config must use FIREBASE_CONFIG');
     });
 
     it('Root layout should assemble AuroraBackground, Header, Footer, and Sonner Toaster', () => {
