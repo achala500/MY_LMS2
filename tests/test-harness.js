@@ -1286,10 +1286,38 @@ export class SynchronizedSlidingRateLimiter {
 
 export function generateSecurityNonce() {
   let hex = '';
+  if (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues) {
+    const arr = new Uint8Array(16);
+    globalThis.crypto.getRandomValues(arr);
+    return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('');
+  }
   for (let i = 0; i < 32; i++) {
     hex += Math.floor(Math.random() * 16).toString(16);
   }
   return hex;
+}
+
+export function generateSalt(length = 16) {
+  const byteLength = Math.max(1, Math.ceil(length / 2));
+  const arr = new Uint8Array(byteLength);
+
+  const cryptoObj =
+    (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues ? globalThis.crypto : undefined) ||
+    (typeof window !== 'undefined' && window.crypto?.getRandomValues ? window.crypto : undefined);
+
+  if (cryptoObj) {
+    cryptoObj.getRandomValues(arr);
+  } else {
+    try {
+      const nodeCrypto = require('crypto');
+      const buf = nodeCrypto.randomBytes(byteLength);
+      arr.set(buf);
+    } catch {
+      throw new Error('Cryptographically secure random number generator is unavailable.');
+    }
+  }
+
+  return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
 }
 
 export function generateIdempotencyKey(payload, nonce = generateSecurityNonce()) {
