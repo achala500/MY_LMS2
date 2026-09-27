@@ -123,12 +123,16 @@ export class ApiClientEngine {
           // If stale but usable (< 5 min), trigger background refresh and return cached immediately (SWR)
           if (age < 300000 && cachedEntry.data) {
             setTimeout(() => {
-              this.request<T>(action, { ...cleanPayload, _skipCache: true }, method).catch(() => {});
+              this.request<T>(action, { ...cleanPayload, _skipCache: true }, method).catch((err) => {
+                console.warn('[ApiClient] Background SWR refresh failed:', err);
+              });
             }, 10);
             return cachedEntry.data as ApiResponse<T>;
           }
         }
-      } catch (cacheReadErr) {}
+      } catch (cacheReadErr) {
+        console.warn('[ApiClient] Failed to read session cache:', cacheReadErr);
+      }
     }
 
     // In-Flight Request Deduplication to prevent multiple concurrent identical HTTP requests
@@ -174,7 +178,9 @@ export class ApiClientEngine {
               safeSessionStorage.removeItem(k);
             }
           });
-        } catch (cacheClearErr) {}
+        } catch (cacheClearErr) {
+          console.warn('[ApiClient] Failed to clear session cache on mutation:', cacheClearErr);
+        }
       }
 
       // Exponential Backoff Retry Strategy for network resilience
@@ -236,7 +242,9 @@ export class ApiClientEngine {
                   data: finalResponse,
                 })
               );
-            } catch (writeErr) {}
+            } catch (writeErr) {
+              console.warn('[ApiClient] Failed to write session cache:', writeErr);
+            }
           }
 
           return finalResponse;
@@ -331,7 +339,9 @@ export class ApiClientEngine {
         localDb.saveMember(res.data.member);
         return res;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] checkUser request failed, falling back to local database:', e);
+    }
 
     // Offline / Local database fallback
     const localMember = localDb.getMemberByEmail(cleanEmail);
@@ -383,7 +393,9 @@ export class ApiClientEngine {
         localDb.saveMember(res.data.member);
         return res;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] registerUser request failed, falling back to local database:', e);
+    }
 
     return {
       success: true,
@@ -406,7 +418,9 @@ export class ApiClientEngine {
     try {
       const res = await this.request<SubmitDailyLogResponseData>('submitDailyLog', payload);
       if (res.success) return res;
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] submitDailyLog request failed, falling back to local database:', e);
+    }
 
     return {
       success: true,
@@ -434,7 +448,9 @@ export class ApiClientEngine {
             safeSessionStorage.removeItem(k);
           }
         });
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[ApiClient] clearCache failed:', e);
+      }
     }
   }
 
@@ -449,7 +465,9 @@ export class ApiClientEngine {
         res.data.logs.forEach(l => localDb.saveDailyLog(l));
         return res;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] getStudentHistory request failed, falling back to local database:', e);
+    }
 
     // Local DB fallback
     const localLogs = localDb.getStudentLogs(cleanId);
@@ -515,7 +533,9 @@ export class ApiClientEngine {
         }
         return res;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] verifyMember request failed, falling back to local database:', e);
+    }
 
     if (localMember) {
       return {
@@ -556,7 +576,9 @@ export class ApiClientEngine {
         }
         return res;
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] getAdminData request failed, falling back to local database:', e);
+    }
 
     // Local DB fallback for admin panel
     const members = localDb.getMembers();
@@ -623,7 +645,9 @@ export class ApiClientEngine {
     try {
       const res = await this.request<AdminUpdateMemberResponseData>('adminUpdateMember', fullPayload);
       if (res.success) return res;
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] adminUpdateMember request failed, falling back to local database:', e);
+    }
 
     const updated = localDb.getMemberByStudyId(fullPayload.studyId);
     return {
@@ -643,8 +667,12 @@ export class ApiClientEngine {
 
     // 2. Dispatch remote network request asynchronously in background (catches and absorbs any remote errors)
     try {
-      this.request<any>('adminDeleteMember', { adminEmail, studyId }).catch(() => {});
-    } catch (e) {}
+      this.request<any>('adminDeleteMember', { adminEmail, studyId }).catch((err) => {
+        console.warn('[ApiClient] Background adminDeleteMember request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] adminDeleteMember dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -663,8 +691,12 @@ export class ApiClientEngine {
 
     // 2. Dispatch remote network request asynchronously in background (never throws Unknown POST action error)
     try {
-      this.request<any>('adminDeleteLog', { adminEmail, studyId, dateOfStudy }).catch(() => {});
-    } catch (e) {}
+      this.request<any>('adminDeleteLog', { adminEmail, studyId, dateOfStudy }).catch((err) => {
+        console.warn('[ApiClient] Background adminDeleteLog request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] adminDeleteLog dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -699,8 +731,12 @@ export class ApiClientEngine {
         studyId,
         dateOfStudy,
         ...updates,
-      }).catch(() => {});
-    } catch (e) {}
+      }).catch((err) => {
+        console.warn('[ApiClient] Background adminEditLog request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] adminEditLog dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -778,7 +814,9 @@ export class ApiClientEngine {
     try {
       const res = await this.request<any>('updateProfile', payload);
       if (res.success) return res;
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] updateProfile request failed, falling back to local database:', e);
+    }
 
     return {
       success: true,
@@ -828,7 +866,9 @@ export class ApiClientEngine {
           timestamp: new Date().toISOString()
         };
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] adminVerifyMember request failed, falling back to local database:', e);
+    }
 
     return {
       success: true,
@@ -857,7 +897,9 @@ export class ApiClientEngine {
           timestamp: new Date().toISOString()
         };
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] adminBanMember request failed, falling back to local database:', e);
+    }
 
     return {
       success: true,
@@ -878,7 +920,9 @@ export class ApiClientEngine {
         list.push(clean);
         safeStorage.setJson('studysync_custom_admins', list);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] adminAddAdmin local custom admins update failed:', e);
+    }
     return this.request('adminAddAdmin', { adminEmail, targetEmail });
   }
 
@@ -923,8 +967,12 @@ export class ApiClientEngine {
 
     // 2. Dispatch remote network sync in background
     try {
-      this.request('adminCreateForm', { adminEmail, ...form }).catch(() => {});
-    } catch (e) {}
+      this.request('adminCreateForm', { adminEmail, ...form }).catch((err) => {
+        console.warn('[ApiClient] Background adminCreateForm request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] adminCreateForm dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -943,8 +991,12 @@ export class ApiClientEngine {
 
     // 2. Dispatch remote network sync in background
     try {
-      this.request('submitFormResponse', payload).catch(() => {});
-    } catch (e) {}
+      this.request('submitFormResponse', payload).catch((err) => {
+        console.warn('[ApiClient] Background submitFormResponse request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] submitFormResponse dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -970,9 +1022,13 @@ export class ApiClientEngine {
           if (res?.success && Array.isArray(res?.data?.forms)) {
             res.data.forms.forEach((f: AdminForm) => localDb.saveAdminForm(f));
           }
-        }).catch(() => {});
+        }).catch((err) => {
+          console.warn('[ApiClient] Background getAdminForms request failed:', err);
+        });
       }
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[ApiClient] getAdminForms dispatch failed:', e);
+    }
 
     return {
       success: true,
@@ -993,8 +1049,12 @@ export class ApiClientEngine {
         if (res?.success && Array.isArray(res?.data?.messages)) {
           // background sync
         }
-      }).catch(() => {});
-    } catch (e) {}
+      }).catch((err) => {
+        console.warn('[ApiClient] Background getUserInbox request failed:', err);
+      });
+    } catch (e) {
+      console.warn('[ApiClient] getUserInbox dispatch failed:', e);
+    }
 
     return {
       success: true,
