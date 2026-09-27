@@ -6,6 +6,7 @@
  */
 
 import { describe, it, expect } from './e2e-runner.js';
+import { getStreamSubjectNames } from '../src/lib/calendar.ts';
 import {
   StudySyncDatabase,
   STREAMS,
@@ -1786,6 +1787,37 @@ describe("Feature 35 Boundary: Study Hours & Fatigue Boundaries", () => {
     const fatigue = calculateCognitiveFatigueIndex(extremeLogs, 30);
     expect(fatigue.tier).toBe('burnout');
     expect(fatigue.fatigueIndex).toBeGreaterThanOrEqual(7.5);
+  });
+}, { tier: 2 });
+
+// getStreamSubjectNames Unit Test Suite
+describe("getStreamSubjectNames unit tests", () => {
+  it("T2.CAL.1: Biological Science stream returns default subjects [Biology, Chemistry, Physics]", () => {
+    const subjects = getStreamSubjectNames('Biological Science');
+    expect(subjects).toEqual(['Biology', 'Chemistry', 'Physics']);
+  });
+
+  it("T2.CAL.2: Bio stream with custom optional subject returns [Biology, Chemistry, Agriculture]", () => {
+    const subjects = getStreamSubjectNames('bio', 'Agriculture');
+    expect(subjects).toEqual(['Biology', 'Chemistry', 'Agriculture']);
+  });
+
+  it("T2.CAL.3: Physical Science stream returns default subjects [Combined Maths, Physics, Chemistry]", () => {
+    const subjects = getStreamSubjectNames('Physical Science');
+    expect(subjects).toEqual(['Combined Maths', 'Physics', 'Chemistry']);
+  });
+
+  it("T2.CAL.4: Physical Science/Maths stream with custom optional subject returns [Combined Maths, Physics, ICT]", () => {
+    const subjects = getStreamSubjectNames('maths', 'ICT');
+    expect(subjects).toEqual(['Combined Maths', 'Physics', 'ICT']);
+  });
+
+  it("T2.CAL.5: Handles falsy, null, undefined, empty, and uppercase stream inputs gracefully", () => {
+    expect(getStreamSubjectNames(undefined)).toEqual(['Combined Maths', 'Physics', 'Chemistry']);
+    expect(getStreamSubjectNames('')).toEqual(['Combined Maths', 'Physics', 'Chemistry']);
+    expect(getStreamSubjectNames(null)).toEqual(['Combined Maths', 'Physics', 'Chemistry']);
+    expect(getStreamSubjectNames('BIO')).toEqual(['Biology', 'Chemistry', 'Physics']);
+    expect(getStreamSubjectNames('BIOLOGICAL SCIENCE', 'Agriculture')).toEqual(['Biology', 'Chemistry', 'Agriculture']);
   });
 }, { tier: 2 });
 
