@@ -1789,6 +1789,36 @@ describe("Feature 35 Boundary: Study Hours & Fatigue Boundaries", () => {
   });
 }, { tier: 2 });
 
+// Feature 36 Boundary: Firebase Configuration Security
+describe("Feature 36 Boundary: Firebase Configuration Security", () => {
+  it("T2.F36.1: FIREBASE_CONFIG in constants.ts does not hardcode API key and reads from process.env", async () => {
+    const { FIREBASE_CONFIG } = await import('../src/lib/constants.ts');
+    expect(FIREBASE_CONFIG.apiKey).not.toBe('AIzaSyAjK2y49ia3YnDY3L1bMhwasAQGRikvAHA');
+    expect(typeof FIREBASE_CONFIG.apiKey).toBe('string');
+  });
+
+  it("T2.F36.2: src/lib/constants.ts contains no hardcoded AIzaSy API key string", async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const content = fs.readFileSync(path.resolve('src/lib/constants.ts'), 'utf8');
+    expect(content.includes('AIzaSy')).toBe(false);
+  });
+
+  it("T2.F36.3: index.html contains no hardcoded AIzaSy API key string", async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const content = fs.readFileSync(path.resolve('index.html'), 'utf8');
+    expect(content.includes('AIzaSy')).toBe(false);
+  });
+
+  it("T2.F36.4: src/app/layout.tsx contains no hardcoded AIzaSy API key string", async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const content = fs.readFileSync(path.resolve('src/app/layout.tsx'), 'utf8');
+    expect(content.includes('AIzaSy')).toBe(false);
+  });
+}, { tier: 2 });
+
 // Direct CLI Execution Hook
 if (process.argv[1] && process.argv[1].endsWith('tier2-boundary.test.js')) {
   import('./e2e-runner.js').then(({ runner }) => {

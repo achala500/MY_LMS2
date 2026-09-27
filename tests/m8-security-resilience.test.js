@@ -13,6 +13,7 @@
  * 7. Timestamp Drift Window (±300s enforcement, future timestamp rejection)
  * 8. Context-Aware Anti-XSS, URL Allowlisting, and CSV Formula Escaping (CWE-1236)
  * 9. Live Mock Server Security Parity & Formula Neutralization
+ * 10. Firebase Configuration Environment Variable Security
  */
 
 import { test, describe, before, after } from 'node:test';
@@ -555,6 +556,24 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(reg.statusCode, 200);
       assert.strictEqual(reg.body.data.fullName, "'=cmd|/C calc");
       assert.strictEqual(reg.body.data.school, "'@Royal College, Colombo");
+    });
+  });
+
+  // --------------------------------------------------------------------------
+  // 10. Firebase Configuration Environment Variable Security
+  // --------------------------------------------------------------------------
+  describe('10. Firebase Configuration Environment Variable Security', () => {
+    test('FIREBASE_CONFIG in constants.ts does not hardcode API Key and uses process.env.NEXT_PUBLIC_FIREBASE_API_KEY', async () => {
+      const { FIREBASE_CONFIG } = await import('../src/lib/constants.ts');
+      assert.notStrictEqual(FIREBASE_CONFIG.apiKey, 'AIzaSyAjK2y49ia3YnDY3L1bMhwasAQGRikvAHA');
+      assert.strictEqual(typeof FIREBASE_CONFIG.apiKey, 'string');
+    });
+
+    test('constants.ts file content contains no hardcoded AIzaSy API key string', async () => {
+      const fs = await import('node:fs');
+      const path = await import('node:path');
+      const constantsContent = fs.readFileSync(path.resolve('src/lib/constants.ts'), 'utf8');
+      assert.strictEqual(constantsContent.includes('AIzaSy'), false, 'constants.ts must not contain hardcoded AIzaSy key');
     });
   });
 });
