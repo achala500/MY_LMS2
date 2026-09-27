@@ -633,20 +633,43 @@ export function calculateStudyRoi(
   logs: DailyLogEntry[],
   testMarks: TestMarkEntry[]
 ): SubjectStudyRoi[] {
-  return streamSubjects.map((subject) => {
-    let subjectHours = 0;
+  // Single-pass aggregation of total study hours per subject (normalized lowercase key)
+  const hoursMap = new Map<string, number>();
+  if (logs && logs.length > 0) {
     logs.forEach((log) => {
       const subs = log.subjects || [];
-      const match = subs.find((s) => s.name?.toLowerCase() === subject.toLowerCase());
-      if (match) {
-        subjectHours += Number(match.hours || 0);
+      subs.forEach((s) => {
+        if (s.name) {
+          const key = s.name.toLowerCase();
+          const current = hoursMap.get(key) || 0;
+          hoursMap.set(key, current + Number(s.hours || 0));
+        }
+      });
+    });
+  }
+
+  // Single-pass aggregation of test mark total score and count per subject
+  const marksMap = new Map<string, { totalScore: number; count: number }>();
+  if (testMarks && testMarks.length > 0) {
+    testMarks.forEach((t) => {
+      if (t.subject) {
+        const key = t.subject.toLowerCase();
+        const current = marksMap.get(key) || { totalScore: 0, count: 0 };
+        current.totalScore += Number(t.score || 0);
+        current.count += 1;
+        marksMap.set(key, current);
       }
     });
+  }
 
-    const subMarks = testMarks.filter((t) => t.subject.toLowerCase() === subject.toLowerCase());
+  return streamSubjects.map((subject) => {
+    const subjectKey = subject.toLowerCase();
+    const subjectHours = hoursMap.get(subjectKey) || 0;
+
+    const markStats = marksMap.get(subjectKey);
     const avgMark =
-      subMarks.length > 0
-        ? subMarks.reduce((acc, m) => acc + m.score, 0) / subMarks.length
+      markStats && markStats.count > 0
+        ? markStats.totalScore / markStats.count
         : 0;
 
     const roiScore = subjectHours > 0 ? Number((avgMark / (subjectHours / 10 + 1)).toFixed(1)) : 0;
