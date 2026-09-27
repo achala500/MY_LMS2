@@ -236,7 +236,12 @@ export class ApiClientEngine {
                   data: finalResponse,
                 })
               );
-            } catch (writeErr) {}
+            } catch (writeErr) {
+              console.warn(
+                `[ApiClient] Failed to cache query response for key '${cacheKey}':`,
+                writeErr
+              );
+            }
           }
 
           return finalResponse;
