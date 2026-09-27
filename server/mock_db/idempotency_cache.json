@@ -9469,7 +9469,7 @@
     "statusCode": 200,
     "cachedAt": "2026-09-17T10:07:02.287Z"
   },
-  "idemp_stress_714479bb63871e0936cb2ebc50332f07": {
+  "idemp_stress_2a46c49309f07d30eafb0b4040f8f176": {
     "data": {
       "registered": true,
       "member": {
@@ -9504,27 +9504,27 @@
     "success": true,
     "error": null,
     "statusCode": 200,
-    "cachedAt": "2026-09-27T08:42:54.212Z"
+    "cachedAt": "2026-09-27T09:05:49.943Z"
   },
-  "idempotent_3b768bc6d80a994df4fdacc7e6a0dc8e": {
+  "idempotent_be0514e69a205e9cdd2881a15cdb0167": {
     "data": {
       "alreadyRegistered": false,
       "studyId": "SG-BIO-0005",
       "fullName": "Idempotency User",
-      "email": "idempotent.1790498597894@example.com",
+      "email": "idempotent.1790499966482@example.com",
       "gender": "Male",
       "telegram": "@idempotent_user",
       "telegramUsername": "@idempotent_user",
       "school": "Ananda College, Colombo",
       "stream": "Biological Science",
       "optionalSubject": "Physics",
-      "registrationDate": "2026-09-27T08:43:17.899Z",
+      "registrationDate": "2026-09-27T09:06:06.487Z",
       "status": "Active",
       "examYear": "2026"
     },
     "success": true,
     "error": null,
     "statusCode": 200,
-    "cachedAt": "2026-09-27T08:43:17.901Z"
+    "cachedAt": "2026-09-27T09:06:06.490Z"
   }
 }
