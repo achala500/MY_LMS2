@@ -959,10 +959,7 @@ export class ApiClientEngine {
    */
   public async getAdminForms(adminEmail?: string): Promise<ApiResponse<{ forms: AdminForm[]; responses: FormResponse[] }>> {
     const localForms = localDb.getAdminForms();
-    const allResponses: FormResponse[] = [];
-    localForms.forEach((f) => {
-      allResponses.push(...localDb.getFormResponses(f.formId));
-    });
+    const allResponses: FormResponse[] = localDb.getFormResponses();
 
     try {
       if (adminEmail) {
