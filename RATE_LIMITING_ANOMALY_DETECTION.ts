@@ -9,7 +9,7 @@
  * - Malicious file uploads (quarantine tracking)
  */
 
-import { D1Database } from '@cloudflare/workers-types';
+import type { D1Database } from '@cloudflare/workers-types';
 
 // ============================================================================
 // 1. TOKEN BUCKET RATE LIMITER (Sliding Window)

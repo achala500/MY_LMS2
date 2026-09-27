@@ -6,7 +6,7 @@
  * Caches top-100 JSON snapshots on edge CDN (zero DB queries during peak traffic)
  */
 
-import { D1Database } from '@cloudflare/workers-types';
+import type { D1Database } from '@cloudflare/workers-types';
 
 interface LeaderboardEntry {
   rank: number;
