@@ -540,19 +540,34 @@ export interface IdempotencyEnvelope<T> {
  */
 export function generateSecurityNonce(length: number = 32): string {
   const byteCount = Math.ceil(length / 2);
-  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-    const array = new Uint8Array(byteCount);
-    crypto.getRandomValues(array);
-    return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
-      .join('')
-      .substring(0, length);
+  const array = new Uint8Array(byteCount);
+
+  const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto
+    ? globalThis.crypto
+    : (typeof window !== 'undefined' ? window.crypto : undefined);
+
+  if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
+    cryptoObj.getRandomValues(array);
+  } else {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const nodeCrypto = require('crypto');
+      if (nodeCrypto && typeof nodeCrypto.randomFillSync === 'function') {
+        nodeCrypto.randomFillSync(array);
+      } else if (nodeCrypto && typeof nodeCrypto.randomBytes === 'function') {
+        const bytes = nodeCrypto.randomBytes(byteCount);
+        array.set(bytes);
+      } else {
+        throw new Error('No secure random source available');
+      }
+    } catch (e) {
+      throw new Error('Cryptographically secure random number generation is not supported in this environment.');
+    }
   }
-  let result = '';
-  const chars = '0123456789abcdef';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
+
+  return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+    .substring(0, length);
 }
 
 /**
@@ -903,16 +918,59 @@ export function evaluatePasswordSecurity(password: string, role: 'student' | 'ad
  */
 export function generateHighEntropyPassword(length: number = 14): string {
   const charset = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*()-_=+';
-  const array = new Uint8Array(length);
-  if (typeof window !== 'undefined' && window.crypto) {
-    window.crypto.getRandomValues(array);
+  const charsetLength = charset.length;
+  // Rejection sampling upper bound to eliminate modulo bias across 0..255 byte values
+  const maxValid = 256 - (256 % charsetLength);
+
+  const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto
+    ? globalThis.crypto
+    : (typeof window !== 'undefined' ? window.crypto : undefined);
+
+  let getRandomByte: () => number;
+
+  if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
+    const buffer = new Uint8Array(32);
+    let bufIndex = buffer.length;
+    getRandomByte = () => {
+      if (bufIndex >= buffer.length) {
+        cryptoObj.getRandomValues(buffer);
+        bufIndex = 0;
+      }
+      return buffer[bufIndex++];
+    };
   } else {
-    for (let i = 0; i < length; i++) array[i] = Math.floor(Math.random() * 256);
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const nodeCrypto = require('crypto');
+      const buffer = new Uint8Array(32);
+      let bufIndex = buffer.length;
+      getRandomByte = () => {
+        if (bufIndex >= buffer.length) {
+          if (typeof nodeCrypto.randomFillSync === 'function') {
+            nodeCrypto.randomFillSync(buffer);
+          } else if (typeof nodeCrypto.randomBytes === 'function') {
+            const bytes = nodeCrypto.randomBytes(buffer.length);
+            buffer.set(bytes);
+          } else {
+            throw new Error('No secure random source');
+          }
+          bufIndex = 0;
+        }
+        return buffer[bufIndex++];
+      };
+    } catch (e) {
+      throw new Error('Cryptographically secure random number generation is not supported in this environment.');
+    }
   }
+
   let result = '';
-  for (let i = 0; i < length; i++) {
-    result += charset[array[i] % charset.length];
+  while (result.length < length) {
+    const randomByte = getRandomByte();
+    if (randomByte < maxValid) {
+      result += charset[randomByte % charsetLength];
+    }
   }
+
   return result;
 }
 
