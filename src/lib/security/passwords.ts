@@ -27,21 +27,15 @@ export function generateSalt(length: number = 16): string {
 
   const cryptoObj =
     (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues ? globalThis.crypto : undefined) ||
-    (typeof window !== 'undefined' && window.crypto?.getRandomValues ? window.crypto : undefined);
+    (typeof window !== 'undefined' && window.crypto?.getRandomValues ? window.crypto : undefined) ||
+    (typeof crypto !== 'undefined' && crypto.getRandomValues ? crypto : undefined);
 
   if (cryptoObj) {
     cryptoObj.getRandomValues(arr);
-  } else {
-    try {
-      const nodeCrypto = require('crypto');
-      const buf = nodeCrypto.randomBytes(byteLength);
-      arr.set(buf);
-    } catch {
-      throw new Error('Cryptographically secure random number generator is unavailable.');
-    }
+    return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
   }
 
-  return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
+  throw new Error('Cryptographically secure random number generator is unavailable.');
 }
 
 /**
