@@ -536,34 +536,45 @@ export interface IdempotencyEnvelope<T> {
 }
 
 /**
- * Generates a 128-bit cryptographic random nonce (32 hex characters)
+ * Fills a Uint8Array with cryptographically secure random bytes across browser, worker, and Node environments.
  */
-export function generateSecurityNonce(length: number = 32): string {
-  const byteCount = Math.ceil(length / 2);
-  const array = new Uint8Array(byteCount);
-
+export function getSecureRandomBytes(array: Uint8Array): void {
   const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto
     ? globalThis.crypto
     : (typeof window !== 'undefined' ? window.crypto : undefined);
 
   if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
     cryptoObj.getRandomValues(array);
-  } else {
+    return;
+  }
+
+  if (typeof process !== 'undefined' && process.versions?.node) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const nodeCrypto = require('crypto');
+      const req = eval('require');
+      const nodeCrypto = req('crypto');
       if (nodeCrypto && typeof nodeCrypto.randomFillSync === 'function') {
         nodeCrypto.randomFillSync(array);
+        return;
       } else if (nodeCrypto && typeof nodeCrypto.randomBytes === 'function') {
-        const bytes = nodeCrypto.randomBytes(byteCount);
+        const bytes = nodeCrypto.randomBytes(array.length);
         array.set(bytes);
-      } else {
-        throw new Error('No secure random source available');
+        return;
       }
     } catch (e) {
-      throw new Error('Cryptographically secure random number generation is not supported in this environment.');
+      // Fall through to error below
     }
   }
+
+  throw new Error('Cryptographically secure random number generation is not supported in this environment.');
+}
+
+/**
+ * Generates a 128-bit cryptographic random nonce (32 hex characters)
+ */
+export function generateSecurityNonce(length: number = 32): string {
+  const byteCount = Math.ceil(length / 2);
+  const array = new Uint8Array(byteCount);
+  getSecureRandomBytes(array);
 
   return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
     .join('')
@@ -922,46 +933,16 @@ export function generateHighEntropyPassword(length: number = 14): string {
   // Rejection sampling upper bound to eliminate modulo bias across 0..255 byte values
   const maxValid = 256 - (256 % charsetLength);
 
-  const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto
-    ? globalThis.crypto
-    : (typeof window !== 'undefined' ? window.crypto : undefined);
+  const buffer = new Uint8Array(32);
+  let bufIndex = buffer.length;
 
-  let getRandomByte: () => number;
-
-  if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
-    const buffer = new Uint8Array(32);
-    let bufIndex = buffer.length;
-    getRandomByte = () => {
-      if (bufIndex >= buffer.length) {
-        cryptoObj.getRandomValues(buffer);
-        bufIndex = 0;
-      }
-      return buffer[bufIndex++];
-    };
-  } else {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const nodeCrypto = require('crypto');
-      const buffer = new Uint8Array(32);
-      let bufIndex = buffer.length;
-      getRandomByte = () => {
-        if (bufIndex >= buffer.length) {
-          if (typeof nodeCrypto.randomFillSync === 'function') {
-            nodeCrypto.randomFillSync(buffer);
-          } else if (typeof nodeCrypto.randomBytes === 'function') {
-            const bytes = nodeCrypto.randomBytes(buffer.length);
-            buffer.set(bytes);
-          } else {
-            throw new Error('No secure random source');
-          }
-          bufIndex = 0;
-        }
-        return buffer[bufIndex++];
-      };
-    } catch (e) {
-      throw new Error('Cryptographically secure random number generation is not supported in this environment.');
+  const getRandomByte = (): number => {
+    if (bufIndex >= buffer.length) {
+      getSecureRandomBytes(buffer);
+      bufIndex = 0;
     }
-  }
+    return buffer[bufIndex++];
+  };
 
   let result = '';
   while (result.length < length) {

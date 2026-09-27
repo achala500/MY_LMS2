@@ -21,32 +21,12 @@ export const DEFAULT_INITIAL_PASSWORD = 'Password@2026';
 /**
  * Generate a cryptographically random salt string
  */
+import { getSecureRandomBytes } from '../security';
+
 export function generateSalt(length: number = 16): string {
   const byteCount = Math.ceil(length / 2);
   const arr = new Uint8Array(byteCount);
-
-  const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto
-    ? globalThis.crypto
-    : (typeof window !== 'undefined' ? window.crypto : undefined);
-
-  if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
-    cryptoObj.getRandomValues(arr);
-  } else {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const nodeCrypto = require('crypto');
-      if (typeof nodeCrypto.randomFillSync === 'function') {
-        nodeCrypto.randomFillSync(arr);
-      } else if (typeof nodeCrypto.randomBytes === 'function') {
-        const bytes = nodeCrypto.randomBytes(byteCount);
-        arr.set(bytes);
-      } else {
-        throw new Error('No secure random source available');
-      }
-    } catch (e) {
-      throw new Error('Cryptographically secure random number generation is not supported in this environment.');
-    }
-  }
+  getSecureRandomBytes(arr);
 
   return Array.from(arr, (b) => b.toString(16).padStart(2, '0')).join('').slice(0, length);
 }
