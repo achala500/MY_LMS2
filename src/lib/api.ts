@@ -174,7 +174,9 @@ export class ApiClientEngine {
               safeSessionStorage.removeItem(k);
             }
           });
-        } catch (cacheClearErr) {}
+        } catch (cacheClearErr) {
+          console.warn('[ApiClient] Failed to clear session cache:', cacheClearErr);
+        }
       }
 
       // Exponential Backoff Retry Strategy for network resilience
