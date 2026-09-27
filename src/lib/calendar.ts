@@ -2,7 +2,7 @@
  * StudySync â€” Google Calendar Integration & Study Schedule Utilities
  */
 
-import { safeStorage } from './storage/safeStorage.ts';
+import { safeStorage } from './storage/safeStorage';
 
 export interface CalendarStudyEvent {
   id: string;

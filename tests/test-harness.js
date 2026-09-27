@@ -322,6 +322,17 @@ export const STREAM_SUBJECTS = {
 /**
  * Returns the exact 3 subjects for a student given their stream and optional subject choice.
  */
+/**
+ * Returns subject names for stream and optional subject (calendar helper alias).
+ */
+export function getStreamSubjectNames(stream, optionalSubject) {
+  const isBio = String(stream || '').toLowerCase().includes('bio');
+  const sub1 = isBio ? 'Biology' : 'Combined Maths';
+  const sub2 = isBio ? 'Chemistry' : 'Physics';
+  const sub3 = optionalSubject || (isBio ? 'Physics' : 'Chemistry');
+  return [sub1, sub2, sub3];
+}
+
 export function getStudentSubjects(stream, optionalSubject) {
   const streamDef = STREAM_SUBJECTS[stream];
   if (!streamDef) {

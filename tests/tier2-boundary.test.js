@@ -6,9 +6,9 @@
  */
 
 import { describe, it, expect } from './e2e-runner.js';
-import { getStreamSubjectNames } from '../src/lib/calendar.ts';
 import {
   StudySyncDatabase,
+  getStreamSubjectNames,
   STREAMS,
   STREAM_SUBJECTS,
   ADMIN_WHITELIST,
