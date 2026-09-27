@@ -10,7 +10,7 @@
  * 3. If NO: consume freeze OR reset streak to 0
  */
 
-import { D1Database } from '@cloudflare/workers-types';
+import type { D1Database } from '@cloudflare/workers-types';
 
 interface StreakEvaluationResult {
   processed: number;
@@ -52,21 +52,26 @@ export async function evaluateStreaksAndFreezes(db: D1Database): Promise<StreakE
   const yesterdayStr = formatDate(yesterdayStart);
   const todayStr = formatDate(new Date(colomboDate));
 
-  for (const student of allStudents.results) {
+  // Query all logs for yesterday upfront to eliminate N+1 queries
+  const validLogs = await db
+    .prepare(`
+      SELECT DISTINCT student_id FROM study_logs
+      WHERE date_of_study = ?
+      AND total_hours > 0
+    `)
+    .bind(yesterdayStr)
+    .all<{ student_id: string }>();
+
+  const studentsWithLogs = new Set<string>(
+    validLogs.success && validLogs.results
+      ? validLogs.results.map((r: any) => r.student_id)
+      : []
+  );
+
+  for (const student of allStudents.results as any[]) {
     result.processed++;
 
-    // Check if student logged between yesterday 04:00 AM and today 04:00 AM
-    const logCheck = await db
-      .prepare(`
-        SELECT COUNT(*) as count FROM study_logs 
-        WHERE student_id = ? 
-        AND date_of_study = ?
-        AND total_hours > 0
-      `)
-      .bind(student.id, yesterdayStr)
-      .first<{ count: number }>();
-
-    const hasValidLog = logCheck && logCheck.count > 0;
+    const hasValidLog = studentsWithLogs.has(student.id);
 
     if (hasValidLog) {
       // Increment streak
