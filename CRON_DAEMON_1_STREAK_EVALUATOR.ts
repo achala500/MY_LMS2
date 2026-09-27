@@ -10,7 +10,15 @@
  * 3. If NO: consume freeze OR reset streak to 0
  */
 
-import type { D1Database } from '@cloudflare/workers-types';
+export interface D1Database {
+  prepare(sql: string): {
+    bind(...args: any[]): {
+      all<T = any>(): Promise<{ success: boolean; results?: T[] }>;
+      first<T = any>(): Promise<T | null>;
+      run(): Promise<{ success: boolean }>;
+    };
+  };
+}
 
 interface StreakEvaluationResult {
   processed: number;
