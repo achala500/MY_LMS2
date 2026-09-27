@@ -633,21 +633,40 @@ export function calculateStudyRoi(
   logs: DailyLogEntry[],
   testMarks: TestMarkEntry[]
 ): SubjectStudyRoi[] {
-  return streamSubjects.map((subject) => {
-    let subjectHours = 0;
-    logs.forEach((log) => {
-      const subs = log.subjects || [];
-      const match = subs.find((s) => s.name?.toLowerCase() === subject.toLowerCase());
-      if (match) {
-        subjectHours += Number(match.hours || 0);
+  const hoursMap = new Map<string, number>();
+  (logs || []).forEach((log) => {
+    const subs = log.subjects || [];
+    const seenInLog = new Set<string>();
+    subs.forEach((s) => {
+      if (!s.name) return;
+      const key = s.name.toLowerCase();
+      if (!seenInLog.has(key)) {
+        seenInLog.add(key);
+        const current = hoursMap.get(key) || 0;
+        hoursMap.set(key, current + Number(s.hours || 0));
       }
     });
+  });
 
-    const subMarks = testMarks.filter((t) => t.subject.toLowerCase() === subject.toLowerCase());
-    const avgMark =
-      subMarks.length > 0
-        ? subMarks.reduce((acc, m) => acc + m.score, 0) / subMarks.length
-        : 0;
+  const marksMap = new Map<string, { totalScore: number; count: number }>();
+  (testMarks || []).forEach((t) => {
+    if (!t.subject) return;
+    const key = t.subject.toLowerCase();
+    const existing = marksMap.get(key);
+    if (existing) {
+      existing.totalScore += Number(t.score || 0);
+      existing.count += 1;
+    } else {
+      marksMap.set(key, { totalScore: Number(t.score || 0), count: 1 });
+    }
+  });
+
+  return streamSubjects.map((subject) => {
+    const key = subject.toLowerCase();
+    const subjectHours = hoursMap.get(key) || 0;
+    const markData = marksMap.get(key);
+
+    const avgMark = markData && markData.count > 0 ? markData.totalScore / markData.count : 0;
 
     const roiScore = subjectHours > 0 ? Number((avgMark / (subjectHours / 10 + 1)).toFixed(1)) : 0;
 
