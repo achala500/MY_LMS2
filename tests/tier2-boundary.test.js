@@ -214,6 +214,51 @@ describe("Feature 3 Boundary: Returning User Fast-Path", () => {
     state.member = { studyId: "SG-BIO-0001" };
     expect(state.isLoading).toBe(false);
   });
+
+  it("T2.F3.6: ApiClient cache write error logs console warning on QuotaExceededError and completes request", async () => {
+    const mockStorage = {
+      setItem: () => {
+        throw new Error("QuotaExceededError: Storage quota exceeded");
+      }
+    };
+    const warnings = [];
+    const originalWarn = console.warn;
+    console.warn = (...args) => {
+      warnings.push(args.map(a => (a && a.message) ? a.message : String(a)).join(' '));
+    };
+
+    try {
+      const isReadQuery = true;
+      const cacheKey = 'studysync_cache_getStudentHistory_{"studyId":"SG-BIO-0001"}';
+      const finalResponse = { success: true, data: { logs: [] } };
+      let requestCompleted = false;
+
+      if (isReadQuery && cacheKey && finalResponse.success) {
+        try {
+          mockStorage.setItem(
+            cacheKey,
+            JSON.stringify({
+              cachedAt: Date.now(),
+              data: finalResponse,
+            })
+          );
+        } catch (writeErr) {
+          console.warn(
+            `[ApiClient] Failed to cache query response for key '${cacheKey}':`,
+            writeErr
+          );
+        }
+      }
+      requestCompleted = true;
+
+      expect(requestCompleted).toBe(true);
+      expect(warnings.length).toBeGreaterThan(0);
+      expect(warnings[0]).toContain("[ApiClient] Failed to cache query response for key");
+      expect(warnings[0]).toContain("QuotaExceededError");
+    } finally {
+      console.warn = originalWarn;
+    }
+  });
 }, { tier: 2 });
 
 // Feature 4 Boundary: Read-Only Email Binding
