@@ -91,12 +91,12 @@ export default function RootLayout({
         <Script id="firebase-init" strategy="afterInteractive">
           {`
             const firebaseConfig = {
-              apiKey: "AIzaSyAjK2y49ia3YnDY3L1bMhwasAQGRikvAHA",
-              authDomain: "studysync-al-2026.firebaseapp.com",
-              projectId: "studysync-al-2026",
-              storageBucket: "studysync-al-2026.firebasestorage.app",
-              messagingSenderId: "99176264496",
-              appId: "1:99176264496:web:1a6a69567c0f7619a98ef5"
+              apiKey: "${process.env.NEXT_PUBLIC_FIREBASE_API_KEY || ''}",
+              authDomain: "${process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'studysync-al-2026.firebaseapp.com'}",
+              projectId: "${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'studysync-al-2026'}",
+              storageBucket: "${process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'studysync-al-2026.firebasestorage.app'}",
+              messagingSenderId: "${process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || '99176264496'}",
+              appId: "${process.env.NEXT_PUBLIC_FIREBASE_APP_ID || '1:99176264496:web:1a6a69567c0f7619a98ef5'}"
             };
             if (typeof window !== 'undefined' && typeof window.firebase !== 'undefined' && window.firebase.initializeApp) {
               if (!window.firebase.apps || !window.firebase.apps.length) {
