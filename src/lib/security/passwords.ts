@@ -25,21 +25,17 @@ export function generateSalt(length: number = 16): string {
   const byteCount = Math.ceil(length / 2);
   const arr = new Uint8Array(byteCount);
 
-  if (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues) {
-    globalThis.crypto.getRandomValues(arr);
-  } else if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
-    window.crypto.getRandomValues(arr);
+  const cryptoObj =
+    (typeof crypto !== 'undefined' && crypto.getRandomValues && crypto) ||
+    (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues && globalThis.crypto) ||
+    (typeof window !== 'undefined' && window.crypto?.getRandomValues && window.crypto) ||
+    null;
+
+  if (cryptoObj) {
+    cryptoObj.getRandomValues(arr);
   } else {
-    // Fallback for older Node environments using built-in crypto module
-    try {
-      const nodeCrypto = require('crypto');
-      const buf = nodeCrypto.randomBytes(byteCount);
-      arr.set(buf);
-    } catch {
-      // Deterministic fallback if crypto is completely unavailable
-      for (let i = 0; i < byteCount; i++) {
-        arr[i] = Math.floor(Math.random() * 256);
-      }
+    for (let i = 0; i < byteCount; i++) {
+      arr[i] = Math.floor(Math.random() * 256);
     }
   }
 
