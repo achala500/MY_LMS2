@@ -21,6 +21,9 @@ export const ADMIN_WHITELIST: readonly string[] = [
 ] as const;
 export const ADMIN_EMAILS = ADMIN_WHITELIST;
 
+// Administrative Vault Passkey (configured via environment variable)
+export const ADMIN_VAULT_PASSKEY = process.env.NEXT_PUBLIC_ADMIN_PASSKEY || process.env.NEXT_PUBLIC_ADMIN_PASSPHRASE || '';
+
 
 // Firebase Client Configuration (Compat SDK v10)
 export const FIREBASE_CONFIG = {
