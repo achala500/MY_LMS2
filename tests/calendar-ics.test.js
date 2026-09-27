@@ -7,7 +7,34 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseIcsContent, generateIcsCalendar } from '../src/lib/calendar.ts';
+import fs from 'node:fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import ts from 'typescript';
+
+// Transpile src/lib/calendar.ts dynamically into cache so Node ESM resolves relative imports cleanly
+const CACHE_DIR = path.join(process.cwd(), 'node_modules', '.cache', 'calendar-test');
+if (!fs.existsSync(CACHE_DIR)) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+}
+
+// Transpile safeStorage.ts
+const safeStorageCode = fs.readFileSync(path.join(process.cwd(), 'src', 'lib', 'storage', 'safeStorage.ts'), 'utf-8');
+const transpiledSafeStorage = ts.transpileModule(safeStorageCode, {
+  compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 }
+}).outputText;
+fs.writeFileSync(path.join(CACHE_DIR, 'safeStorage.js'), transpiledSafeStorage, 'utf-8');
+
+// Transpile calendar.ts
+let calendarCode = fs.readFileSync(path.join(process.cwd(), 'src', 'lib', 'calendar.ts'), 'utf-8');
+calendarCode = calendarCode.replace(/from\s+['"]\.\/storage\/safeStorage['"]/g, "from './safeStorage.js'");
+const transpiledCalendar = ts.transpileModule(calendarCode, {
+  compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 }
+}).outputText;
+const calendarJsPath = path.join(CACHE_DIR, 'calendar.js');
+fs.writeFileSync(calendarJsPath, transpiledCalendar, 'utf-8');
+
+const { parseIcsContent, generateIcsCalendar } = await import(pathToFileURL(calendarJsPath).href);
 
 test('parseIcsContent: Happy Path Event Parsing', async (t) => {
   await t.test('parses a single valid VEVENT with all fields', () => {
