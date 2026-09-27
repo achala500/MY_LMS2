@@ -535,24 +535,27 @@ export interface IdempotencyEnvelope<T> {
   };
 }
 
+function getCrypto(): Crypto {
+  if (typeof globalThis !== 'undefined' && globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') {
+    return globalThis.crypto;
+  }
+  if (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') {
+    return window.crypto as Crypto;
+  }
+  throw new Error('Cryptographically secure random number generator (Crypto.getRandomValues) is not available.');
+}
+
 /**
  * Generates a 128-bit cryptographic random nonce (32 hex characters)
  */
 export function generateSecurityNonce(length: number = 32): string {
   const byteCount = Math.ceil(length / 2);
-  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-    const array = new Uint8Array(byteCount);
-    crypto.getRandomValues(array);
-    return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
-      .join('')
-      .substring(0, length);
-  }
-  let result = '';
-  const chars = '0123456789abcdef';
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
+  const cryptoObj = getCrypto();
+  const array = new Uint8Array(byteCount);
+  cryptoObj.getRandomValues(array);
+  return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+    .substring(0, length);
 }
 
 /**
@@ -904,11 +907,8 @@ export function evaluatePasswordSecurity(password: string, role: 'student' | 'ad
 export function generateHighEntropyPassword(length: number = 14): string {
   const charset = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*()-_=+';
   const array = new Uint8Array(length);
-  if (typeof window !== 'undefined' && window.crypto) {
-    window.crypto.getRandomValues(array);
-  } else {
-    for (let i = 0; i < length; i++) array[i] = Math.floor(Math.random() * 256);
-  }
+  const cryptoObj = getCrypto();
+  cryptoObj.getRandomValues(array);
   let result = '';
   for (let i = 0; i < length; i++) {
     result += charset[array[i] % charset.length];

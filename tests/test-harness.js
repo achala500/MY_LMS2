@@ -1285,11 +1285,15 @@ export class SynchronizedSlidingRateLimiter {
 }
 
 export function generateSecurityNonce() {
-  let hex = '';
-  for (let i = 0; i < 32; i++) {
-    hex += Math.floor(Math.random() * 16).toString(16);
+  const bytes = new Uint8Array(16);
+  if (typeof globalThis !== 'undefined' && globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') {
+    globalThis.crypto.getRandomValues(bytes);
+  } else if (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') {
+    window.crypto.getRandomValues(bytes);
+  } else {
+    throw new Error('Cryptographically secure random number generator (Crypto.getRandomValues) is not available.');
   }
-  return hex;
+  return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
 }
 
 export function generateIdempotencyKey(payload, nonce = generateSecurityNonce()) {

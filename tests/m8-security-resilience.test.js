@@ -36,6 +36,8 @@ import {
   formatCsvCell,
   generateCsvString
 } from './test-harness.js';
+import { generateSecurityNonce as sourceGenerateSecurityNonce, generateHighEntropyPassword as sourceGenerateHighEntropyPassword } from '../src/lib/security.ts';
+import { generateSalt as sourceGenerateSalt } from '../src/lib/security/passwords.ts';
 
 describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resilience', () => {
 
@@ -345,6 +347,39 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(nonce1.length, 32);
       assert.notStrictEqual(nonce1, nonce2);
       assert.match(nonce1, /^[0-9a-f]{32}$/);
+    });
+
+    test('CSPRNG Enforcement: source functions generate secure random values and throw error when CSPRNG is unavailable', () => {
+      const nonce = sourceGenerateSecurityNonce();
+      assert.strictEqual(nonce.length, 32);
+      assert.match(nonce, /^[0-9a-f]{32}$/);
+
+      const pass = sourceGenerateHighEntropyPassword(16);
+      assert.strictEqual(pass.length, 16);
+
+      const salt = sourceGenerateSalt(16);
+      assert.strictEqual(salt.length, 16);
+      assert.match(salt, /^[0-9a-f]{16}$/);
+
+      // Simulate environment without CSPRNG
+      const origCrypto = globalThis.crypto;
+      try {
+        delete globalThis.crypto;
+        assert.throws(
+          () => sourceGenerateSecurityNonce(),
+          /Cryptographically secure random number generator/
+        );
+        assert.throws(
+          () => sourceGenerateHighEntropyPassword(),
+          /Cryptographically secure random number generator/
+        );
+        assert.throws(
+          () => sourceGenerateSalt(),
+          /Cryptographically secure random number generator/
+        );
+      } finally {
+        globalThis.crypto = origCrypto;
+      }
     });
 
     test('generateIdempotencyKey generates deterministic hash for identical payload and nonce', () => {
