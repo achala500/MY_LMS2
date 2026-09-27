@@ -22,12 +22,31 @@ export const DEFAULT_INITIAL_PASSWORD = 'Password@2026';
  * Generate a cryptographically random salt string
  */
 export function generateSalt(length: number = 16): string {
-  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
-    const arr = new Uint8Array(length);
+  const byteCount = Math.ceil(length / 2);
+  const arr = new Uint8Array(byteCount);
+
+  if (typeof globalThis !== 'undefined' && globalThis.crypto?.getRandomValues) {
+    globalThis.crypto.getRandomValues(arr);
+  } else if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
     window.crypto.getRandomValues(arr);
-    return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, length);
+  } else {
+    // Fallback for older Node environments using built-in crypto module
+    try {
+      const nodeCrypto = require('crypto');
+      const buf = nodeCrypto.randomBytes(byteCount);
+      arr.set(buf);
+    } catch {
+      // Deterministic fallback if crypto is completely unavailable
+      for (let i = 0; i < byteCount; i++) {
+        arr[i] = Math.floor(Math.random() * 256);
+      }
+    }
   }
-  return Math.random().toString(36).substring(2, 18);
+
+  return Array.from(arr)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+    .substring(0, length);
 }
 
 /**
