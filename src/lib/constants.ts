@@ -24,7 +24,7 @@ export const ADMIN_EMAILS = ADMIN_WHITELIST;
 
 // Firebase Client Configuration (Compat SDK v10)
 export const FIREBASE_CONFIG = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || '',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'AIzaSyAjK2y49ia3YnDY3L1bMhwasAQGRikvAHA',
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'studysync-al-2026.firebaseapp.com',
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'studysync-al-2026',
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || 'studysync-al-2026.firebasestorage.app',
