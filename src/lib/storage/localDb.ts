@@ -498,8 +498,12 @@ class LocalDatabaseEngine {
     this.dispatchFormToInbox(form);
   }
 
+  public getAllFormResponses(): FormResponse[] {
+    return this.getItem<FormResponse[]>(STORAGE_KEYS.FORM_RESPONSES, []);
+  }
+
   public getFormResponses(formId: string): FormResponse[] {
-    const all = this.getItem<FormResponse[]>(STORAGE_KEYS.FORM_RESPONSES, []);
+    const all = this.getAllFormResponses();
     return all.filter((r) => r.formId === formId);
   }
 
