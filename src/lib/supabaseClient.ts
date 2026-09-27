@@ -98,7 +98,9 @@ export class SupabaseService {
           try {
             const data = JSON.parse(event.data);
             this.wsListeners.forEach((listener) => listener(data));
-          } catch (e) {}
+          } catch (err) {
+            console.warn('[Supabase Realtime] Failed to parse message or dispatch event:', err);
+          }
         };
       }
     } catch (e) {
