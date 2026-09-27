@@ -498,8 +498,12 @@ class LocalDatabaseEngine {
     this.dispatchFormToInbox(form);
   }
 
+  public getAllFormResponses(): FormResponse[] {
+    return this.getItem<FormResponse[]>(STORAGE_KEYS.FORM_RESPONSES, []);
+  }
+
   public getFormResponses(formId: string): FormResponse[] {
-    const all = this.getItem<FormResponse[]>(STORAGE_KEYS.FORM_RESPONSES, []);
+    const all = this.getAllFormResponses();
     return all.filter((r) => r.formId === formId);
   }
 
@@ -554,28 +558,38 @@ class LocalDatabaseEngine {
     const studentStream = member?.stream || 'all';
     const activeForms = this.getAdminForms().filter((f) => f.isActive);
 
-    for (const form of activeForms) {
-      // Check audience
-      const audienceMatches = form.targetAudience === 'all' || !form.targetAudience || form.targetAudience === studentStream;
-      if (!audienceMatches) continue;
+    if (activeForms.length > 0) {
+      let studentRespondedFormIds: Set<string> | null = null;
 
-      // Check if message for this form already exists in student's inbox
-      const alreadyHasForm = userMessages.some((msg) => msg.form?.formId === form.formId);
-      if (!alreadyHasForm) {
-        const alreadyResponded = this.getFormResponses(form.formId).some(
-          (r) => (r.studyId || '').toUpperCase() === cleanId
-        );
-        userMessages.unshift({
-          id: `INBOX-FORM-${form.formId}`,
-          type: 'form',
-          title: form.title,
-          sender: 'StudySync Administration',
-          body: form.description || 'New academic survey requested by administrators.',
-          form,
-          date: form.createdAt || new Date().toISOString(),
-          read: alreadyResponded,
-          responded: alreadyResponded,
-        });
+      for (const form of activeForms) {
+        // Check audience
+        const audienceMatches = form.targetAudience === 'all' || !form.targetAudience || form.targetAudience === studentStream;
+        if (!audienceMatches) continue;
+
+        // Check if message for this form already exists in student's inbox
+        const alreadyHasForm = userMessages.some((msg) => msg.form?.formId === form.formId);
+        if (!alreadyHasForm) {
+          if (studentRespondedFormIds === null) {
+            const allResponses = this.getAllFormResponses();
+            studentRespondedFormIds = new Set(
+              allResponses
+                .filter((r) => (r.studyId || '').trim().toUpperCase() === cleanId)
+                .map((r) => r.formId)
+            );
+          }
+          const alreadyResponded = studentRespondedFormIds.has(form.formId);
+          userMessages.unshift({
+            id: `INBOX-FORM-${form.formId}`,
+            type: 'form',
+            title: form.title,
+            sender: 'StudySync Administration',
+            body: form.description || 'New academic survey requested by administrators.',
+            form,
+            date: form.createdAt || new Date().toISOString(),
+            read: alreadyResponded,
+            responded: alreadyResponded,
+          });
+        }
       }
     }
 
