@@ -26,6 +26,7 @@ import {
   scanBase64Payload,
   SynchronizedSlidingRateLimiter,
   generateSecurityNonce,
+  generateSalt,
   generateIdempotencyKey,
   createIdempotencyEnvelope,
   verifyTimestampDrift,
@@ -345,6 +346,22 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
       assert.strictEqual(nonce1.length, 32);
       assert.notStrictEqual(nonce1, nonce2);
       assert.match(nonce1, /^[0-9a-f]{32}$/);
+    });
+
+    test('generateSalt generates cryptographically secure random salt hex string', () => {
+      const salt16 = generateSalt();
+      assert.strictEqual(typeof salt16, 'string');
+      assert.strictEqual(salt16.length, 16);
+      assert.match(salt16, /^[0-9a-f]{16}$/i);
+
+      const salt32 = generateSalt(32);
+      assert.strictEqual(salt32.length, 32);
+
+      const salts = new Set();
+      for (let i = 0; i < 100; i++) {
+        salts.add(generateSalt(16));
+      }
+      assert.strictEqual(salts.size, 100, 'All 100 generated salts must be unique (cryptographic entropy)');
     });
 
     test('generateIdempotencyKey generates deterministic hash for identical payload and nonce', () => {
