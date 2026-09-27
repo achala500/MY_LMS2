@@ -236,7 +236,9 @@ export class ApiClientEngine {
                   data: finalResponse,
                 })
               );
-            } catch (writeErr) {}
+            } catch (writeErr) {
+              console.warn('[ApiClient] Failed to write to cache storage:', writeErr);
+            }
           }
 
           return finalResponse;
