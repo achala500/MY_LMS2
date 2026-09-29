@@ -6,6 +6,8 @@
 
 'use client';
 
+import { scanBinaryPayload } from '../security';
+
 export interface VaultFile {
   id: string;
   name: string;
@@ -73,6 +75,14 @@ async function fileToBase64(file: File): Promise<string> {
 }
 
 export async function uploadVaultFile(payload: VaultUploadPayload): Promise<VaultFile> {
+  if (payload.file) {
+    const arrayBuffer = await payload.file.arrayBuffer();
+    const scanResult = scanBinaryPayload(new Uint8Array(arrayBuffer));
+    if (!scanResult.safe) {
+      throw new Error(`Security rejection: ${scanResult.threat || 'Malware or forbidden payload detected.'}`);
+    }
+  }
+
   const base64Data = await fileToBase64(payload.file);
   const entry: VaultFile = {
     id: generateId(),
