@@ -255,6 +255,34 @@ describe('Milestone M8: Security Hardening, Binary Validation & Concurrency Resi
   });
 
   // --------------------------------------------------------------------------
+  // 4.5 Vault File Binary Security Scan Defense
+  // --------------------------------------------------------------------------
+  describe('4.5 Vault File Binary Security Scan Defense', () => {
+    test('Vault upload binary scanner rejects PE executable payload', () => {
+      const peBuffer = Buffer.alloc(256);
+      peBuffer[0] = 0x4D; // M
+      peBuffer[1] = 0x5A; // Z
+      const scan = scanBinaryPayload(peBuffer);
+      assert.strictEqual(scan.safe, false);
+      assert.strictEqual(scan.code, 'MALWARE_PE_EXECUTABLE');
+    });
+
+    test('Vault upload binary scanner rejects embedded script payload', () => {
+      const scriptBuffer = Buffer.from('PDF-1.4 ... <script>alert("xss")</script>');
+      const scan = scanBinaryPayload(scriptBuffer);
+      assert.strictEqual(scan.safe, false);
+      assert.strictEqual(scan.code, 'MALWARE_SCRIPT_EMBEDDED');
+    });
+
+    test('Vault upload binary scanner permits clean PDF binary buffer', () => {
+      const cleanPdfBuffer = Buffer.from('%PDF-1.4 %âãÏÓ ... 1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj');
+      const scan = scanBinaryPayload(cleanPdfBuffer);
+      assert.strictEqual(scan.safe, true);
+      assert.strictEqual(scan.threat, null);
+    });
+  });
+
+  // --------------------------------------------------------------------------
   // 5. Deep Polyglot & Script Injection Scanner
   // --------------------------------------------------------------------------
   describe('5. Deep Polyglot & Script Injection Scanner', () => {
