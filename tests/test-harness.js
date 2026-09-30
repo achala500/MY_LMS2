@@ -1238,10 +1238,11 @@ export function scanBase64Payload(base64Str) {
   }
   try {
     const buf = Buffer.from(raw, 'base64');
-    if (buf.length >= 2 && buf[0] === 0x4D && buf[1] === 0x5A) {
+    const bytes = new Uint8Array(buf);
+    if (bytes.length >= 2 && bytes[0] === 0x4D && bytes[1] === 0x5A) {
       return { safe: false, code: 'MALWARE_PE_EXECUTABLE', threat: 'Blocked: Base64 encoded PE executable.' };
     }
-    return scanBinaryPayload(buf);
+    return scanBinaryPayload(bytes);
   } catch (e) {
     return { safe: false, code: 'SECURITY_INVALID_ENCODING', threat: 'Invalid Base64 payload.' };
   }
