@@ -426,9 +426,10 @@ export function scanBase64Payload(base64Str: string): { safe: boolean; code?: st
     let bytes: Uint8Array;
     if (typeof Buffer !== 'undefined') {
       const buf = Buffer.from(cleanBase64, 'base64');
-      bytes = new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
+      bytes = new Uint8Array(buf);
     } else if (typeof atob !== 'undefined') {
-      const binaryStr = atob(cleanBase64.substring(0, 32768));
+      const maxLen = Math.floor(Math.min(cleanBase64.length, 32768) / 4) * 4;
+      const binaryStr = atob(cleanBase64.substring(0, maxLen));
       bytes = new Uint8Array(binaryStr.length);
       for (let i = 0; i < binaryStr.length; i++) {
         bytes[i] = binaryStr.charCodeAt(i);
