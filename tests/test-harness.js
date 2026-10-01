@@ -1284,12 +1284,17 @@ export class SynchronizedSlidingRateLimiter {
   }
 }
 
-export function generateSecurityNonce() {
-  let hex = '';
-  for (let i = 0; i < 32; i++) {
-    hex += Math.floor(Math.random() * 16).toString(16);
+export function generateSecurityNonce(length = 32) {
+  const byteCount = Math.ceil(length / 2);
+  const cryptoObj = typeof globalThis !== 'undefined' && globalThis.crypto ? globalThis.crypto : (typeof crypto !== 'undefined' ? crypto : null);
+  if (cryptoObj && cryptoObj.getRandomValues) {
+    const array = new Uint8Array(byteCount);
+    cryptoObj.getRandomValues(array);
+    return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
+      .join('')
+      .substring(0, length);
   }
-  return hex;
+  throw new Error('Cryptographically secure random number generator is unavailable.');
 }
 
 export function generateIdempotencyKey(payload, nonce = generateSecurityNonce()) {
