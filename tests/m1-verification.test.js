@@ -120,6 +120,15 @@ describe('Milestone M1 Verification', () => {
       const highlighted = highlightMatch('Royal College, Colombo', 'Royal');
       assert.ok(highlighted.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">Royal</mark>'));
     });
+
+    it('should sanitize XSS payloads in highlightMatch against script injection', () => {
+      const xssPayloadText = '<img src=x onerror=alert(1)> Royal College';
+      const xssQuery = '<img';
+      const result = highlightMatch(xssPayloadText, xssQuery);
+      assert.ok(!result.includes('<img src=x onerror=alert(1)>'), 'Raw unescaped HTML tag should not exist in output');
+      assert.ok(result.includes('&lt;img'), 'HTML tag characters must be escaped');
+      assert.ok(result.includes('<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">&lt;img</mark>'), 'Highlight mark tag wraps escaped text');
+    });
   });
 
   // ==========================================

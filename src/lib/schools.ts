@@ -3,6 +3,8 @@
  * Comprehensive dataset of 306 National, Provincial, and Popular Schools across all 9 Provinces and 25 Districts.
  */
 
+import { escapeHtml } from './security';
+
 export type Province =
   | 'Western'
   | 'Central'
@@ -521,12 +523,18 @@ export function filterSchools(query: string, maxResults: number = 10): string[] 
 /**
  * Highlight matched search query in school name string
  */
+/**
+ * Highlight matched search query in school name string, safely HTML-escaped against XSS
+ */
 export function highlightMatch(text: string, query: string): string {
-  if (!query || !text) return text;
-  const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  if (!q) return text;
+  if (!text) return '';
+  const safeText = escapeHtml(text);
+  if (!query) return safeText;
+  const safeQuery = escapeHtml(query.trim());
+  const q = safeQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (!q) return safeText;
   const regex = new RegExp(`(${q})`, 'gi');
-  return text.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
+  return safeText.replace(regex, '<mark class="bg-indigo-500/40 text-indigo-200 font-semibold px-0.5 rounded">$1</mark>');
 }
 
 /**
