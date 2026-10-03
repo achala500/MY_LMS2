@@ -1,0 +1,4 @@
+## 2026-03-30 - Web Crypto API Resolution in Universal Environments
+**Vulnerability:** Checking `window.crypto` instead of `globalThis.crypto` causes cryptographic helpers (`generateSalt`, `hashString`, `generateSecurityNonce`) to fall back to insecure pseudo-random methods (`Math.random()`) during server-side rendering (SSR), background workers, or Node.js executions.
+**Learning:** In universal JavaScript applications (Next.js App Router / SSR), `window` is undefined on the server, even though `globalThis.crypto` (Web Crypto API) is available in modern Node.js/Edge runtimes.
+**Prevention:** Always reference `globalThis.crypto` or check both `globalThis.crypto` and `window.crypto` when accessing Web Crypto API primitives to ensure CSPRNG random generation and SHA-256 hashing in all execution contexts.
