@@ -540,9 +540,10 @@ export interface IdempotencyEnvelope<T> {
  */
 export function generateSecurityNonce(length: number = 32): string {
   const byteCount = Math.ceil(length / 2);
-  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+  const cryptoObj = typeof globalThis !== 'undefined' ? globalThis.crypto : (typeof window !== 'undefined' ? window.crypto : undefined);
+  if (cryptoObj && cryptoObj.getRandomValues) {
     const array = new Uint8Array(byteCount);
-    crypto.getRandomValues(array);
+    cryptoObj.getRandomValues(array);
     return Array.from(array, (byte) => byte.toString(16).padStart(2, '0'))
       .join('')
       .substring(0, length);
